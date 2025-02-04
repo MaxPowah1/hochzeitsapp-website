@@ -1,68 +1,113 @@
-/* style.css */
-
 /* Globale Styles */
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: "Merriweather", Georgia, "Times New Roman", serif;
+  background-color: #f9f3f1;
+  color: #2c2c2c;
   margin: 0;
   padding: 0;
 }
 
+/* Navbar */
+.navbar {
+  padding: 1rem 0;
+}
+
 /* Hero Section */
-.hero-section {
+#hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url("../images/bg2.png") center center/cover no-repeat;
   position: relative;
-  height: 80vh;
-  background: url("../images/hero.jpg") center center/cover no-repeat;
+}
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+#hero .container {
+  position: relative;
+  z-index: 2;
+}
+#hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+#hero p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
 }
 
-.hero-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
-  height: 100%;
-  width: 100%;
+/* Features Section */
+#features {
+  background-color: #fff;
+}
+#features h2 {
+  margin-bottom: 2rem;
+}
+#features .border {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+#features .border:hover {
+  transform: translateY(-3px);
 }
 
-.hero-text-container {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 700px;
-  margin: 0 auto;
+/* Screenshots Section */
+#screens {
+  background-color: #f7f7f7;
+}
+.minimal-img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.minimal-img:hover {
+  transform: scale(1.02);
 }
 
 /* CTA Section */
-.cta-section {
-  background: linear-gradient(to right, #ff8686, #ff5e5e);
+#cta {
+  background-color: #fff;
+  text-align: center;
 }
 
-/* Feature Cards */
-.feature-card {
-  border: none;
-  transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Screens Section - Impressionen */
-.impression-img {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.impression-img:hover {
-  transform: scale(1.05);
+/* Contact Section */
+#contact {
+  background-color: #f7f7f7;
 }
 
 /* Footer */
 footer {
+  background-color: #f7f7f7;
+  padding: 1rem 0;
   font-size: 0.9rem;
   color: #666;
 }
 
-/* Responsives Padding-Anpassungen */
+/* Allgemeine Abstände */
+section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Responsive Anpassungen */
 @media (max-width: 768px) {
-  .hero-section {
-    height: 60vh;
+  #hero {
+    min-height: 60vh;
+  }
+  #hero h1 {
+    font-size: 2rem;
+  }
+  #hero p {
+    font-size: 1rem;
   }
 }
