@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (targetElem) {
         e.preventDefault();
         window.scrollTo({
-          top: targetElem.offsetTop - 70,
+          top: targetElem.offsetTop - 70, // Abzug, falls die Navbar fixiert sein sollte
           behavior: "smooth"
         });
       }
