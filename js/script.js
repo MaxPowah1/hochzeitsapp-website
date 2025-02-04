@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    // Größe des Canvas anpassen (ursprüngliche Methode)
+    // Größe des Canvas anpassen
     function resizeCanvas() {
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
