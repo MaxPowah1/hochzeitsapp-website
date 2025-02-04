@@ -74,6 +74,60 @@ body {
   transform: scale(1.02);
 }
 
+/* Ablauf (Process) Section - Timeline */
+#process {
+  background-color: #343a40;
+  color: #fff;
+  padding: 6rem 0;
+}
+#process h2 {
+  font-size: 2.5rem;
+}
+.timeline {
+  position: relative;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+/* Falls der horizontale Strich nicht gewünscht ist, kann der folgende Block entfernt oder auskommentiert werden */
+/*
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+*/
+.timeline-item {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  text-align: center;
+}
+.timeline-item .timeline-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  overflow: hidden;
+}
+.timeline-item .timeline-icon img {
+  width: 100%;
+  height: auto;
+}
+.timeline-item h5 {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+.timeline-item p {
+  font-size: 1rem;
+}
+
 /* CTA Section */
 #cta {
   background-color: #fff;
@@ -109,5 +163,14 @@ section {
   }
   #hero p {
     font-size: 1rem;
+  }
+  #process h2 {
+    font-size: 2rem;
+  }
+  .timeline-item h5 {
+    font-size: 1rem;
+  }
+  .timeline-item p {
+    font-size: 0.9rem;
   }
 }

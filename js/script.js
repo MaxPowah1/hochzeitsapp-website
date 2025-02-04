@@ -19,10 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Öffnen der Modal-Ansicht für Screenshots
   const imageModal = document.getElementById("imageModal");
-  imageModal.addEventListener("show.bs.modal", function (event) {
-    const trigger = event.relatedTarget;
-    const imgSrc = trigger.getAttribute("data-img");
-    const modalImage = imageModal.querySelector("#modalImage");
-    modalImage.src = imgSrc;
-  });
+  if (imageModal) {
+    imageModal.addEventListener("show.bs.modal", function (event) {
+      const trigger = event.relatedTarget;
+      const imgSrc = trigger.getAttribute("data-img");
+      const modalImage = imageModal.querySelector("#modalImage");
+      modalImage.src = imgSrc;
+    });
+  }
 });
