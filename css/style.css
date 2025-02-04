@@ -1,0 +1,68 @@
+/* style.css */
+
+/* Globale Styles */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background: url("../images/hero.jpg") center center/cover no-repeat;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+}
+
+.hero-text-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(to right, #ff8686, #ff5e5e);
+}
+
+/* Feature Cards */
+.feature-card {
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Screens Section - Impressionen */
+.impression-img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.impression-img:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsives Padding-Anpassungen */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+  }
+}
