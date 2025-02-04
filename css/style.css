@@ -46,6 +46,16 @@ body {
   color: #fff;
 }
 
+/* Canvas Animation im Hero-Bereich */
+#heroCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Canvas im Hintergrund */
+}
+
 /* Features Section */
 #features {
   background-color: #fff;
