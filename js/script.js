@@ -33,13 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    // Größe des Canvas anpassen
+    // Größe des Canvas anpassen – basierend auf der Größe des #hero-Elements
     function resizeCanvas() {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      const heroSection = document.getElementById("hero");
+      // Setze die Größe des Canvas anhand der tatsächlichen Größe des Hero-Bereichs
+      canvas.width = heroSection.offsetWidth;
+      canvas.height = heroSection.offsetHeight;
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("orientationchange", resizeCanvas);
 
     // Partikel-Objekte
     const particles = [];
