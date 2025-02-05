@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Partikel-Objekte
     const particles = [];
-    const particleCount = 50; // Anzahl der Kreise
+    const particleCount = 35; // Anzahl der Kreise
     const colors = ["rgba(255,255,255,0.3)", "rgba(255,255,255,0.5)", "rgba(255,255,255,0.7)"];
 
     // Partikel-Konstruktor
