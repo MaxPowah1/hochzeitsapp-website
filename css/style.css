@@ -7,9 +7,10 @@ body {
   padding: 0;
 }
 
-/* Navbar */
-.navbar {
-  padding: 1rem 0;
+/* Allgemeiner Sektionsabstand */
+section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 /* Hero Section */
@@ -29,7 +30,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 #hero .container {
   position: relative;
@@ -53,12 +54,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0; /* Canvas im Hintergrund */
+  z-index: 0;
 }
 
 /* Features Section */
 #features {
-  background-color: #fff;
+  background-color: #ffffff;
+  border-top: 5px solid #ffdede;
+  border-bottom: 5px solid #ffdede;
 }
 #features h2 {
   margin-bottom: 2rem;
@@ -74,19 +77,20 @@ body {
 
 /* Screenshots Section */
 #screens {
-  background-color: #f7f7f7;
+  background-color: #f0f0f0;
 }
 .minimal-img {
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 .minimal-img:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 /* Ablauf (Process) Section - Timeline */
 #process {
-  background-color: #343a40;
+  background: linear-gradient(135deg, #343a40, #555);
   color: #fff;
   padding: 6rem 0;
 }
@@ -103,6 +107,10 @@ body {
   z-index: 2;
   padding: 1rem;
   text-align: center;
+  transition: transform 0.3s ease;
+}
+.timeline-item:hover {
+  transform: translateY(-5px);
 }
 .timeline-item .timeline-icon {
   width: 100px;
@@ -125,29 +133,41 @@ body {
   font-size: 1rem;
 }
 
-/* CTA Section */
-#cta {
-  background-color: #fff;
-  text-align: center;
+/* Pricing Section */
+#pricing {
+  background-color: #ffffff;
+  border-top: 5px solid #ddeeff;
+  border-bottom: 5px solid #ddeeff;
 }
 
-/* Contact Section */
+/* Über uns Section */
+#about {
+  background: linear-gradient(135deg, #ffffff, #eaeaea);
+  border-top: 5px solid #ffdede;
+  border-bottom: 5px solid #ffdede;
+}
+
+/* Demoapp Section */
+#demoapp {
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+/* Kontakt Section */
 #contact {
-  background-color: #f7f7f7;
+  background-color: #f0f0f0;
 }
 
 /* Footer */
 footer {
-  background-color: #f7f7f7;
+  background-color: #222;
+  color: #ccc;
   padding: 1rem 0;
   font-size: 0.9rem;
-  color: #666;
 }
 
-/* Allgemeine Abstände */
-section {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+/* Navbar */
+.navbar {
+  padding: 1rem 0;
 }
 
 /* Responsive Anpassungen */
@@ -173,7 +193,6 @@ section {
   }
 }
 
-/* Weitere Anpassungen für sehr kleine Bildschirme */
 @media (max-width: 576px) {
   .navbar-brand {
     font-size: 1.25rem;
@@ -186,15 +205,38 @@ section {
   }
 }
 
-
-/* Fade-in-Effekt für ausgewählte Bereiche */
+/* Fade-in-Effekt */
 .fade-in-section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out;
 }
-
 .fade-in-section.visible {
   opacity: 1;
   transform: none;
+}
+
+/* --- Zusätzliche Hover-Effekte --- */
+
+/* Karten (Pricing Cards, etc.) */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Buttons */
+.btn {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Allgemeine Links */
+a:hover {
+  color: #ff5733;
+  text-decoration: none;
 }
