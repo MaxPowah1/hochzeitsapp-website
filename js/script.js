@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
   // Smooth Scrolling für interne Links
   const links = document.querySelectorAll('a[href^="#"]');
@@ -10,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (targetElem) {
         e.preventDefault();
         window.scrollTo({
-          top: targetElem.offsetTop - 70, // Abzug, falls die Navbar fixiert sein sollte
+          top: targetElem.offsetTop - 70,
           behavior: "smooth"
         });
       }
@@ -43,10 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Partikel-Objekte
     const particles = [];
-    const particleCount = 8; // Anzahl der Kreise
+    const particleCount = 8;
     const colors = ["rgba(255,255,255,0.3)", "rgba(255,255,255,0.5)", "rgba(255,255,255,0.7)"];
 
-    // Partikel-Konstruktor
     function Particle() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
@@ -59,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     Particle.prototype.update = function () {
       this.x += this.speedX;
       this.y += this.speedY;
-
-      // Reflektion an den Rändern
       if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
       if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     };
@@ -72,23 +67,18 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.fill();
     };
 
-    // Partikel initialisieren
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
-    // Animation-Loop
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       particles.forEach(particle => {
         particle.update();
         particle.draw();
       });
-
       requestAnimationFrame(animate);
     }
-
     animate();
   }
 });
