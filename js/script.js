@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Smooth Scrolling für interne Links
   const links = document.querySelectorAll('a[href^="#"]');
   links.forEach(link => {
     link.addEventListener("click", function (e) {
@@ -14,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
-  // Öffnen der Modal-Ansicht für Screenshots
   const imageModal = document.getElementById("imageModal");
   if (imageModal) {
     imageModal.addEventListener("show.bs.modal", function (event) {
@@ -25,23 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
       modalImage.src = imgSrc;
     });
   }
-
-  // === Canvas Animation im Hero-Bereich ===
   const canvas = document.getElementById("heroCanvas");
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
-
     function resizeCanvas() {
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
     }
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
-
     const particles = [];
     const particleCount = 8;
     const colors = ["rgba(255,255,255,0.3)", "rgba(255,255,255,0.5)", "rgba(255,255,255,0.7)"];
-
     function Particle() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
@@ -50,25 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
       this.speedY = (Math.random() - 0.5) * 1.5;
       this.color = colors[Math.floor(Math.random() * colors.length)];
     }
-
     Particle.prototype.update = function () {
       this.x += this.speedX;
       this.y += this.speedY;
       if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
       if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     };
-
     Particle.prototype.draw = function () {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.fill();
     };
-
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
-
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(particle => {
@@ -79,23 +67,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     animate();
   }
-
-  // === Intersection Observer für Fade-in-Effekte auf alle Elemente mit .fade-in-section ===
   const fadeInSections = document.querySelectorAll('.fade-in-section');
   const observerOptions = {
-    threshold: 0.2 // 20% Sichtbarkeit genügt, um den Effekt zu starten
+    threshold: 0.2
   };
-
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Einmalig animieren
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
-
   fadeInSections.forEach(section => {
     observer.observe(section);
   });
+  const encodedNumber = "NDkxNTIyMTM1OTUzMg==";
+  function decodeBase64(str) {
+    return atob(str);
+  }
+  const phoneNumber = decodeBase64(encodedNumber);
+  const whatsappLink = document.querySelector("a.whatsapp-link");
+  if (whatsappLink) {
+    whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=Hallo%20HochzeitsApp-Team";
+  }
+  const telegramLink = document.querySelector("a.telegram-link");
+  if (telegramLink) {
+    telegramLink.href = "https://t.me/+" + phoneNumber;
+  }
 });

@@ -1,4 +1,3 @@
-/* Globale Styles */
 body {
   font-family: "Merriweather", Georgia, "Times New Roman", serif;
   background-color: #f9f3f1;
@@ -6,14 +5,10 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* Allgemeiner Sektionsabstand */
 section {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
-
-/* Hero Section */
 #hero {
   min-height: 80vh;
   display: flex;
@@ -46,8 +41,6 @@ section {
   margin-bottom: 1.5rem;
   color: #fff;
 }
-
-/* Canvas Animation im Hero-Bereich */
 #heroCanvas {
   position: absolute;
   top: 0;
@@ -56,8 +49,6 @@ section {
   height: 100%;
   z-index: 0;
 }
-
-/* Features Section */
 #features {
   background-color: #ffffff;
   border-top: 5px solid #ffdede;
@@ -74,8 +65,6 @@ section {
 #features .border:hover {
   transform: translateY(-3px);
 }
-
-/* Screenshots Section */
 #screens {
   background-color: #f0f0f0;
 }
@@ -87,8 +76,6 @@ section {
   transform: scale(1.05);
   filter: brightness(1.1);
 }
-
-/* Ablauf (Process) Section - Timeline */
 #process {
   background: linear-gradient(135deg, #343a40, #555);
   color: #fff;
@@ -132,45 +119,31 @@ section {
 .timeline-item p {
   font-size: 1rem;
 }
-
-/* Pricing Section */
 #pricing {
   background-color: #ffffff;
   border-top: 5px solid #ddeeff;
   border-bottom: 5px solid #ddeeff;
 }
-
-/* Über uns Section */
 #about {
   background: linear-gradient(135deg, #ffffff, #eaeaea);
   border-top: 5px solid #ffdede;
   border-bottom: 5px solid #ffdede;
 }
-
-/* Demoapp Section */
 #demoapp {
   background: linear-gradient(135deg, #e0f7fa, #ffffff);
 }
-
-/* Kontakt Section */
 #contact {
   background-color: #f0f0f0;
 }
-
-/* Footer */
 footer {
   background-color: #222;
   color: #ccc;
   padding: 1rem 0;
   font-size: 0.9rem;
 }
-
-/* Navbar */
 .navbar {
   padding: 1rem 0;
 }
-
-/* Responsive Anpassungen */
 @media (max-width: 768px) {
   #hero {
     min-height: 60vh;
@@ -192,7 +165,6 @@ footer {
     font-size: 0.9rem;
   }
 }
-
 @media (max-width: 576px) {
   .navbar-brand {
     font-size: 1.25rem;
@@ -204,8 +176,6 @@ footer {
     font-size: 0.9rem;
   }
 }
-
-/* Fade-in-Effekt */
 .fade-in-section {
   opacity: 0;
   transform: translateY(20px);
@@ -215,10 +185,6 @@ footer {
   opacity: 1;
   transform: none;
 }
-
-/* --- Zusätzliche Hover-Effekte --- */
-
-/* Karten (Pricing Cards, etc.) */
 .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -226,16 +192,12 @@ footer {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
-/* Buttons */
 .btn {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .btn:hover {
   transform: scale(1.05);
 }
-
-/* Allgemeine Links */
 a:hover {
   color: #ff5733;
   text-decoration: none;

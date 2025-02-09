@@ -4,115 +4,75 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HochzeitsApp – Eure individuelle Hochzeits-Guide-App</title>
-
-  <!-- Google Fonts: Merriweather -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- Bootstrap CSS (CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Favicon (optional) -->
   <link rel="icon" type="image/png" href="images/bg2.png">
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
-<!-- Hero Section -->
 <header id="hero" class="d-flex align-items-center justify-content-center text-center">
-  <!-- Canvas für Animation -->
   <canvas id="heroCanvas"></canvas>
   <div class="container">
     <h1 class="display-4 fw-bold mb-3">Eure individuelle Hochzeits-App</h1>
-    <p class="lead mb-4">
-      Wir bieten euch eine personalisierte App, die eure Hochzeitsgäste<br>
-      durch den schönsten Tag begleitet und<br>
-      alle wichtigen Informationen übersichtlich darstellt.
-    </p>
+    <p class="lead mb-4">Wir bieten euch eine personalisierte App, die eure Hochzeitsgäste<br> durch den schönsten Tag begleitet und<br> alle wichtigen Informationen übersichtlich darstellt.</p>
   </div>
 </header>
 
-<!-- Features Section -->
 <section id="features" class="py-5 fade-in-section">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="fw-bold">Warum HochzeitsApp?</h2>
-      <p class="text-muted">
-        Basierend auf eurem individuellen Inhalt erstellen wir eine maßgeschneiderte App für euch und eure Gäste.
-      </p>
+      <p class="text-muted">Basierend auf eurem individuellen Inhalt erstellen wir eine maßgeschneiderte App für euch und eure Gäste.</p>
     </div>
     <div class="row g-4">
-      <!-- Feature 1 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Zeitplan</h5>
-          <p>
-            Ein integrierter Tagesablauf, sodass alle Gäste wissen, wann und wo die wichtigsten Programmpunkte stattfinden.
-          </p>
+          <p>Ein integrierter Tagesablauf, sodass alle Gäste wissen, wann und wo die wichtigsten Programmpunkte stattfinden.</p>
         </div>
       </div>
-      <!-- Feature 2 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Location & Navigation</h5>
-          <p>
-            Detaillierte Kartenintegration (z. B. Google Maps) mit allen wichtigen Orten: Trauung, Feier, Übernachtung, Sektempfang uvm.
-          </p>
+          <p>Detaillierte Kartenintegration (z. B. Google Maps) mit allen wichtigen Orten: Trauung, Feier, Übernachtung, Sektempfang uvm.</p>
         </div>
       </div>
-      <!-- Feature 3 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Kontakt & Notfall</h5>
-          <p>
-            Quick-Links zu Braut, Bräutigam, Trauzeugen oder Notfallnummern. Kopieren und Anrufen direkt aus der App.
-          </p>
+          <p>Quick-Links zu Braut, Bräutigam, Trauzeugen oder Notfallnummern. Kopieren und Anrufen direkt aus der App.</p>
         </div>
       </div>
     </div>
     <div class="row g-4 mt-4">
-      <!-- Feature 4 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Countdown</h5>
-          <p>
-            Ein stilvoller Countdown, der die Vorfreude auf euren großen Tag steigert.
-          </p>
+          <p>Ein stilvoller Countdown, der die Vorfreude auf euren großen Tag steigert.</p>
         </div>
       </div>
-      <!-- Feature 5 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Story Screen</h5>
-          <p>
-            Erzählt euren Weg zum großen Tag. Mit Text, Bildern und Videos könnt ihr eure persönliche Liebesgeschichte festhalten.
-          </p>
+          <p>Erzählt euren Weg zum großen Tag. Mit Text, Bildern und Videos könnt ihr eure persönliche Liebesgeschichte festhalten.</p>
         </div>
       </div>
-      <!-- Feature 6 -->
       <div class="col-md-4">
         <div class="p-4 border rounded h-100">
           <h5 class="text-primary fw-bold">Individuelles Design</h5>
-          <p>
-            Farb- und Schriftkonzepte ganz nach eurem Geschmack – mit edlen Elementen und persönlichen Details.
-          </p>
+          <p>Farb- und Schriftkonzepte ganz nach eurem Geschmack – mit edlen Elementen und persönlichen Details.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Screenshots / Demo Section -->
 <section id="screens" class="py-5 fade-in-section">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="fw-bold">Einblicke in die App</h2>
-      <p class="text-muted">
-        Ein paar Impressionen, wie eure App aussehen könnte.
-      </p>
+      <p class="text-muted">Ein paar Impressionen, wie eure App aussehen könnte.</p>
     </div>
     <div class="row row-cols-1 row-cols-lg-3 g-4 justify-content-center">
       <div class="col">
@@ -128,7 +88,6 @@
   </div>
 </section>
 
-<!-- Modal für Bildansicht -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
@@ -139,7 +98,6 @@
   </div>
 </div>
 
-<!-- Ablauf Section (Timeline) -->
 <section id="process" class="py-5 fade-in-section">
   <div class="container">
     <h2 class="text-center fw-bold mb-5">Ablauf</h2>
@@ -176,7 +134,6 @@
   </div>
 </section>
 
-<!-- Pricing Section -->
 <section id="pricing" class="py-5 fade-in-section">
   <div class="container">
     <div class="text-center mb-5">
@@ -184,7 +141,6 @@
       <p class="text-muted">Wähle das passende Paket für deine individuelle Hochzeits-App.</p>
     </div>
     <div class="row g-4">
-      <!-- Basic Paket -->
       <div class="col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body text-center">
@@ -202,7 +158,6 @@
           </div>
         </div>
       </div>
-      <!-- Standard Paket -->
       <div class="col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body text-center">
@@ -221,7 +176,6 @@
           </div>
         </div>
       </div>
-      <!-- Premium Paket -->
       <div class="col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body text-center">
@@ -241,7 +195,6 @@
           </div>
         </div>
       </div>
-      <!-- Individuell Paket -->
       <div class="col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body text-center">
@@ -264,7 +217,6 @@
   </div>
 </section>
 
-<!-- Über uns Section -->
 <section id="about" class="py-5 fade-in-section">
   <div class="container">
     <div class="text-center mb-5">
@@ -272,70 +224,50 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">
-          Unsere Idee für die HochzeitsApp entstand aus den vielen Hochzeiten, bei denen wir bereits zu Gast waren. Dabei haben wir gemerkt, dass es oft an einer zentralen Lösung fehlt, die alles Wichtige bündelt und den Gästen einfach zugänglich macht. So entstand die Vision einer App, die den Hochzeitstag eines Paares optimal unterstützt und alle wichtigen Informationen an einem Ort vereint.
-        </p>
-        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">
-          Unser Team besteht aus kreativen Köpfen – Entwicklern, Designern und Event-Experten – die mit Leidenschaft daran arbeiten, den Hochzeitstag für euch und eure Gäste so besonders wie möglich zu gestalten. Wir sind überzeugt, dass der persönliche Touch in jeder Hochzeit entscheidend ist, und genau das spiegelt sich in unserer App wider.
-        </p>
-        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">
-          Unser Ziel ist es, eure Geschichte zu erzählen und diesen einzigartigen Tag reibungslos und unvergesslich zu gestalten. Willkommen bei HochzeitsApp.
-        </p>
+        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">Unsere Idee für die HochzeitsApp entstand aus den vielen Hochzeiten, bei denen wir bereits zu Gast waren. Dabei haben wir gemerkt, dass es oft an einer zentralen Lösung fehlt, die alles Wichtige bündelt und den Gästen einfach zugänglich macht. So entstand die Vision einer App, die den Hochzeitstag eines Paares optimal unterstützt und alle wichtigen Informationen an einem Ort vereint.</p>
+        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">Unser Team besteht aus kreativen Köpfen – Entwicklern, Designern und Event-Experten – die mit Leidenschaft daran arbeiten, den Hochzeitstag für euch und eure Gäste so besonders wie möglich zu gestalten. Wir sind überzeugt, dass der persönliche Touch in jeder Hochzeit entscheidend ist, und genau das spiegelt sich in unserer App wider.</p>
+        <p class="lead" style="font-size: 1.125rem; line-height: 1.8;">Unser Ziel ist es, eure Geschichte zu erzählen und diesen einzigartigen Tag reibungslos und unvergesslich zu gestalten. Willkommen bei HochzeitsApp.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Demoapp Section -->
 <section id="demoapp" class="py-5 fade-in-section">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="fw-bold">Lade die Demo-App herunter</h2>
-      <p class="text-muted">
-        Lade unsere Demo-Version der HochzeitsApp herunter, um einen ersten Eindruck von der App zu bekommen und die Funktionen selbst zu testen.
-      </p>
-      <p style="font-size: 0.95rem; color: #555; max-width: 700px; margin: 20px auto;">
-        Hinweis: Diese App ist nicht im Google Play Store verfügbar und daher nicht zertifiziert. Während der Installation können Warnhinweise erscheinen, da die App aus einer unbekannten Quelle stammt. Dies ist normal. Bitte stelle sicher, dass du die Installation aus unbekannten Quellen in den Geräteeinstellungen aktivierst.
-      </p>
-      <a href="https://github.com/MaxPowah1/hochzeitsapp-website/raw/master/HochzeitsApp_Demo.apk" class="btn btn-primary mt-3" download="HochzeitsApp_Demo.apk">
-        Demo-App herunterladen
-      </a>
+      <p class="text-muted">Lade unsere Demo-Version der HochzeitsApp herunter, um einen ersten Eindruck von der App zu bekommen und die Funktionen selbst zu testen.</p>
+      <p style="font-size: 0.95rem; color: #555; max-width: 700px; margin: 20px auto;">Hinweis: Diese App ist nicht im Google Play Store verfügbar und daher nicht zertifiziert. Während der Installation können Warnhinweise erscheinen, da die App aus einer unbekannten Quelle stammt. Dies ist normal. Bitte stelle sicher, dass du die Installation aus unbekannten Quellen in den Geräteeinstellungen aktivierst.</p>
+      <a href="https://github.com/MaxPowah1/hochzeitsapp-website/raw/master/HochzeitsApp_Demo.apk" class="btn btn-primary mt-3" download="HochzeitsApp_Demo.apk">Demo-App herunterladen</a>
     </div>
   </div>
 </section>
 
-
-<!-- Kontakt Section -->
 <section id="contact" class="py-5 fade-in-section">
   <div class="container text-center">
     <h3 class="mb-3">Kontakt</h3>
-    <p class="display-6 fw-bold">
-      <a href="mailto:info@hochzeitsapp.com" class="text-decoration-none text-dark">info@hochzeitsapp.com</a>
-    </p>
+    <p class="h5"><a href="mailto:info@hochzeitsapp.com" class="text-decoration-none text-dark">info@hochzeitsapp.com</a></p>
     <div class="mt-4">
       <a href="https://www.instagram.com/DEININSTAGRAM" target="_blank" class="text-decoration-none me-3">
         <i class="fab fa-instagram fa-2x" style="color: #E4405F;"></i>
       </a>
-      <a href="https://t.me/+4915221359532" target="_blank" class="text-decoration-none me-3">
+      <a href="#" target="_blank" class="text-decoration-none me-3 telegram-link">
         <i class="fab fa-telegram-plane fa-2x" style="color: #0088CC;"></i>
       </a>
-      <a href="https://wa.me/4915221359532?text=Hallo%20HochzeitsApp-Team" target="_blank" class="text-decoration-none me-3">
+      <a href="#" target="_blank" class="text-decoration-none me-3 whatsapp-link">
         <i class="fab fa-whatsapp fa-2x" style="color: #25D366;"></i>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer class="py-3 fade-in-section">
   <div class="container text-center">
     <p class="mb-0">&copy; 2025 HochzeitsApp. Alle Rechte vorbehalten.</p>
   </div>
 </footer>
 
-<!-- Bootstrap JS (CDN) + optional Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS -->
 <script src="js/script.js"></script>
 </body>
 </html>
