@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
 
-    // Größe des Canvas anpassen
     function resizeCanvas() {
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Partikel-Objekte
     const particles = [];
     const particleCount = 8;
     const colors = ["rgba(255,255,255,0.3)", "rgba(255,255,255,0.5)", "rgba(255,255,255,0.7)"];
@@ -81,4 +79,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     animate();
   }
+
+  // === Intersection Observer für Fade-in-Effekte auf alle Elemente mit .fade-in-section ===
+  const fadeInSections = document.querySelectorAll('.fade-in-section');
+  const observerOptions = {
+    threshold: 0.2 // 20% Sichtbarkeit genügt, um den Effekt zu starten
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Einmalig animieren
+      }
+    });
+  }, observerOptions);
+
+  fadeInSections.forEach(section => {
+    observer.observe(section);
+  });
 });
