@@ -275,13 +275,14 @@ main {
   cursor: pointer;
 }
 
-/* Process Section */
+/* Process Section - Icons statt Bilder */
 .process-timeline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
 }
+
 .process-step {
   background: #fff;
   padding: 20px;
@@ -290,27 +291,29 @@ main {
   width: 250px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .process-step:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
+/* Neuer Stil für die Icons */
 .step-icon {
   width: 80px;
   height: 80px;
   margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ff5733;
+  border-radius: 50%;
 }
-.step-icon img {
-  width: 100%;
-  height: auto;
+
+.step-icon i {
+  font-size: 2rem;
+  color: #ff5733;
 }
-.process-step h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-.process-step p {
-  font-size: 0.9rem;
-  color: #555;
-}
+
 
 /* Pricing Section */
 .pricing-grid {
