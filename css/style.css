@@ -27,79 +27,56 @@ main {
   padding: 0 20px;
 }
 
-/* Header und Navigation */
-.site-header {
+/* --- Burger-Menü & Mobile Navigation --- */
+
+/* Burger-Menü: Standardmäßig ausgeblendet, erscheint nur auf Smartphones */
+.burger-menu {
   position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  z-index: 100;
-  border-bottom: 1px solid #eee;
-}
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
-.logo a {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #333;
-  text-decoration: none;
-}
-.site-nav ul {
-  list-style: none;
-  display: flex;
-}
-.site-nav ul li {
-  margin-left: 30px;
-}
-.site-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-.site-nav ul li a:hover {
-  color: #ff5733;
-}
-.menu-toggle {
-  display: none;
-  flex-direction: column;
+  top: 20px;
+  left: 20px;
   cursor: pointer;
+  z-index: 102;
+  display: none;
 }
-.menu-toggle span {
+.burger-menu span {
+  display: block;
   width: 25px;
   height: 3px;
-  background: #333;
-  margin: 4px 0;
+  background: #4a4a4a; /* Graphitgrau als Akzentfarbe */
+  margin: 5px 0;
   border-radius: 2px;
 }
-
-/* Mobile Navigation */
 @media (max-width: 768px) {
-  .site-nav {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-  }
-  .site-nav.active {
+  .burger-menu {
     display: block;
   }
-  .site-nav ul {
-    flex-direction: column;
-    text-align: center;
-  }
-  .site-nav ul li {
-    margin: 15px 0;
-  }
-  .menu-toggle {
-    display: flex;
-  }
+}
+
+/* Mobile Navigation Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background: #4a4a4a; /* Hintergrund in Graphitgrau */
+  transition: left 0.3s ease;
+  z-index: 101;
+}
+.mobile-nav ul {
+  list-style: none;
+  padding: 20px;
+}
+.mobile-nav ul li {
+  margin-bottom: 15px;
+}
+.mobile-nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.mobile-nav.active {
+  left: 0;
 }
 
 /* Sektionen */
@@ -111,7 +88,7 @@ main {
   padding: 80px 0;
 }
 .section .container {
-  padding-top: 80px; /* Platz wegen fixed Header */
+  padding-top: 80px; /* Platz wegen fixiertem Element (Burger-Menü) */
 }
 .section-title {
   text-align: center;
@@ -169,7 +146,7 @@ main {
 .btn {
   display: inline-block;
   padding: 12px 30px;
-  background: #ff5733;
+  background: #4a4a4a; /* Akzentfarbe: Graphitgrau */
   color: #fff;
   border-radius: 50px;
   text-decoration: none;
@@ -177,7 +154,7 @@ main {
   transition: background 0.3s;
 }
 .btn:hover {
-  background: #e14a28;
+  background: #333333;
 }
 
 /* Features Section */
@@ -199,7 +176,7 @@ main {
 }
 .feature i {
   font-size: 2.5rem;
-  color: #ff5733;
+  color: #4a4a4a; /* Akzentfarbe */
   margin-bottom: 15px;
 }
 .feature h3 {
@@ -211,14 +188,14 @@ main {
   color: #555;
 }
 
-/* Überarbeitete Screens Section */
+/* Screens Section */
 .screens {
-  padding: 2rem 0; /* etwas weniger vertikales Padding */
+  padding: 2rem 0;
   background: #f7f7f7;
 }
 .screens-carousel {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* sanftes Scrollen auf mobilen Geräten */
+  -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
   margin: 0 1rem;
@@ -230,7 +207,7 @@ main {
 }
 .screen-item {
   flex: 0 0 auto;
-  width: 280px;  /* Standardbreite für größere Displays */
+  width: 280px;
   scroll-snap-align: start;
 }
 .screen-item img {
@@ -243,11 +220,9 @@ main {
 .screen-item img:hover {
   transform: scale(1.02);
 }
-
-/* Anpassung für Smartphones */
 @media (max-width: 480px) {
   .screen-item {
-    width: 90vw; /* Nahezu volle Bildschirmbreite */
+    width: 90vw;
   }
 }
 
@@ -303,12 +278,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #ff5733;
+  border: 2px solid #4a4a4a; /* Akzentfarbe */
   border-radius: 50%;
 }
 .step-icon i {
   font-size: 2rem;
-  color: #ff5733;
+  color: #4a4a4a;
 }
 
 /* Pricing Section */
@@ -347,7 +322,7 @@ main {
 .price {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #ff5733;
+  color: #4a4a4a; /* Akzentfarbe */
 }
 
 /* About Section */
@@ -392,7 +367,7 @@ main {
   transition: color 0.3s;
 }
 .social-link:hover {
-  color: #ff5733;
+  color: #4a4a4a;
 }
 
 /* Footer */

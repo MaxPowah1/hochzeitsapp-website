@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* Mobile-Menü Toggle */
-  const menuToggle = document.querySelector(".menu-toggle");
-  const siteNav = document.querySelector(".site-nav");
-  menuToggle.addEventListener("click", () => {
-    siteNav.classList.toggle("active");
-    menuToggle.classList.toggle("active");
+  /* Burger-Menü zur Steuerung der mobilen Navigation */
+  const burgerMenu = document.querySelector(".burger-menu");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  burgerMenu.addEventListener("click", () => {
+    mobileNav.classList.toggle("active");
   });
 
   /* Modal-Funktionalität für Screenshots */
