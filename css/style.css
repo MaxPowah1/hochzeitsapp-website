@@ -213,41 +213,43 @@ main {
 
 /* Überarbeitete Screens Section */
 .screens {
-  padding: 2rem 0; /* geringeres vertikales Padding */
+  padding: 2rem 0; /* etwas weniger vertikales Padding */
   background: #f7f7f7;
 }
-
 .screens-carousel {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* sanftes Scrollen auf mobilen Geräten */
   scroll-snap-type: x mandatory;
   padding-bottom: 1rem;
+  margin: 0 1rem;
 }
-
 .screens-wrapper {
   display: flex;
   gap: 1rem;
   padding: 1rem 0;
 }
-
 .screen-item {
   flex: 0 0 auto;
-  width: 280px;      /* feste Breite, um ein einheitliches Erscheinungsbild zu erzielen */
+  width: 280px;  /* Standardbreite für größere Displays */
   scroll-snap-align: start;
 }
-
 .screen-item img {
   width: 100%;
   height: auto;
   border-radius: 10px;
   transition: transform 0.3s ease;
-  will-change: transform;  /* verbessert die Performance der Transformations-Animation */
+  will-change: transform;
 }
-
 .screen-item img:hover {
   transform: scale(1.02);
 }
 
+/* Anpassung für Smartphones */
+@media (max-width: 480px) {
+  .screen-item {
+    width: 90vw; /* Nahezu volle Bildschirmbreite */
+  }
+}
 
 /* Modal */
 .modal {
@@ -275,14 +277,13 @@ main {
   cursor: pointer;
 }
 
-/* Process Section - Icons statt Bilder */
+/* Process Section */
 .process-timeline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
 }
-
 .process-step {
   background: #fff;
   padding: 20px;
@@ -291,13 +292,10 @@ main {
   width: 250px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 .process-step:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-
-/* Neuer Stil für die Icons */
 .step-icon {
   width: 80px;
   height: 80px;
@@ -308,12 +306,10 @@ main {
   border: 2px solid #ff5733;
   border-radius: 50%;
 }
-
 .step-icon i {
   font-size: 2rem;
   color: #ff5733;
 }
-
 
 /* Pricing Section */
 .pricing-grid {
