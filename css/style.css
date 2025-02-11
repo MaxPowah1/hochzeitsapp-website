@@ -174,35 +174,36 @@ main {
 }
 
 /* Screens Section (2×2-Grid ohne Carousel) */
-/* Die Sektion wird nun mittels Flex zentriert, sodass das gesamte Grid mittig im Screen sitzt */
+/* Die gesamte Sektion erhält nun die gleiche Höhe wie die anderen (100vh) und wird per Flexbox zentriert */
 .screens {
   background: #f7f7f7;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: 2rem 0;
 }
-/* Das Grid selbst: Wir verwenden auto-basierte Spalten, um den natürlichen Bildabmessungen zu folgen.
-   Der gap wurde auf 0.5rem reduziert, sodass die Spalten näher beieinander liegen. */
+/* Das Grid: Zwei Spalten, zentriert, mit reduziertem Gap */
 .screens-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
-  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 /* Bilder in der Screens-Sektion:
-   Mit max-width: 100% und width: auto werden sie nicht in die Breite gezogen.
-   max-height begrenzt die Höhe, sodass die Bilder kleiner bleiben und das ursprüngliche Seitenverhältnis erhalten bleibt. */
+   - max-width: 100% und width: auto verhindern, dass sie in die Breite gezogen werden.
+   - max-height wurde auf 40vh erhöht, damit die Bilder größer erscheinen und dem Rest der Seite ähneln.
+   - Das ursprüngliche Seitenverhältnis bleibt erhalten.
+*/
 .screen-item img {
   display: block;
   max-width: 100%;
   width: auto;
   height: auto;
-  max-height: 25vh; /* Bei Bedarf den Wert anpassen */
+  max-height: 40vh; /* Bilder erscheinen jetzt größer */
   border-radius: 10px;
   transition: transform 0.3s ease;
-  margin: 0 auto;
 }
 .screen-item img:hover {
   transform: scale(1.02);
