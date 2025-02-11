@@ -42,7 +42,7 @@ main {
   display: block;
   width: 25px;
   height: 3px;
-  background: #4a4a4a; /* Graphitgrau */
+  background: #4a4a4a;
   margin: 5px 0;
   border-radius: 2px;
 }
@@ -59,7 +59,7 @@ main {
   left: -100%;
   width: 250px;
   height: 100%;
-  background: #4a4a4a; /* Hintergrund in Graphitgrau */
+  background: #4a4a4a;
   transition: left 0.3s ease;
   z-index: 101;
 }
@@ -88,32 +88,22 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Kein zusätzliches Padding, damit 100vh eingehalten wird */
 }
 
 /* Hero Section */
 .hero {
   position: relative;
-  background: #000;
-  color: #fff;
+  /* Set the background image – adjust the path if needed */
+  background: url('../images/handy.png') no-repeat center center;
+  background-size: cover;
+  color: #000;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  background-size: 40%;
 }
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 97%;
-  background: url('../images/bg2.png') no-repeat center center;
-  background-size: cover;
-  filter: brightness(0.5);
-  transform: scale(1.05);
-  /* Animation entfernt, um den Hintergrund statisch zu halten */
-}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -128,10 +118,12 @@ main {
   font-size: 1.3rem;
   margin-bottom: 30px;
 }
+
+/* Button */
 .btn {
   display: inline-block;
   padding: 12px 30px;
-  background: #4a4a4a; /* Graphitgrau */
+  background: #4a4a4a;
   color: #fff;
   border-radius: 50px;
   text-decoration: none;
@@ -194,7 +186,7 @@ main {
   max-width: 100%;
   width: auto;
   height: auto;
-  max-height: 40vh; /* Bilder erscheinen jetzt größer */
+  max-height: 40vh;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
@@ -355,24 +347,25 @@ main {
   font-size: 0.9rem;
 }
 
+
 @media (max-width: 768px) {
-  /* Damit die Sektionen immer zentriert sind – unter Berücksichtigung eines 80px-Abstands für das Burger-Menü */
   .section {
     min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
+    padding: 15% 25px;
   }
-
   .hero h1 {
     font-size: 2.5rem;
+  }
+  .hero{
+  background-size: 100%;
   }
   .hero p {
     font-size: 1.1rem;
   }
-
   .features-grid,
   .screens-grid,
   .pricing-grid,
