@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400;700&&display=swap');
+
 /* Grundreset und Scroll-Snap */
 * {
   margin: 0;
@@ -8,7 +13,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Playfair Display', sans-serif;
   color: #333;
   overflow-x: hidden;
 }
@@ -177,7 +182,7 @@ main {
 }
 .screens-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
   justify-items: center;
   align-items: center;
@@ -191,8 +196,11 @@ main {
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
-.screen-item img:hover {
-  transform: scale(1.02);
+
+@media (max-width: 768px) {
+  .screens-grid {
+    grid-template-columns: repeat(2, 1fr); /* Eine Spalte auf kleinen Bildschirmen */
+  }
 }
 
 /* Modal */
@@ -257,20 +265,24 @@ main {
 
 /* Pricing Section */
 .pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
+
 .pricing-card {
-  background: #f7f7f7;
-  padding: 30px;
-  border-radius: 10px;
+  flex: 1 1 23%; /* Die Cards nehmen 23% des Containers ein */
+  min-width: 250px; /* Minimale Breite für die Cards */
+  border: 1px solid #ddd;
+  padding: 20px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  background: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 .pricing-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 .pricing-card h3 {
   font-size: 1.5rem;
@@ -381,3 +393,4 @@ main {
     gap: 20px;
   }
 }
+
