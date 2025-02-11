@@ -328,6 +328,14 @@ main {
   margin-bottom: 20px;
 }
 
+.about-content img {
+  max-width: 30%; /* Bild nimmt maximal 50% der Containerbreite ein */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Zentriert das Bild horizontal */
+  padding-top: 20px;
+}
+
 /* Demo-App Section */
 .demoapp {
   text-align: center;
