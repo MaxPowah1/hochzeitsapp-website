@@ -94,7 +94,7 @@ main {
 .hero {
   position: relative;
   /* Set the background image – adjust the path if needed */
-  background: url('../images/handy.png') no-repeat center center;
+  background: url('../images/handy2.png') no-repeat center center;
   background-size: cover;
   color: #000;
   text-align: center;
