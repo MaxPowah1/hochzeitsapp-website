@@ -81,9 +81,9 @@ main {
 
 /* --- Sections --- */
 
-/* Jede Section nimmt exakt den vollen Viewport ein */
+/* Jede Section nimmt mindestens den vollen Viewport ein */
 .section {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   display: flex;
   align-items: center;
@@ -174,16 +174,14 @@ main {
 }
 
 /* Screens Section (2×2-Grid ohne Carousel) */
-/* Die gesamte Sektion erhält nun die gleiche Höhe wie die anderen (100vh) und wird per Flexbox zentriert */
 .screens {
   background: #f7f7f7;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem 0;
 }
-/* Das Grid: Zwei Spalten, zentriert, mit reduziertem Gap */
 .screens-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -191,11 +189,6 @@ main {
   justify-items: center;
   align-items: center;
 }
-/* Bilder in der Screens-Sektion:
-   - max-width: 100% und width: auto verhindern, dass sie in die Breite gezogen werden.
-   - max-height wurde auf 40vh erhöht, damit die Bilder größer erscheinen und dem Rest der Seite ähneln.
-   - Das ursprüngliche Seitenverhältnis bleibt erhalten.
-*/
 .screen-item img {
   display: block;
   max-width: 100%;
@@ -360,4 +353,26 @@ main {
   text-align: center;
   padding: 20px 0;
   font-size: 0.9rem;
+}
+
+/* --- Mobile Anpassungen --- */
+@media (max-width: 768px) {
+  .section {
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .features-grid,
+  .screens-grid,
+  .pricing-grid,
+  .process-timeline {
+    gap: 20px;
+  }
 }
