@@ -18,7 +18,6 @@ main {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
-  /* Removed scroll-padding-top to avoid shifting the snap point */
 }
 
 /* Container */
@@ -82,14 +81,14 @@ main {
 
 /* --- Sections --- */
 
-/* Each section covers exactly one viewport height */
+/* Jede Section nimmt exakt den vollen Viewport ein */
 .section {
   height: 100vh;
   scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Removed extra padding so that sections don’t extend beyond 100vh */
+  /* Kein zusätzliches Padding, damit 100vh eingehalten wird */
 }
 
 /* Hero Section */
@@ -103,7 +102,6 @@ main {
   justify-content: center;
   width: 100%;
 }
-
 .hero-background {
   position: absolute;
   top: 0;
@@ -114,7 +112,7 @@ main {
   background-size: cover;
   filter: brightness(0.5);
   transform: scale(1.05);
-  /* Removed the animation property to stop the background animation */
+  /* Animation entfernt, um den Hintergrund statisch zu halten */
 }
 .hero-content {
   position: relative;
@@ -175,41 +173,39 @@ main {
   color: #555;
 }
 
-/* Screens Section */
+/* Screens Section (2×2-Grid ohne Carousel) */
+/* Die Sektion wird nun mittels Flex zentriert, sodass das gesamte Grid mittig im Screen sitzt */
 .screens {
   background: #f7f7f7;
-}
-.screens-carousel {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-  margin: 0 1rem;
-}
-.screens-wrapper {
   display: flex;
-  gap: 1rem;
-  padding: 1rem 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 0;
 }
-.screen-item {
-  flex: 0 0 auto;
-  width: 280px;
-  scroll-snap-align: start;
+/* Das Grid selbst: Wir verwenden auto-basierte Spalten, um den natürlichen Bildabmessungen zu folgen.
+   Der gap wurde auf 0.5rem reduziert, sodass die Spalten näher beieinander liegen. */
+.screens-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.5rem;
+  justify-content: center;
 }
+/* Bilder in der Screens-Sektion:
+   Mit max-width: 100% und width: auto werden sie nicht in die Breite gezogen.
+   max-height begrenzt die Höhe, sodass die Bilder kleiner bleiben und das ursprüngliche Seitenverhältnis erhalten bleibt. */
 .screen-item img {
-  width: 100%;
+  display: block;
+  max-width: 100%;
+  width: auto;
   height: auto;
+  max-height: 25vh; /* Bei Bedarf den Wert anpassen */
   border-radius: 10px;
   transition: transform 0.3s ease;
-  will-change: transform;
+  margin: 0 auto;
 }
 .screen-item img:hover {
   transform: scale(1.02);
-}
-@media (max-width: 480px) {
-  .screen-item {
-    width: 90vw;
-  }
 }
 
 /* Modal */
