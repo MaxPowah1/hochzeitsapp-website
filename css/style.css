@@ -355,10 +355,10 @@ main {
   font-size: 0.9rem;
 }
 
-/* --- Mobile Anpassungen --- */
 @media (max-width: 768px) {
+  /* Angepasst: zusätzlicher Top-Padding, damit der Inhalt nicht vom Burger-Menü überdeckt wird */
   .section {
-    padding: 20px;
+    padding: 80px 20px 20px; /* 80px oben statt bisher 20px */
     align-items: flex-start;
   }
 
