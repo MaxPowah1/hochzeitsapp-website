@@ -1,6 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400;700&&display=swap');
 
+/* Language Switcher Styles */
+.language-switcher {
+    position: fixed;
+    top: 15px;
+    right: 50px; /* Verschoben, damit der Umschalter weiter links sitzt */
+    font-size: 1.2rem;
+    z-index: 105;
+}
+
+.language-switcher a {
+    color: #333; /* Immer die Hauptschriftfarbe */
+    text-decoration: none;
+    margin-right: 10px;
+    padding-bottom: 2px; /* Platz für den Unterstrich */
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+}
+
+.language-switcher a.active,
+.language-switcher a:hover {
+    border-bottom-color: #333;
+}
+
 /* Grundreset und Scroll-Snap */
 * {
   margin: 0;
@@ -33,12 +56,10 @@ main {
 
 /* --- Subtitle Spacing --- */
 .section-subtitle {
-  margin-bottom: 20px; /* Adjust the value to create the desired space below subtitles */
+  margin-bottom: 20px;
 }
 
-/* --- Burger-Menü & Mobile Navigation --- */
-
-/* Burger-Menü: Standardmäßig ausgeblendet, erscheint nur auf Smartphones */
+/* --- Burger Menu & Mobile Navigation --- */
 .burger-menu {
   position: fixed;
   top: 20px;
@@ -61,7 +82,6 @@ main {
   }
 }
 
-/* Mobile Navigation Overlay */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -89,8 +109,6 @@ main {
 }
 
 /* --- Sections --- */
-
-/* Jede Section nimmt mindestens den vollen Viewport ein */
 .section {
   min-height: 100vh;
   scroll-snap-align: start;
@@ -99,7 +117,7 @@ main {
   justify-content: center;
 }
 
-/* Slide-In Effekt für den inneren Content */
+/* Slide-In Effekt für inneren Content */
 .section-inner {
   opacity: 0;
   transform: translateY(50px);
@@ -113,7 +131,6 @@ main {
 /* Hero Section */
 .hero {
   position: relative;
-  /* Set the background image – adjust the path if needed */
   background: url('../images/handy2.png') no-repeat calc(80%) calc(50% + 100px);
   background-size: cover;
   color: #000;
@@ -123,13 +140,11 @@ main {
   justify-content: center;
   background-size: 50%;
 }
-
 @media (max-width: 768px) {
   .hero {
     background: url('../images/handy2.png') no-repeat calc(50% + 80px) calc(50% + 200px);
   }
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -192,7 +207,7 @@ main {
   color: #555;
 }
 
-/* Screens Section (2×2-Grid ohne Carousel) */
+/* Screens Section */
 .screens {
   background: #f7f7f7;
   display: flex;
@@ -217,10 +232,9 @@ main {
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
-
 @media (max-width: 768px) {
   .screens-grid {
-    grid-template-columns: repeat(2, 1fr); /* Eine Spalte auf kleinen Bildschirmen */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -291,10 +305,9 @@ main {
   justify-content: space-between;
   gap: 20px;
 }
-
 .pricing-card {
-  flex: 1 1 23%; /* Die Cards nehmen 23% des Containers ein */
-  min-width: 250px; /* Minimale Breite für die Cards */
+  flex: 1 1 23%;
+  min-width: 250px;
   border: 1px solid #ddd;
   padding: 20px;
   text-align: center;
@@ -338,12 +351,11 @@ main {
 .about-content p {
   margin-bottom: 20px;
 }
-
 .about-content img {
-  max-width: 30%; /* Bild nimmt maximal 50% der Containerbreite ein */
+  max-width: 30%;
   height: auto;
   display: block;
-  margin: 0 auto; /* Zentriert das Bild horizontal */
+  margin: 0 auto;
   padding-top: 20px;
 }
 
@@ -375,8 +387,6 @@ main {
   margin: 0 10px;
   transition: color 0.3s;
 }
-
-/* --- Originalfarben für WhatsApp und Telegram --- */
 .social-link.whatsapp-link {
   color: #25D366;
 }
@@ -404,7 +414,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20% 25px;
+    padding: 30% 25px;
   }
   .hero h1 {
     font-size: 2.5rem;
