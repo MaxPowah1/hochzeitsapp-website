@@ -41,4 +41,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (telegramLink) {
     telegramLink.href = "https://t.me/+" + phoneNumber;
   }
+
+  /* Slide-in Effekt für den inneren Content der Sections */
+  const inners = document.querySelectorAll('.section-inner');
+  const observerOptions = {
+    threshold: 0.2
+  };
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  inners.forEach(inner => {
+    sectionObserver.observe(inner);
+  });
 });

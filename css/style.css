@@ -99,6 +99,17 @@ main {
   justify-content: center;
 }
 
+/* Slide-In Effekt für den inneren Content */
+.section-inner {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+.section-inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Hero Section */
 .hero {
   position: relative;
