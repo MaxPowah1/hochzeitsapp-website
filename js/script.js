@@ -3,8 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const burgerMenu = document.querySelector(".burger-menu");
   const mobileNav = document.querySelector(".mobile-nav");
 
+  function closeMobileNav() {
+    mobileNav.classList.remove("active");
+  }
+
   burgerMenu.addEventListener("click", () => {
     mobileNav.classList.toggle("active");
+  });
+
+  // Schließe das mobile Menü, wenn ein Link geklickt wird
+  const mobileNavLinks = mobileNav.querySelectorAll("a");
+  mobileNavLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      closeMobileNav();
+    });
+  });
+
+  // Schließe das mobile Menü, wenn außerhalb des Menüs getippt wird
+  document.addEventListener("click", (event) => {
+    if (
+      mobileNav.classList.contains("active") &&
+      !mobileNav.contains(event.target) &&
+      !burgerMenu.contains(event.target)
+    ) {
+      closeMobileNav();
+    }
+  });
+
+  // Schließe das mobile Menü bei einem Swipe nach links
+  let touchStartX = 0;
+  let touchEndX = 0;
+  document.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  document.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (mobileNav.classList.contains("active") && (touchStartX - touchEndX > 50)) {
+      closeMobileNav();
+    }
   });
 
   /* Modal-Funktionalität für Screenshots */
