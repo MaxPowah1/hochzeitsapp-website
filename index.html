@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MY94KVDXQ8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-MY94KVDXQ8');
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HochzeitsApp – Individuelle Hochzeits-Guide-App</title>
@@ -49,6 +38,43 @@
 
   <!-- Eigene Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Minimalistischer Cookie-Banner Styles -->
+  <style>
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(74,74,74,0.9);
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-family: 'Playfair Display', sans-serif;
+    }
+    #cookie-banner p {
+      margin: 0;
+      padding: 0 10px;
+      font-size: 0.9rem;
+    }
+    #cookie-banner button {
+      background: #fff;
+      color: #4a4a4a;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    #cookie-banner button:hover {
+      background: #e6e2d3;
+    }
+  </style>
 </head>
 
 <body>
@@ -133,7 +159,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- Screens Section -->
   <section class="section screens" id="screens">
@@ -305,8 +330,14 @@
   </section>
 </main>
 
+<!-- Cookie Banner (wird nur angezeigt, wenn noch keine Entscheidung getroffen wurde) -->
+<div id="cookie-banner" style="display: none;">
+  <p>Wir verwenden Cookies, um Google Analytics einzusetzen. Stimmen Sie zu?</p>
+  <button id="cookie-accept">Akzeptieren</button>
+  <button id="cookie-decline">Ablehnen</button>
+</div>
 
-<!-- Footer -->
+<!-- Footer (optional) -->
 <!--
 <footer class="site-footer">
   <div class="container">
@@ -317,5 +348,49 @@
 
 <!-- Eigene Skripte -->
 <script src="js/script.js"></script>
+
+<!-- Cookie Consent & Google Analytics -->
+<script>
+  // Funktion zum dynamischen Laden von Google Analytics
+  function loadGoogleAnalytics() {
+    const script = document.createElement('script');
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-MY94KVDXQ8";
+    script.async = true;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-MY94KVDXQ8', { 'anonymize_ip': true });
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptButton = document.getElementById('cookie-accept');
+    const declineButton = document.getElementById('cookie-decline');
+
+    // Überprüfen, ob bereits eine Entscheidung getroffen wurde
+    if (localStorage.getItem('cookieConsent') === 'true') {
+      loadGoogleAnalytics();
+    } else if (localStorage.getItem('cookieConsent') === 'false') {
+      // Keine Aktivierung, Banner bleibt verborgen
+    } else {
+      // Wenn noch keine Entscheidung vorliegt, Banner anzeigen
+      cookieBanner.style.display = 'flex';
+    }
+
+    acceptButton.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'true');
+      cookieBanner.style.display = 'none';
+      loadGoogleAnalytics();
+    });
+
+    declineButton.addEventListener('click', function() {
+      localStorage.setItem('cookieConsent', 'false');
+      cookieBanner.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>
