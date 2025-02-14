@@ -264,25 +264,34 @@ main {
   cursor: pointer;
 }
 
-/* Process Section */
-.process-timeline {
+/* Für beide Sektionen (Process & Pricing) */
+.process-timeline,
+.pricing-timeline {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start; /* Karten beginnen links */
   gap: 30px;
 }
-.process-step {
+
+/* Entferne feste Breite und nutze flexibles Wachstum */
+.process-step,
+.pricing-step {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 250px;
+  /* Flex-Grow, -Shrink und Basis (minimale Breite) */
+  flex: 1 1 250px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.process-step:hover {
+
+.process-step:hover,
+.pricing-step:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
+/* Gleiche Icon-Gestaltung wie bisher */
 .step-icon {
   width: 80px;
   height: 80px;
@@ -298,46 +307,19 @@ main {
   color: #4a4a4a;
 }
 
-/* Pricing Section */
-.pricing-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
-}
-.pricing-card {
-  flex: 1 1 23%;
-  min-width: 250px;
-  border: 1px solid #ddd;
-  padding: 20px;
-  text-align: center;
-  background: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-.pricing-card:hover {
-  transform: translateY(-5px);
-}
-.pricing-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-.pricing-card p {
-  font-size: 1rem;
-  margin-bottom: 15px;
-}
-.pricing-card ul {
-  list-style: none;
-  margin-bottom: 20px;
-}
-.pricing-card ul li {
-  font-size: 0.9rem;
-  margin: 5px 0;
-}
+/* Preise beibehalten */
 .price {
   font-size: 1.8rem;
   font-weight: 700;
   color: #4a4a4a;
+}
+
+/* Media Query: Bei schmaleren Bildschirmen sollen die Karten die ganze Breite nutzen */
+@media (max-width: 768px) {
+  .process-step,
+  .pricing-step {
+    flex: 1 1 100%;
+  }
 }
 
 /* About Section */
