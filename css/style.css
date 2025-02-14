@@ -4,8 +4,8 @@
 /* Language Switcher Styles */
 .language-switcher {
     position: fixed;
-    top: 15px;
-    right: 50px; /* Verschoben, damit der Umschalter weiter links sitzt */
+    top: 2.2vh; /* 2% der Höhe des Viewports */
+    right: 3vw; /* 5% der Breite des Viewports */
     font-size: 1.2rem;
     z-index: 105;
 }
