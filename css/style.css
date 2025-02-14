@@ -276,6 +276,8 @@ main {
 /* Entferne feste Breite und nutze flexibles Wachstum */
 .process-step,
 .pricing-step {
+  display: flex;            /* Hinzugefügt */
+  flex-direction: column;   /* Hinzugefügt */
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -283,6 +285,18 @@ main {
   /* Flex-Grow, -Shrink und Basis (minimale Breite) */
   flex: 1 1 250px;
   transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Damit der Preis immer unten steht */
+.pricing-step .price {
+  margin-top: auto;         /* Hinzugefügt */
+}
+
+
+.pricing-step ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 
 .process-step:hover,
