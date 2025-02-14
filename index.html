@@ -75,6 +75,21 @@
       background: #e6e2d3;
     }
   </style>
+
+  <!-- Consent Mode initialisieren (Standard: Ablehnung aller Storage-Optionen) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    // Hinweis: gtag('config', ...) wird erst nach Zustimmung ausgeführt.
+  </script>
 </head>
 
 <body>
@@ -332,7 +347,7 @@
 
 <!-- Cookie Banner (wird nur angezeigt, wenn noch keine Entscheidung getroffen wurde) -->
 <div id="cookie-banner" style="display: none;">
-  <p>Wir verwenden Cookies, um Google Analytics einzusetzen. Stimmen Sie zu?</p>
+  <p>Wir verwenden Cookies und Google Analytics. Stimmen Sie zu?</p>
   <button id="cookie-accept">Akzeptieren</button>
   <button id="cookie-decline">Ablehnen</button>
 </div>
@@ -349,20 +364,17 @@
 <!-- Eigene Skripte -->
 <script src="js/script.js"></script>
 
-<!-- Cookie Consent & Google Analytics -->
+<!-- Consent Mode & Google Analytics -->
 <script>
   // Funktion zum dynamischen Laden von Google Analytics
   function loadGoogleAnalytics() {
-    const script = document.createElement('script');
-    script.src = "https://www.googletagmanager.com/gtag/js?id=G-MY94KVDXQ8";
-    script.async = true;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-MY94KVDXQ8', { 'anonymize_ip': true });
+    var gtagScript = document.createElement('script');
+    gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-MY94KVDXQ8";
+    gtagScript.async = true;
+    document.head.appendChild(gtagScript);
+    gtagScript.onload = function() {
+      gtag('config', 'G-MY94KVDXQ8', { 'anonymize_ip': true });
+    }
   }
 
   document.addEventListener("DOMContentLoaded", function() {
@@ -370,19 +382,32 @@
     const acceptButton = document.getElementById('cookie-accept');
     const declineButton = document.getElementById('cookie-decline');
 
-    // Überprüfen, ob bereits eine Entscheidung getroffen wurde
+    // Prüfe, ob bereits eine Entscheidung getroffen wurde
     if (localStorage.getItem('cookieConsent') === 'true') {
+      // Zustimmung liegt bereits vor: Consent Mode updaten und Google Analytics laden
+      gtag('consent', 'update', {
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
       loadGoogleAnalytics();
     } else if (localStorage.getItem('cookieConsent') === 'false') {
-      // Keine Aktivierung, Banner bleibt verborgen
+      // Ablehnung liegt vor – Banner bleibt verborgen und es wird kein GA geladen.
     } else {
-      // Wenn noch keine Entscheidung vorliegt, Banner anzeigen
+      // Noch keine Entscheidung: Banner anzeigen
       cookieBanner.style.display = 'flex';
     }
 
     acceptButton.addEventListener('click', function() {
       localStorage.setItem('cookieConsent', 'true');
       cookieBanner.style.display = 'none';
+      gtag('consent', 'update', {
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
       loadGoogleAnalytics();
     });
 
