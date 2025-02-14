@@ -38,60 +38,7 @@
 
   <!-- Eigene Styles -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Minimalistischer Cookie-/Consent-Banner Styles -->
-  <style>
-    #cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(74,74,74,0.9);
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      font-family: 'Playfair Display', sans-serif;
-    }
-    #cookie-banner p {
-      margin: 0;
-      padding: 0 10px;
-      font-size: 0.9rem;
-    }
-    #cookie-banner button {
-      background: #fff;
-      color: #4a4a4a;
-      border: none;
-      padding: 8px 16px;
-      margin-left: 10px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    #cookie-banner button:hover {
-      background: #e6e2d3;
-    }
-  </style>
-
-  <!-- Consent Mode initialisieren: Standardmäßig alle Storage-Optionen ablehnen -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('consent', 'default', {
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied',
-      'wait_for_update': 500
-    });
-    // Startzeitpunkt für GTM (wird später beim Laden des Containers verwendet)
-    dataLayer.push({'gtm.start': new Date().getTime(), 'event': 'gtm.js'});
-  </script>
 </head>
-
 <body>
 <!-- Language Switcher -->
 <div class="language-switcher">
@@ -174,6 +121,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Screens Section -->
   <section class="section screens" id="screens">
@@ -345,14 +293,8 @@
   </section>
 </main>
 
-<!-- Consent-/Cookie-Banner (wird nur angezeigt, wenn noch keine Entscheidung getroffen wurde) -->
-<div id="cookie-banner" style="display: none;">
-  <p>Wir verwenden Cookies und Google Analytics über den Tag Manager. Stimmen Sie zu?</p>
-  <button id="cookie-accept">Akzeptieren</button>
-  <button id="cookie-decline">Ablehnen</button>
-</div>
 
-<!-- Footer (optional) -->
+<!-- Footer -->
 <!--
 <footer class="site-footer">
   <div class="container">
@@ -363,58 +305,5 @@
 
 <!-- Eigene Skripte -->
 <script src="js/script.js"></script>
-
-<!-- Consent Mode & Tag Manager -->
-<script>
-  // Funktion zum dynamischen Laden des Tag Manager-Containers
-  function loadTagManager() {
-    var gtmScript = document.createElement('script');
-    gtmScript.async = true;
-    // Ersetze "GTM-XXXXXX" durch deine tatsächliche Container-ID!
-    gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=G-MY94KVDXQ8';
-    var firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(gtmScript, firstScript);
-  }
-
-  document.addEventListener("DOMContentLoaded", function() {
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptButton = document.getElementById('cookie-accept');
-    const declineButton = document.getElementById('cookie-decline');
-
-    // Prüfe, ob bereits eine Entscheidung getroffen wurde
-    if (localStorage.getItem('cookieConsent') === 'true') {
-      // Zustimmung liegt bereits vor: Consent Mode updaten und GTM laden
-      gtag('consent', 'update', {
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        ad_storage: 'granted',
-        analytics_storage: 'granted'
-      });
-      loadTagManager();
-    } else if (localStorage.getItem('cookieConsent') === 'false') {
-      // Ablehnung liegt vor – Banner bleibt verborgen, kein Tag Manager wird geladen.
-    } else {
-      // Noch keine Entscheidung: Banner anzeigen
-      cookieBanner.style.display = 'flex';
-    }
-
-    acceptButton.addEventListener('click', function() {
-      localStorage.setItem('cookieConsent', 'true');
-      cookieBanner.style.display = 'none';
-      gtag('consent', 'update', {
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        ad_storage: 'granted',
-        analytics_storage: 'granted'
-      });
-      loadTagManager();
-    });
-
-    declineButton.addEventListener('click', function() {
-      localStorage.setItem('cookieConsent', 'false');
-      cookieBanner.style.display = 'none';
-    });
-  });
-</script>
 </body>
 </html>
