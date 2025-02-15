@@ -131,7 +131,7 @@ main {
 /* Hero Section */
 .hero {
   position: relative;
-  background: url('../images/handy2.png') no-repeat calc(80%) calc(50% + 100px);
+  background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(80%) calc(50% + 100px);
   background-size: cover;
   color: #000;
   text-align: center;
@@ -142,7 +142,7 @@ main {
 }
 @media (max-width: 768px) {
   .hero {
-    background: url('../images/handy2.png') no-repeat calc(50% + 80px) calc(50% + 200px);
+    background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(50% + 80px) calc(50% + 200px);
   }
 }
 .hero-content {
