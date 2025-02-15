@@ -183,7 +183,7 @@ main {
   gap: 30px;
 }
 .feature {
-  background: #f7f7f7;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten hinzufügen */
   padding: 30px;
   border-radius: 10px;
   text-align: center;
@@ -230,6 +230,7 @@ main {
   max-height: 40vh;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Schatten hinzufügen */
 }
 @media (max-width: 768px) {
   .screens-grid {
@@ -277,10 +278,10 @@ main {
 .pricing-step {
   display: flex;            /* Hinzugefügt */
   flex-direction: column;   /* Hinzugefügt */
-  background: #fff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten hinzufügen */
   /* Flex-Grow, -Shrink und Basis (minimale Breite) */
   flex: 1 1 250px;
   transition: transform 0.3s, box-shadow 0.3s;
