@@ -4,17 +4,17 @@
 /* Language Switcher Styles */
 .language-switcher {
     position: fixed;
-    top: 2.2vh;
-    right: 3vw;
+    top: 2.2vh; /* 2% der Höhe des Viewports */
+    right: 3vw; /* 5% der Breite des Viewports */
     font-size: 1.2rem;
     z-index: 105;
 }
 
 .language-switcher a {
-    color: #333;
+    color: #333; /* Immer die Hauptschriftfarbe */
     text-decoration: none;
     margin-right: 10px;
-    padding-bottom: 2px;
+    padding-bottom: 2px; /* Platz für den Unterstrich */
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s;
 }
@@ -128,106 +128,23 @@ main {
   transform: translateY(0);
 }
 
-/* --- Hero Section --- */
+/* Hero Section */
 .hero {
   position: relative;
-  /* Das Handy-Bild wird als Hintergrund gesetzt – original Positionierung */
   background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(80%) calc(50% + 100px);
-  background-size: 50%;
+  background-size: cover;
   color: #000;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Schwebe-Animation anwenden, ohne die Ausgangsposition zu verändern */
-  animation: floatBg 3s ease-in-out infinite;
+  background-size: 50%;
 }
-
-/* Desktop-Animation für Hintergrund-Position */
-@keyframes floatBg {
-  0% {
-    background-position: calc(80%) calc(50% + 100px);
-  }
-  50% {
-    background-position: calc(80%) calc(50% + 90px);
-  }
-  100% {
-    background-position: calc(80%) calc(50% + 100px);
-  }
-}
-
-/* Mobile Anpassung: Originale Positionierung und Animation beibehalten */
 @media (max-width: 768px) {
   .hero {
     background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(50% + 80px) calc(50% + 200px);
-    background-size: 10%;
-    animation: floatBgMobile 3s ease-in-out infinite;
   }
 }
-@keyframes floatBgMobile {
-  0% {
-    background-position: calc(50% + 80px) calc(50% + 200px);
-  }
-  50% {
-    background-position: calc(50% + 80px) calc(50% + 190px);
-  }
-  100% {
-    background-position: calc(50% + 80px) calc(50% + 200px);
-  }
-}
-
-/* Ovaler Schatten unter dem schwebenden Handy */
-/* Der Schatten wird als ::after-Pseudo-Element hinzugefügt */
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: 1; /* liegt unter dem Hintergrund (Animation) */
-  pointer-events: none;
-  /* Desktop: An die originale Position des Handy-Bildes anlehnen */
-  left: calc(80% - 175px);  /* 350px Schattenbreite, zentriert an calc(80%) */
-  top: calc(50% + 160px);   /* ca. 60px unter der Ausgangsposition (100px -> 160px) */
-  width: 350px;
-  height: 80px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80%);
-  animation: floatShadow 3s ease-in-out infinite;
-}
-@keyframes floatShadow {
-  0% {
-    top: calc(50% + 160px);
-  }
-  50% {
-    top: calc(50% + 150px);
-  }
-  100% {
-    top: calc(50% + 160px);
-  }
-}
-
-/* Mobile Schatten-Anpassung: An die mobile Positionierung des Handy-Bildes anlehnen */
-@media (max-width: 768px) {
-  .hero::after {
-    left: calc((50% + 80px) - 175px);
-    top: calc(50% + 260px); /* Ausgangsposition plus Schattenversatz für mobile Devices */
-    width: 350px;
-    height: 80px;
-  }
-  @keyframes floatShadowMobile {
-    0% {
-      top: calc(50% + 260px);
-    }
-    50% {
-      top: calc(50% + 250px);
-    }
-    100% {
-      top: calc(50% + 260px);
-    }
-  }
-  .hero::after {
-    animation: floatShadowMobile 3s ease-in-out infinite;
-  }
-}
-
-/* Hero Content */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -347,38 +264,48 @@ main {
   cursor: pointer;
 }
 
-/* Process & Pricing Sections */
+/* Für beide Sektionen (Process & Pricing) */
 .process-timeline,
 .pricing-timeline {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Karten beginnen links */
   gap: 30px;
 }
+
+/* Entferne feste Breite und nutze flexibles Wachstum */
 .process-step,
 .pricing-step {
-  display: flex;
-  flex-direction: column;
+  display: flex;            /* Hinzugefügt */
+  flex-direction: column;   /* Hinzugefügt */
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  /* Flex-Grow, -Shrink und Basis (minimale Breite) */
   flex: 1 1 250px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+
+/* Damit der Preis immer unten steht */
 .pricing-step .price {
-  margin-top: auto;
+  margin-top: auto;         /* Hinzugefügt */
 }
+
+
 .pricing-step ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
+
 .process-step:hover,
 .pricing-step:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
+/* Gleiche Icon-Gestaltung wie bisher */
 .step-icon {
   width: 80px;
   height: 80px;
@@ -393,13 +320,15 @@ main {
   font-size: 2rem;
   color: #4a4a4a;
 }
+
+/* Preise beibehalten */
 .price {
   font-size: 1.8rem;
   font-weight: 700;
   color: #4a4a4a;
 }
 
-/* Responsive Anpassungen für Process & Pricing */
+/* Media Query: Bei schmaleren Bildschirmen sollen die Karten die ganze Breite nutzen */
 @media (max-width: 768px) {
   .process-step,
   .pricing-step {
