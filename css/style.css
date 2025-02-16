@@ -138,14 +138,48 @@ main {
   align-items: center;
   justify-content: center;
   background-size: 40%;
+
+  /* Default floating animation for large displays */
+  animation: float-large 4s ease-in-out infinite;
 }
 
+/* Media Query for Small Screens */
 @media (max-width: 768px) {
   .hero {
     background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(30vw) calc(55vh);
     background-size: 80%;
+
+    /* Use a specific animation for small displays */
+    animation: float-small 4s ease-in-out infinite;
   }
 }
+
+/* Floating animation for large displays */
+@keyframes float-large {
+  0% {
+    background-position: calc(50vw) calc(35vh);
+  }
+  50% {
+    background-position: calc(50vw) calc(36vh); /* Slight upward motion */
+  }
+  100% {
+    background-position: calc(50vw) calc(35vh);
+  }
+}
+
+/* Floating animation for small displays */
+@keyframes float-small {
+  0% {
+    background-position: calc(30vw) calc(55vh);
+  }
+  50% {
+    background-position: calc(30vw) calc(56vh); /* Slight upward motion */
+  }
+  100% {
+    background-position: calc(30vw) calc(55vh);
+  }
+}
+
 
 .hero-content {
   position: relative;
