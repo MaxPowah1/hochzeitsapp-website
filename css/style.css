@@ -131,20 +131,22 @@ main {
 /* Hero Section */
 .hero {
   position: relative;
-  background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(80%) calc(50% + 100px);
-  background-size: cover;
+  background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(50vw) calc(35vh);
   color: #000;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: 50%;
+  background-size: 40%;
 }
+
 @media (max-width: 768px) {
   .hero {
-    background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(50% + 80px) calc(50% + 200px);
+    background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(30vw) calc(55vh);
+    background-size: 80%;
   }
 }
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -405,7 +407,6 @@ main {
 
 @media (max-width: 768px) {
   .section {
-    min-height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -414,9 +415,6 @@ main {
   }
   .hero h1 {
     font-size: 2.5rem;
-  }
-  .hero {
-    background-size: 100%;
   }
   .hero p {
     font-size: 1.1rem;
