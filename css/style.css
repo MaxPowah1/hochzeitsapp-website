@@ -24,6 +24,30 @@
     border-bottom-color: #333;
 }
 
+/* Editor-Link Container (frei nach Bedarf) */
+.editor-container {
+  position: fixed;
+  top: 2.2vh;
+  right: 8vw; /* etwas entfernt vom Language Switcher, damit man es unterscheiden kann */
+  z-index: 105;
+}
+
+/* Editor-Link */
+.editor-link {
+  color: #333; /* gleiche Farbe wie die Language Switcher */
+  text-decoration: none;
+  margin-right: 10px;
+  padding-bottom: 2px; /* für den Unterstrich */
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s;
+  font-size: 1.2rem; /* gleiche Schriftgröße wie Language Switcher */
+}
+
+.editor-link:hover {
+  border-bottom-color: #333;
+}
+
+
 /* Grundreset und Scroll-Snap */
 * {
   margin: 0;
