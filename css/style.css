@@ -27,24 +27,27 @@
 /* Editor-Link Container (frei nach Bedarf) */
 .editor-container {
   position: fixed;
-  top: 2.2vh;
-  right: 8vw; /* etwas entfernt vom Language Switcher, damit man es unterscheiden kann */
+  top: 95vh;
+  right: clamp(20px, 3vw, 100px); /* mind. 10px, optimal 3vw, maximal 20px */
   z-index: 105;
 }
 
-/* Editor-Link */
+/* Editor-Link als Button */
 .editor-link {
-  color: #333; /* gleiche Farbe wie die Language Switcher */
+  display: inline-block;
+  padding: 5px 15px;
+  border: 2px solid #4a4a4a;       /* schwarzer Rahmen */
+  background: transparent;      /* transparenter Hintergrund */
+  color: #4a4a4a;                  /* schwarze Schrift */
+  border-radius: 50px;          /* runde Ecken, analog zu .btn */
   text-decoration: none;
-  margin-right: 10px;
-  padding-bottom: 2px; /* für den Unterstrich */
-  border-bottom: 2px solid transparent;
-  transition: border-bottom 0.3s;
-  font-size: 1.2rem; /* gleiche Schriftgröße wie Language Switcher */
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .editor-link:hover {
-  border-bottom-color: #333;
+  background: #000;             /* Füllung bei Hover */
+  color: #f8f8ff;                  /* Schriftfarbe bei Hover */
 }
 
 
