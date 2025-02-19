@@ -50,7 +50,6 @@
   color: #f8f8ff;                  /* Schriftfarbe bei Hover */
 }
 
-
 /* Grundreset und Scroll-Snap */
 * {
   margin: 0;
@@ -485,5 +484,8 @@ main {
   .pricing-grid,
   .process-timeline {
     gap: 20px;
+  }
+  .editor-container {
+      display: none !important;
   }
 }
