@@ -12,11 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Schließe das mobile Menü, wenn ein Link geklickt wird
-  const mobileNavLinks = mobileNav.querySelectorAll("a");
-  mobileNavLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      closeMobileNav();
-    });
+  mobileNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMobileNav);
   });
 
   // Schließe das mobile Menü, wenn außerhalb des Menüs getippt wird
@@ -32,47 +29,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Schließe das mobile Menü bei einem Swipe nach links
   let touchStartX = 0;
-  let touchEndX = 0;
   document.addEventListener("touchstart", (e) => {
     touchStartX = e.changedTouches[0].screenX;
   });
   document.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    if (mobileNav.classList.contains("active") && (touchStartX - touchEndX > 50)) {
+    if (mobileNav.classList.contains("active") && (touchStartX - e.changedTouches[0].screenX > 50)) {
       closeMobileNav();
     }
   });
 
   /* Modal-Funktionalität für Screenshots */
   const modal = document.getElementById("image-modal");
-  const modalImg = document.getElementById("modal-img");
-  const modalClose = document.querySelector(".modal-close");
-  const screenItems = document.querySelectorAll(".screen-item img");
-
-  screenItems.forEach(img => {
-    img.addEventListener("click", () => {
-      modal.style.display = "flex";
-      modalImg.src = img.getAttribute("data-img");
+  if (modal) {
+    const modalImg = document.getElementById("modal-img");
+    const modalClose = document.querySelector(".modal-close");
+    document.querySelectorAll(".screen-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = img.getAttribute("data-img");
+      });
     });
-  });
 
-  modalClose.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
+    modalClose.addEventListener("click", () => {
       modal.style.display = "none";
-    }
-  });
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
 
   /* Dynamische Verlinkung für WhatsApp und Telegram */
   const encodedNumber = "NDkxNTIyMTM1OTUzMg==";
   const phoneNumber = atob(encodedNumber);
+
   const whatsappLink = document.querySelector(".whatsapp-link");
   if (whatsappLink) {
     whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=Hallo%20HochzeitsApp-Team";
   }
+
   const telegramLink = document.querySelector(".telegram-link");
   if (telegramLink) {
     telegramLink.href = "https://t.me/+" + phoneNumber;
@@ -80,10 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Slide-in Effekt für den inneren Content der Sections */
   const inners = document.querySelectorAll('.section-inner');
-  const observerOptions = {
-    threshold: 0.2
-  };
-
   const sectionObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -91,9 +84,25 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.2 });
 
   inners.forEach(inner => {
     sectionObserver.observe(inner);
   });
+
+  /* Verhindere Editor-Zugriff auf Smartphones */
+  function isMobileDevice() {
+    return window.innerWidth < 768;
+  }
+
+  const editorLink = document.querySelector(".editor-container");
+  if (editorLink && isMobileDevice()) {
+    editorLink.style.display = "none";
+  }
+
+  // Falls der Nutzer direkt editor.html öffnet
+  if (window.location.pathname.includes("editor.html") && isMobileDevice()) {
+    alert("The editor is not available on smartphones.");
+    window.location.href = "index.html"; // Weiterleitung zur Startseite
+  }
 });
