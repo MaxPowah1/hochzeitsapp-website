@@ -111,6 +111,18 @@
       document.body.style.background = "transparent";
     }
   </script>
+  <script>
+  // Function to detect if device is mobile
+  function isMobileDevice() {
+    return window.matchMedia("(max-width: 767px)").matches || /Mobi|Android|iPhone/i.test(navigator.userAgent);
+  }
+
+  // Prevent access if on a smartphone
+  if (isMobileDevice()) {
+    alert("The editor is not available on smartphones.");
+    window.location.href = "index.html"; // Redirect to homepage
+  }
+  </script>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
