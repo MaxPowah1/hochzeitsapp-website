@@ -1,4 +1,13 @@
 <?php
+header("Access-Control-Allow-Origin: *"); // Allow all origins (or specify a particular origin)
+header("Access-Control-Allow-Methods: POST, OPTIONS"); // Allow POST and OPTIONS methods
+header("Access-Control-Allow-Headers: Content-Type"); // Allow the Content-Type header
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit(0);
+}
+
 header('Content-Type: application/json');
 require __DIR__ . '/../vendor/autoload.php';
 
