@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
-require '../vendor/autoload.php'; // Ensure correct path to Composer autoload
+require __DIR__ . '/../vendor/autoload.php';
+
 
 try {
     // Connect to MongoDB
