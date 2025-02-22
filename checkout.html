@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HochzeitsApp – Checkout</title>
+    <meta name="description" content="Schließen Sie Ihren Einkauf in der HochzeitsApp ab.">
+    <link rel="canonical" href="https://hochzeitsapp.com/checkout.html">
+    <link rel="alternate" href="checkout.html" hreflang="de">
+    <link rel="alternate" href="checkout_en.html" hreflang="en">
+    <link rel="icon" type="image/png" href="images/Icon2.png">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for the checkout form */
+        .checkout .form-group {
+          margin-bottom: 1rem;
+        }
+        .checkout .form-group label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+        }
+        .checkout .form-group input {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-family: inherit;
+        }
+        /* Flex container for billing form and order summary */
+        .checkout-form-wrapper {
+          display: flex;
+          gap: 2rem;
+          flex-wrap: nowrap;
+        }
+        /* Billing form: 33% of available width */
+        .billing-form {
+          flex: 1;
+          max-width: 33.33%;
+        }
+        /* Order summary: 67% of available width */
+        .order-summary {
+          flex: 2;
+          max-width: 66.66%;
+          background: #fff;
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        /* Responsive: Stack columns vertically on small screens */
+        @media (max-width: 768px) {
+          .checkout-form-wrapper {
+            flex-direction: column;
+          }
+          .billing-form,
+          .order-summary {
+            max-width: 100%;
+            flex: 1 1 100%;
+          }
+        }
+    </style>
+</head>
+<body>
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <a href="checkout.html" class="active">de</a>
+    <a href="checkout_en.html">en</a>
+</div>
+
+<!-- Editor Link -->
+<div class="editor-container">
+    <a href="editor.html" class="editor-link" target="_blank">editor</a>
+</div>
+
+<!-- Burger Menu & Mobile Navigation -->
+<div class="burger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<nav class="mobile-nav">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#screens">Screens</a></li>
+        <li><a href="index.html#process">Ablauf</a></li>
+        <li><a href="index.html#pricing">Preise</a></li>
+        <li><a href="index.html#about">Über uns</a></li>
+        <li><a href="index.html#contact">Kontakt</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section class="section checkout">
+        <div class="container section-inner">
+            <h1>Checkout</h1>
+            <p>Bitte überprüfen Sie Ihre Angaben und schließen Sie den Kauf ab.</p>
+            <div class="checkout-form-wrapper">
+                <!-- Billing Form -->
+                <form class="billing-form" action="#" method="post">
+                    <h2>Rechnungsinformationen</h2>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Ihr Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" placeholder="Ihre E-Mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" id="address" name="address" placeholder="Straße, Hausnummer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Stadt</label>
+                        <input type="text" id="city" name="city" placeholder="Stadt" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">PLZ</label>
+                        <input type="text" id="zip" name="zip" placeholder="Postleitzahl" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Land</label>
+                        <input type="text" id="country" name="country" placeholder="Land" required>
+                    </div>
+                    <button type="submit" class="btn" style="margin-top: 1rem;">Zahlung abschließen</button>
+                </form>
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Bestellübersicht</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span>Produktname</span>
+                            <span>€49,99</span>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span>Servicegebühr</span>
+                            <span>€4,99</span>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <span>Steuern</span>
+                            <span>€2,50</span>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div style="display: flex; justify-content: space-between; margin-top: 1rem; font-weight: bold;">
+                        <span>Gesamt</span>
+                        <span>€57,48</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Optional Footer -->
+<!--
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 HochzeitsApp. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>
+-->
+
+<script src="js/script.js"></script>
+</body>
+</html>
