@@ -500,19 +500,26 @@ main {
   flex-wrap: wrap;
   gap: 2rem;
   margin: 2rem auto;
-  max-width: 1200px;
+  max-width: 1500px;
 }
 
-/* Left side (Delivery Info) and Right side (Order Summary) */
 .checkout-left,
 .checkout-right {
   background-color: #fff;
   border-radius: 10px;
   padding: 2rem;
-  flex: 1 1 45%;
   min-width: 300px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
+.checkout-left {
+  flex: 0 0 40%;
+}
+
+.checkout-right {
+  flex: 0 0 55%;
+}
+
 
 /* Heading styles */
 .checkout-left h2,
@@ -543,15 +550,6 @@ main {
   font-family: inherit;
   font-size: 1rem;
   outline: none;
-}
-
-/* City/State/Zip in a row */
-.form-row {
-  display: flex;
-  gap: 1rem;
-}
-.form-row .form-group {
-  flex: 1;
 }
 
 /* Schedule Delivery Toggle */
