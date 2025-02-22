@@ -489,3 +489,236 @@ main {
       display: none !important;
   }
 }
+
+/**************************************
+ * Checkout Form Styles
+ **************************************/
+
+/* Main container that holds both sides */
+.checkout-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+/* Left side (Delivery Info) and Right side (Order Summary) */
+.checkout-left,
+.checkout-right {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  flex: 1 1 45%;
+  min-width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Heading styles */
+.checkout-left h2,
+.checkout-right h2 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Basic form layout */
+.checkout-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.checkout-form label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.checkout-form input[type="text"],
+.checkout-form input[type="email"],
+.checkout-form input[type="tel"],
+.checkout-form input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* City/State/Zip in a row */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Schedule Delivery Toggle */
+.schedule-delivery {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 0.5rem;
+}
+.schedule-label {
+  font-weight: 600;
+}
+
+/* Simple toggle switch style */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0; left: 0; right: 0; bottom: 0;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #4a4a4a;
+}
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+.slider.round {
+  border-radius: 24px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Date picker hidden by default */
+.date-picker.hidden {
+  display: none;
+}
+.date-picker label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.date-picker input {
+  max-width: 200px;
+}
+
+/* Payment Method section */
+.payment-method {
+  margin-top: 1.5rem;
+}
+.payment-method h3 {
+  margin-bottom: 0.5rem;
+}
+.payment-method label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+.payment-method input[type="radio"] {
+  margin-right: 0.3rem;
+}
+
+/* Right side: Order Summary */
+.order-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+  gap: 1rem;
+}
+.order-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.item-details {
+  flex: 1;
+}
+.item-name {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.item-price {
+  color: #666;
+}
+.item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.item-quantity button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.item-quantity input[type="text"] {
+  width: 40px;
+  text-align: center;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Totals section */
+.order-summary-totals {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.summary-line.total {
+  font-weight: 700;
+}
+
+/* Confirm button */
+.confirm-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .checkout-container {
+    flex-direction: column;
+  }
+  .checkout-left, .checkout-right {
+    flex: 1 1 100%;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+}
+
