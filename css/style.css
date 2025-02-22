@@ -528,7 +528,6 @@ main {
   font-weight: 700;
 }
 
-/* Basic form layout */
 .checkout-form .form-group {
   display: flex;
   flex-direction: column;
@@ -545,80 +544,21 @@ main {
 .checkout-form input[type="tel"],
 .checkout-form input[type="date"] {
   padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid #ccc; /* Adds a simple line */
   font-family: inherit;
   font-size: 1rem;
   outline: none;
 }
 
-/* Schedule Delivery Toggle */
-.schedule-delivery {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-  gap: 0.5rem;
-}
-.schedule-label {
-  font-weight: 600;
+.checkout-form input[type="text"],
+.checkout-form input[type="email"],
+.checkout-form input[type="tel"],
+.checkout-form input[type="date"] {
+  text-align: right;
 }
 
-/* Simple toggle switch style */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 42px;
-  height: 24px;
-}
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background-color: #ccc;
-  border-radius: 24px;
-  top: 0; left: 0; right: 0; bottom: 0;
-  transition: .4s;
-}
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: .4s;
-}
-input:checked + .slider {
-  background-color: #4a4a4a;
-}
-input:checked + .slider:before {
-  transform: translateX(18px);
-}
-.slider.round {
-  border-radius: 24px;
-}
-.slider.round:before {
-  border-radius: 50%;
-}
 
-/* Date picker hidden by default */
-.date-picker.hidden {
-  display: none;
-}
-.date-picker label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-.date-picker input {
-  max-width: 200px;
-}
 
 /* Payment Method section */
 .payment-method {
