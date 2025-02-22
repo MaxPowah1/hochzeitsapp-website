@@ -539,6 +539,10 @@ main {
   margin-bottom: 1rem;
 }
 
+.checkout-form .form-group input:focus {
+  border-bottom: 2px solid #ccc; /* Thicker border on focus */
+}
+
 .checkout-form label {
   margin-bottom: 0.5rem;
   font-weight: 600;
