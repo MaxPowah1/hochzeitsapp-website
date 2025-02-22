@@ -524,9 +524,7 @@ main {
 
 .checkout-right {
   flex: 0 0 60%;
-
 }
-
 
 /* Heading styles */
 .checkout-left h2,
@@ -578,7 +576,7 @@ main {
 }
 .item-name {
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.1rem;
 }
 .item-price {
   color: #666;
