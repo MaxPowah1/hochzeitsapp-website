@@ -512,6 +512,9 @@ main {
   /* Adjust the min-width as necessary */
   min-width: 450px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Ensures normal flow */
 }
 
 /* Set each side to take 50% of the width */
@@ -521,6 +524,7 @@ main {
 
 .checkout-right {
   flex: 0 0 60%;
+
 }
 
 
@@ -578,6 +582,7 @@ main {
 }
 .item-price {
   color: #666;
+  text-align: right;
 }
 
 /* Totals section */
@@ -598,7 +603,7 @@ main {
 
 /* Confirm button */
 .confirm-btn {
-  margin-top: 1.5rem;
+  margin-top: auto; /* Pushes it to the bottom */
   width: 100%;
   text-align: center;
   font-size: 1.1rem;
