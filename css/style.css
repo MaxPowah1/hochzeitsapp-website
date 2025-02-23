@@ -560,6 +560,9 @@ main {
   outline: none;
   text-align: right;
   transition: border-bottom 0.2s ease;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Right side: Order Summary */
