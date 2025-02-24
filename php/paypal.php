@@ -1,5 +1,10 @@
 <?php
+// Autoload dependencies
 require __DIR__ . "/../vendor/autoload.php";
+
+// Load environment variables from .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+$dotenv->load();
 
 use PaypalServerSdkLib\Authentication\ClientCredentialsAuthCredentialsBuilder;
 use PaypalServerSdkLib\Environment;
@@ -12,9 +17,9 @@ use PaypalServerSdkLib\Models\Builders\ShippingDetailsBuilder;
 use PaypalServerSdkLib\Models\Builders\ShippingOptionBuilder;
 use PaypalServerSdkLib\Models\ShippingType;
 
-$PAYPAL_CLIENT_ID = getenv("AS8CTzbNN0TnN1lwGxs_VRroGLV8B_pKIShgmi1og8jrj-AbmiAnHBGDCeIqCYO9YCifHeukLRz8znEc");
-$PAYPAL_CLIENT_SECRET = getenv("EFNApXAXgpVDLUHKkTnX3G1JkTQS_UQCjd4ErGT1L8y1jm9ezQP8pZkLk1UakE-AC8fhCbnXk7oG5YU5");
-
+// Get PayPal credentials from environment variables
+$PAYPAL_CLIENT_ID = getenv("PAYPAL_CLIENT_ID");
+$PAYPAL_CLIENT_SECRET = getenv("PAYPAL_CLIENT_SECRET");
 
 $client = PaypalServerSdkClientBuilder::init()
     ->clientCredentialsAuthCredentials(
@@ -25,7 +30,6 @@ $client = PaypalServerSdkClientBuilder::init()
     )
     ->environment(Environment::SANDBOX)
     ->build();
-
 
 function handleResponse($response)
 {
@@ -66,7 +70,6 @@ function createOrder($cart)
         ])->build(),
     ];
 
-
     $apiResponse = $client->getOrdersController()->ordersCreate($orderBody);
 
     return handleResponse($apiResponse);
@@ -84,7 +87,6 @@ if ($endpoint === "/api/orders") {
         http_response_code(500);
     }
 }
-
 
 /**
  * Capture payment for the created order to complete the transaction.
@@ -105,7 +107,7 @@ function captureOrder($orderID)
 
 if (str_ends_with($endpoint, "/capture")) {
     $urlSegments = explode("/", $endpoint);
-    end($urlSegments); // Will set the pointer to the end of array
+    end($urlSegments); // Move pointer to end
     $orderID = prev($urlSegments);
     header("Content-Type: application/json");
     try {
@@ -116,5 +118,3 @@ if (str_ends_with($endpoint, "/capture")) {
         http_response_code(500);
     }
 }
-
-
