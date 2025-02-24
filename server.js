@@ -8,8 +8,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Optional: Serve static assets (e.g., CSS, JS, images) from the "public" folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
