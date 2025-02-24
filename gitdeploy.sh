@@ -6,7 +6,7 @@ echo "Timestamp: $(date)" >> /var/www/html/hochzeitsapp-website/php/deploy.log
 cd /var/www/html/hochzeitsapp-website || exit
 
 # Pull the latest changes using the custom alias
-git pullforce >> /var/www/html/hochzeitsapp-website/php/deploy.log 2>&1
+/usr/bin/git pullforce >> /var/www/html/hochzeitsapp-website/php/deploy.log 2>&1
 
 # Set correct permissions
 chown -R www-data:www-data /var/www/html/hochzeitsapp-website
