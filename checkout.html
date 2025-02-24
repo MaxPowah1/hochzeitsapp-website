@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Checkout Example</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Removed the PayPal SDK script tag since it's now loaded in script.js -->
+    <script src="js/script.js" defer></script>
 </head>
 <body>
 
@@ -18,88 +20,46 @@
                 <!-- Left Side: Delivery Information -->
                 <div class="checkout-left">
                     <h2>Billing Information</h2>
-                    <form class="checkout-form">
+                    <form class="checkout-form" id="checkout-form">
 
                         <!-- Name -->
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="-"
-                                    required
-                            />
+                            <input type="text" id="name" name="name" placeholder="-" required />
                         </div>
 
                         <!-- Mobile Number -->
                         <div class="form-group">
                             <label for="mobile">Mobile Number</label>
-                            <input
-                                    type="tel"
-                                    id="mobile"
-                                    name="mobile"
-                                    placeholder="-"
-                                    required
-                            />
+                            <input type="tel" id="mobile" name="mobile" placeholder="-" required />
                         </div>
 
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="-"
-                                    required
-                            />
+                            <input type="email" id="email" name="email" placeholder="-" required />
                         </div>
 
                         <!-- City/State/Zip -->
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input
-                                        type="text"
-                                        id="city"
-                                        name="city"
-                                        placeholder="-"
-                                        required
-                                />
+                                <input type="text" id="city" name="city" placeholder="-" required />
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <input
-                                        type="text"
-                                        id="state"
-                                        name="state"
-                                        placeholder="-"
-                                        required
-                                />
+                                <input type="text" id="state" name="state" placeholder="-" required />
                             </div>
                             <div class="form-group">
                                 <label for="zip">Zip</label>
-                                <input
-                                        type="text"
-                                        id="zip"
-                                        name="zip"
-                                        placeholder="-"
-                                        required
-                                />
+                                <input type="text" id="zip" name="zip" placeholder="-" required />
                             </div>
                         </div>
 
                         <!-- Address -->
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input
-                                    type="text"
-                                    id="address"
-                                    name="address"
-                                    placeholder="-"
-                                    required
-                            />
+                            <input type="text" id="address" name="address" placeholder="-" required />
                         </div>
 
                     </form>
@@ -128,19 +88,20 @@
                     <div class="order-summary-totals">
                         <div class="summary-line">
                             <span>Subtotal</span>
-                            <span>€18.00</span>
+                            <span id="subtotal">€18.00</span>
                         </div>
                         <div class="summary-line">
                             <span>Tax</span>
-                            <span>€3.42</span>
+                            <span id="tax">€3.42</span>
                         </div>
                         <div class="summary-line total">
                             <span>Total</span>
-                            <span>$21.42</span>
+                            <span id="total-price">€21.42</span>
                         </div>
                     </div>
 
-                <button class="btn confirm-btn">Confirm Order</button>
+                    <!-- PayPal Button Container -->
+                    <div id="paypal-button-container"></div>
                 </div>
             </div>
         </div>
