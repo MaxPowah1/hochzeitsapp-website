@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("paypal-button-container")) {
         const paypalScript = document.createElement("script");
-        paypalScript.src = "https://www.paypal.com/sdk/js?client-id=ATngG7_61oa2brw5OFeEktmTzAjhSTq_IqnsSWu-BUJF0Je8p9V9X30cW1BtFCRsKw8Apv-ALynq7Yig&currency=EUR";
+        paypalScript.src = "https://www.paypal.com/sdk/js?client-id=AS8CTzbNN0TnN1lwGxs_VRroGLV8B_pKIShgmi1og8jrj-AbmiAnHBGDCeIqCYO9YCifHeukLRz8znEc&currency=EUR";
         paypalScript.onload = () => {
             paypal.Buttons({
                 createOrder: function(data, actions) {
