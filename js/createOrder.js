@@ -1,5 +1,5 @@
 // createOrder.js
-const { client } = require('paypalClient');
+const { client } = require('./paypalClient');
 const paypal = require('@paypal/paypal-server-sdk');
 
 async function createOrder(req, res) {
