@@ -1,36 +1,38 @@
 // js/createOrder.js
-const { client } = require('./paypalClient');
-const paypal = require('@paypal/paypal-server-sdk');
+const axios = require('axios');
+const { getAccessToken, PAYPAL_API_BASE } = require('./paypalClient');
 
 async function createOrder(req, res) {
   console.log("createOrder endpoint hit");
 
-  // Try accessing OrdersCreateRequest as a property on the paypal object
-  const OrdersCreateRequest = paypal.OrdersCreateRequest;
-  if (typeof OrdersCreateRequest !== "function") {
-    console.error("OrdersCreateRequest is not available as a constructor");
-    return res.status(500).send("Server configuration error");
-  }
-
-  const request = new OrdersCreateRequest();
-  request.prefer("return=representation");
-  request.requestBody({
-    intent: 'CAPTURE',
+  const orderPayload = {
+    intent: "CAPTURE",
     purchase_units: [{
       amount: {
-        currency_code: 'USD',
-        value: '100.00'
+        currency_code: "USD",
+        value: "100.00"
       }
     }]
-  });
+  };
 
   try {
-    console.log("Sending request to PayPal Sandbox...");
-    const response = await client().execute(request);
-    console.log("Received response from PayPal:", response.result);
-    res.json({ id: response.result.id });
-  } catch (error) {
-    console.error("Error creating order:", error);
+    const accessToken = await getAccessToken();
+
+    const response = await axios({
+      url: `${PAYPAL_API_BASE}/v2/checkout/orders`,
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}`,
+        "Prefer": "return=representation"  // Optional: controls response detail
+      },
+      data: orderPayload
+    });
+
+    console.log("Order created:", response.data);
+    res.json(response.data);
+  } catch (err) {
+    console.error("Error creating order:", err.response ? err.response.data : err.message);
     res.status(500).send("Error creating order");
   }
 }
