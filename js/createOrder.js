@@ -1,6 +1,6 @@
 // js/createOrder.js
 const { client } = require('./paypalClient');
-const OrdersCreateRequest = require('@paypal/paypal-server-sdk/lib/orders/ordersCreateRequest');
+const { OrdersCreateRequest } = require('@paypal/paypal-server-sdk');
 
 async function createOrder(req, res) {
   console.log("createOrder endpoint hit");
