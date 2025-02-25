@@ -31,7 +31,7 @@ paypal.Buttons({
       console.log('Capture result', captureData);
       // Redirect the user to a success page with order summary
       // Pass order details via query parameters or localStorage as needed
-      window.location.href = `/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
+      window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
     })
     .catch(err => {
       console.error("Capture error:", err);
