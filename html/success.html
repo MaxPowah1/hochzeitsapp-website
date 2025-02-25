@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Payment Successful</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+    <section>
+        <h1>Thank you for your purchase!</h1>
+        <div id="order-summary">
+            <!-- Order summary details will be inserted here -->
+        </div>
+        <a href="/">Return to Home</a>
+    </section>
+</main>
+
+<script>
+    // Parse query parameters from the URL
+    const params = new URLSearchParams(window.location.search);
+    const orderID = params.get('orderID');
+    const status = params.get('status');
+
+    // Update the page with order details
+    const summaryEl = document.getElementById('order-summary');
+    summaryEl.innerHTML = `<p>Order ID: ${orderID}</p><p>Status: ${status}</p>`;
+    // You could also fetch additional details from your backend using the orderID if needed.
+</script>
+</body>
+</html>
