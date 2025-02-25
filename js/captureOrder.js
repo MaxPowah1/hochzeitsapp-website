@@ -1,6 +1,6 @@
 // js/captureOrder.js
 const axios = require('axios');
-const { getAccessToken, PAYPAL_API_BASE } = require('./paypalClient'); // Assuming you already have getAccessToken implemented
+const { getAccessToken, PAYPAL_API_BASE } = require('./paypalClient');
 
 async function captureOrder(req, res) {
   const { orderID } = req.body;
@@ -15,10 +15,12 @@ async function captureOrder(req, res) {
       }
     });
     console.log('Capture response:', response.data);
+    // Return valid JSON to the frontend
     res.json(response.data);
   } catch (error) {
     console.error("Error capturing order:", error.response ? error.response.data : error.message);
-    res.status(500).send("Error capturing order");
+    // Return error as JSON
+    res.status(500).json({ error: "Error capturing order" });
   }
 }
 

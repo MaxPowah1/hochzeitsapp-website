@@ -9,7 +9,7 @@ async function createOrder(req, res) {
     intent: "CAPTURE",
     purchase_units: [{
       amount: {
-        currency_code: "USD",
+        currency_code: "EUR",
         value: "100.00"
       }
     }]

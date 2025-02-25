@@ -1,13 +1,16 @@
-// server.js
 const express = require('express');
 const path = require('path');
 const { createOrder } = require('./js/createOrder');
+const { captureOrder } = require('./js/captureOrder'); // You need to implement this
 const app = express();
 
 app.use(express.json());
 
-// Define your API route BEFORE static middleware
+// API endpoint for creating an order
 app.post('/create-order', createOrder);
+
+// API endpoint for capturing an order
+app.post('/capture-order', captureOrder);
 
 // Serve index.html on the root URL
 app.get('/', (req, res) => {
