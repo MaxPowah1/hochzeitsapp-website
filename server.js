@@ -15,6 +15,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.post('/test', (req, res) => {
+  console.log("Test endpoint hit");
+  res.json({ message: "Test successful" });
+});
+
+
 // Serve static files from the root directory
 app.use(express.static(__dirname));
 

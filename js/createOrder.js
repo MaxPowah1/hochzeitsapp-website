@@ -3,7 +3,7 @@ const { client } = require('./paypalClient');
 const paypal = require('@paypal/paypal-server-sdk');
 
 async function createOrder(req, res) {
-  console.log("createOrder endpoint hit"); // Debug logging
+  console.log("createOrder endpoint hit"); // Confirm the endpoint is reached
 
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
@@ -18,7 +18,9 @@ async function createOrder(req, res) {
   });
 
   try {
+    console.log("Sending request to PayPal Sandbox...");
     const response = await client().execute(request);
+    console.log("Received response from PayPal:", response.result);
     res.json({ id: response.result.id });
   } catch (error) {
     console.error("Error creating order:", error);
