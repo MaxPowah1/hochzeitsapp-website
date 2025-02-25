@@ -5,40 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Checkout Example</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
-
 <main>
     <section class="section">
         <div class="section-inner visible">
-
             <!-- Checkout Container -->
             <div class="checkout-container">
-
                 <!-- Left Side: Delivery Information -->
                 <div class="checkout-left">
                     <h2>Billing Information</h2>
                     <form class="checkout-form" id="checkout-form">
-
                         <!-- Name -->
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" placeholder="-" required />
                         </div>
-
                         <!-- Mobile Number -->
                         <div class="form-group">
                             <label for="mobile">Mobile Number</label>
                             <input type="tel" id="mobile" name="mobile" placeholder="-" required />
                         </div>
-
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" placeholder="-" required />
                         </div>
-
                         <!-- City/State/Zip -->
                         <div class="form-row">
                             <div class="form-group">
@@ -54,13 +46,13 @@
                                 <input type="text" id="zip" name="zip" placeholder="-" required />
                             </div>
                         </div>
-
                         <!-- Address -->
                         <div class="form-group">
                             <label for="address">Address</label>
                             <input type="text" id="address" name="address" placeholder="-" required />
                         </div>
-
+                        <!-- Hidden field to hold the JSON configuration -->
+                        <input type="hidden" id="config-json" name="config-json" value="" />
                     </form>
                 </div>
 
@@ -109,10 +101,24 @@
 
 <script
         src="https://www.paypal.com/sdk/js?client-id=ATngG7_61oa2brw5OFeEktmTzAjhSTq_IqnsSWu-BUJF0Je8p9V9X30cW1BtFCRsKw8Apv-ALynq7Yig&buyer-country=DE&currency=EUR&components=buttons&enable-funding=card&disable-funding=venmo,paylater"
-        data-sdk-integration-source="developer-studio"
-
-></script>
+        data-sdk-integration-source="developer-studio">
+</script>
 <script src="js/checkout-paypal.js" defer></script>
+<script>
+    // Retrieve the configuration JSON from sessionStorage
+    const configJson = sessionStorage.getItem('checkoutConfig');
+    if (configJson) {
+      const config = JSON.parse(configJson);
+      console.log("Checkout configuration:", config);
+      // Populate the hidden input with the JSON string for later use (e.g. form submission)
+      document.getElementById('config-json').value = configJson;
 
+      // (Optional) Update the Order Summary with data from the configuration
+      // For example, if you want to display the app name as part of the summary:
+      // document.getElementById('order-summary-app-name').innerText = config.home.appName;
+    } else {
+      console.error("No checkout configuration found in sessionStorage.");
+    }
+</script>
 </body>
 </html>
