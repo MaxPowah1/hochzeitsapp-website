@@ -1,11 +1,11 @@
 // js/createOrder.js
 const { client } = require('./paypalClient');
-const paypal = require('@paypal/paypal-server-sdk');
+const OrdersCreateRequest = require('@paypal/paypal-server-sdk/lib/orders/ordersCreateRequest');
 
 async function createOrder(req, res) {
-  console.log("createOrder endpoint hit"); // Confirm the endpoint is reached
+  console.log("createOrder endpoint hit");
 
-  const request = new paypal.orders.OrdersCreateRequest();
+  const request = new OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
     intent: 'CAPTURE',
