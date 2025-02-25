@@ -1,32 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Payment Successful</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Additional styles for the success page container */
+        .success-container {
+          max-width: 600px;
+          margin: 50px auto;
+          padding: 30px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          text-align: center;
+        }
+        .success-title {
+          font-size: 2.5rem;
+          color: #4a4a4a;
+          margin-bottom: 20px;
+        }
+        .success-message {
+          font-size: 1.2rem;
+          margin-bottom: 20px;
+        }
+        .order-summary {
+          text-align: left;
+          font-size: 1rem;
+          margin: 20px auto;
+          padding: 15px;
+          border-top: 1px solid #eee;
+        }
+        .order-summary p {
+          margin: 5px 0;
+        }
+        .back-home {
+          display: inline-block;
+          margin-top: 20px;
+          padding: 10px 20px;
+          border-radius: 50px;
+          background: #4a4a4a;
+          color: #fff;
+          text-decoration: none;
+          transition: background 0.3s;
+        }
+        .back-home:hover {
+          background: #333;
+        }
+    </style>
 </head>
 <body>
 <main>
-    <section>
-        <h1>Thank you for your purchase!</h1>
-        <div id="order-summary">
-            <!-- Order summary details will be inserted here -->
+    <div class="success-container">
+        <h1 class="success-title">Payment Successful!</h1>
+        <p class="success-message">
+            Thank you for your purchase. Your transaction has been completed successfully.
+        </p>
+        <div class="order-summary">
+            <p><strong>Order ID:</strong> <span id="order-id">N/A</span></p>
+            <p><strong>Status:</strong> <span id="order-status">N/A</span></p>
         </div>
-        <a href="/">Return to Home</a>
-    </section>
+        <a href="/" class="back-home">Return to Home</a>
+    </div>
 </main>
 
 <script>
-    // Parse query parameters from the URL
+    // Retrieve order details from query parameters and display them
     const params = new URLSearchParams(window.location.search);
-    const orderID = params.get('orderID');
-    const status = params.get('status');
-
-    // Update the page with order details
-    const summaryEl = document.getElementById('order-summary');
-    summaryEl.innerHTML = `<p>Order ID: ${orderID}</p><p>Status: ${status}</p>`;
-    // You could also fetch additional details from your backend using the orderID if needed.
+    document.getElementById('order-id').textContent = params.get('orderID') || 'N/A';
+    document.getElementById('order-status').textContent = params.get('status') || 'N/A';
 </script>
 </body>
 </html>
