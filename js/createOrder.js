@@ -1,9 +1,16 @@
 // js/createOrder.js
 const { client } = require('./paypalClient');
-const { OrdersCreateRequest } = require('@paypal/paypal-server-sdk');
+const paypal = require('@paypal/paypal-server-sdk');
 
 async function createOrder(req, res) {
   console.log("createOrder endpoint hit");
+
+  // Try accessing OrdersCreateRequest as a property on the paypal object
+  const OrdersCreateRequest = paypal.OrdersCreateRequest;
+  if (typeof OrdersCreateRequest !== "function") {
+    console.error("OrdersCreateRequest is not available as a constructor");
+    return res.status(500).send("Server configuration error");
+  }
 
   const request = new OrdersCreateRequest();
   request.prefer("return=representation");
