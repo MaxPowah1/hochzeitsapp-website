@@ -1,9 +1,10 @@
 // js/paypalClient.js
+require('dotenv').config({ path: '.paypalenv' });
 const axios = require('axios');
 
-const PAYPAL_CLIENT_ID = "AS8CTzbNN0TnN1lwGxs_VRroGLV8B_pKIShgmi1og8jrj-AbmiAnHBGDCeIqCYO9YCifHeukLRz8znEc";
-const PAYPAL_CLIENT_SECRET = "EFNApXAXgpVDLUHKkTnX3G1JkTQS_UQCjd4ErGT1L8y1jm9ezQP8pZkLk1UakE-AC8fhCbnXk7oG5YU5";
-const PAYPAL_API_BASE = "https://api-m.sandbox.paypal.com";
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_API_BASE = process.env.PAYPAL_API_BASE || "https://api-m.sandbox.paypal.com";
 
 async function getAccessToken() {
   const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString('base64');
