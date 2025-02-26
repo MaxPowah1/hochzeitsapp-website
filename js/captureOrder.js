@@ -21,7 +21,7 @@ async function retryAsyncOperation(operation, retries = 3, delay = 1000) {
 async function captureOrder(req, res) {
   console.log("captureOrder endpoint hit");
 
-  // Expected data from the client: orderID, billing information, and the config JSON string.
+  // Expected data from the client: orderID, billing info, and config JSON string.
   const { orderID, billing, config } = req.body;
 
   try {
@@ -40,9 +40,8 @@ async function captureOrder(req, res) {
     console.log("Capture response:", response.data);
     const captureData = response.data;
 
-    // Use a retry mechanism to update (or create) the order record in MongoDB.
+    // Update the existing pending order record with capture details using retry logic.
     await retryAsyncOperation(async () => {
-      // Attempt to update an existing pending order with the new details.
       const updatedOrder = await Order.findOneAndUpdate(
         { 'paypal.orderID': orderID },
         {
@@ -56,19 +55,8 @@ async function captureOrder(req, res) {
         },
         { new: true }
       );
-
-      // If no order exists, create a new pending order record.
       if (!updatedOrder) {
-        const newOrder = new Order({
-          billing: billing,
-          config: JSON.parse(config),
-          paypal: {
-            orderID: orderID,
-            status: captureData.status,
-            captureDetails: captureData,
-          }
-        });
-        await newOrder.save();
+        throw new Error('Pending order not found for update');
       }
     }, 3, 1000);
 

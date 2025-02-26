@@ -7,14 +7,14 @@ paypal.Buttons({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // Additional order details from your checkout form can be included here if needed.
+        // Additional order details can be included here if needed.
       })
     })
     .then(response => response.json())
     .then(orderData => orderData.id);
   },
 
-  // When the buyer approves the payment, capture the order and send billing & config data.
+  // When the buyer approves the payment, first create a pending order then capture the payment.
   onApprove: function(data, actions) {
     const form = document.getElementById('checkout-form');
     const billing = {
@@ -28,26 +28,42 @@ paypal.Buttons({
     };
 
     const config = document.getElementById('config-json').value;
+    const orderID = data.orderID;
 
-    return fetch('/capture-order', {
+    // First, create a pending order record.
+    return fetch('/create-pending-order', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        orderID: data.orderID,
-        billing: billing,
-        config: config
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderID, billing, config })
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => { throw new Error(text) });
+      }
+      return response.json();
+    })
+    .then(pendingResponse => {
+      console.log("Pending order created:", pendingResponse);
+      // Now capture the order.
+      return fetch('/capture-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderID, billing, config })
+      });
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => { throw new Error(text) });
+      }
+      return response.json();
+    })
     .then(captureData => {
       console.log('Capture result', captureData);
-      // Redirect to the success page with query parameters for orderID and status.
+      // Redirect to the success page with order details.
       window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
     })
     .catch(err => {
-      console.error("Capture error:", err);
+      console.error("Error in onApprove:", err);
       alert("An error occurred while processing your payment.");
     });
   },
