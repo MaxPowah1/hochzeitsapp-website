@@ -1,5 +1,6 @@
+// js/checkout-paypal.js
 paypal.Buttons({
-  // Set up the transaction by calling your server's create-order endpoint.
+  // Create the order by calling your server's create-order endpoint
   createOrder: function(data, actions) {
     return fetch('/create-order', {
       method: 'POST',
@@ -7,14 +8,14 @@ paypal.Buttons({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // Additional order details from your checkout form can be included here if needed.
+        // You can include additional order details here if needed
       })
     })
     .then(response => response.json())
     .then(orderData => orderData.id);
   },
 
-  // When the buyer approves the payment, capture the order and send billing & config data.
+  // When the buyer approves the payment, capture the order and send billing & config data
   onApprove: function(data, actions) {
     const form = document.getElementById('checkout-form');
     const billing = {
@@ -43,7 +44,7 @@ paypal.Buttons({
     .then(response => response.json())
     .then(captureData => {
       console.log('Capture result', captureData);
-      // Redirect to the success page with query parameters for orderID and status.
+      // Redirect to the success page with query parameters
       window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
     })
     .catch(err => {
