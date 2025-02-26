@@ -1,8 +1,22 @@
+// server.js (or index.js)
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 const { createOrder } = require('./js/createOrder');
 const { captureOrder } = require('./js/captureOrder'); // You need to implement this
 const app = express();
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/orders', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB.');
+});
 
 app.use(express.json());
 
