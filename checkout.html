@@ -93,7 +93,7 @@
 </script>
 <script src="js/checkout-paypal.js" defer></script>
 <script>
-    // Retrieve the configuration JSON from sessionStorage and place it in the hidden input field.
+    // Retrieve the configuration JSON from sessionStorage and populate the hidden input.
     const configJson = sessionStorage.getItem('checkoutConfig');
     if (configJson) {
       console.log("Checkout configuration:", JSON.parse(configJson));

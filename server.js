@@ -6,6 +6,7 @@ const { captureOrder } = require('./js/captureOrder');
 const app = express();
 
 // Connect to MongoDB
+// Replace 'your-database-name' with your actual database name or use an environment variable.
 mongoose.connect('mongodb://localhost:27017/orders');
 mongoose.connection.on('error', err => {
   console.error('MongoDB connection error:', err);
