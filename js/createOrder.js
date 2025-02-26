@@ -24,7 +24,7 @@ async function createOrder(req, res) {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${accessToken}`,
-        "Prefer": "return=representation"  // Optional: controls response detail
+        "Prefer": "return=representation"
       },
       data: orderPayload
     });

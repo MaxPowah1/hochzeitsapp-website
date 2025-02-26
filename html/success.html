@@ -68,8 +68,12 @@
 <script>
     // Retrieve order details from query parameters and display them
     const params = new URLSearchParams(window.location.search);
-    document.getElementById('order-id').textContent = params.get('orderID') || 'N/A';
-    document.getElementById('order-status').textContent = params.get('status') || 'N/A';
+    const orderID = params.get('orderID') || 'N/A';
+    const status = params.get('status') || 'N/A';
+    document.getElementById('order-id').textContent = orderID;
+    document.getElementById('order-status').textContent = status;
+
+    // Optionally, add additional logic here to fetch further order details from your server.
 </script>
 </body>
 </html>

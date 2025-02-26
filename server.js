@@ -1,13 +1,13 @@
-// server.js (or index.js)
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const { createOrder } = require('./js/createOrder');
-const { captureOrder } = require('./js/captureOrder'); // You need to implement this
+const { captureOrder } = require('./js/captureOrder');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/orders', {
+// Replace 'your-database-name' with your actual database name (or use an environment variable)
+mongoose.connect('mongodb://localhost:27017/your-database-name', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -20,10 +20,8 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json());
 
-// API endpoint for creating an order
+// API endpoints
 app.post('/create-order', createOrder);
-
-// API endpoint for capturing an order
 app.post('/capture-order', captureOrder);
 
 // Serve index.html on the root URL
