@@ -15,7 +15,8 @@ mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB.');
 });
 
-app.use(express.json());
+app.use(express.json({ limit: '3mb' })); // Adjust the limit as needed
+
 
 // API endpoints
 app.post('/create-order', createOrder);
