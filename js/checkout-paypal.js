@@ -22,7 +22,8 @@ paypal.Buttons({
       mobile: form.mobile.value,
       email: form.email.value,
       city: form.city.value,
-      state: form.state.value,
+      // If the state field is empty (or contains only whitespace), default to "N/A"
+      state: form.state.value.trim() === '' ? 'N/A' : form.state.value,
       zip: form.zip.value,
       address: form.address.value
     };
