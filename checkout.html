@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Checkout Example</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Added style for error highlighting */
+        input.error {
+          border-bottom: 2px solid red;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -35,7 +41,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <input type="text" id="state" name="state" placeholder="-" required />
+                                <!-- 'state' is optional -->
+                                <input type="text" id="state" name="state" placeholder="-" />
                             </div>
                             <div class="form-group">
                                 <label for="zip">Zip</label>
@@ -80,13 +87,17 @@
                             <span id="total-price">€21.42</span>
                         </div>
                     </div>
-                    <div id="paypal-button-container"></div>
+                    <!-- Proceed to Order button (visible by default) -->
+                    <button id="proceed-button" class="btn">Proceed to Order</button>
+                    <!-- PayPal Button Container (hidden by default) -->
+                    <div id="paypal-button-container" style="display: none;"></div>
                 </div>
             </div>
         </div>
     </section>
 </main>
 
+<!-- Include the PayPal SDK -->
 <script
         src="https://www.paypal.com/sdk/js?client-id=ATngG7_61oa2brw5OFeEktmTzAjhSTq_IqnsSWu-BUJF0Je8p9V9X30cW1BtFCRsKw8Apv-ALynq7Yig&buyer-country=DE&currency=EUR&components=buttons&enable-funding=card&disable-funding=venmo,paylater"
         data-sdk-integration-source="developer-studio">
@@ -101,6 +112,38 @@
     } else {
       console.error("No checkout configuration found in sessionStorage.");
     }
+
+    // Handle the "Proceed to Order" button click
+    document.getElementById('proceed-button').addEventListener('click', function() {
+      // Define the required fields (excluding 'state')
+      const requiredFields = ['name', 'mobile', 'email', 'city', 'zip', 'address'];
+      let allFilled = true;
+
+      // Loop through each field and check if it is filled
+      requiredFields.forEach(function(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field.value.trim()) {
+          // Add error styling if empty
+          field.classList.add('error');
+          allFilled = false;
+        } else {
+          // Remove error styling if the field is filled
+          field.classList.remove('error');
+        }
+      });
+
+      if (!allFilled) {
+        alert('Please fill in all required fields.');
+      } else {
+        // Hide the "Proceed to Order" button and show the PayPal button container
+        document.getElementById('proceed-button').style.display = 'none';
+        document.getElementById('paypal-button-container').style.display = 'block';
+
+        // Optionally, if your PayPal button hasn't been rendered yet,
+        // you can initialize it here. For example:
+        // paypal.Buttons().render('#paypal-button-container');
+      }
+    });
 </script>
 </body>
 </html>
