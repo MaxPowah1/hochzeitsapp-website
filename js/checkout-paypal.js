@@ -1,5 +1,5 @@
 paypal.Buttons({
-  // Create the PayPal order by calling your server's /create-order endpoint.
+  // Erstelle die PayPal-Order über den /create-order Endpoint.
   createOrder: function(data, actions) {
     return fetch('/create-order', {
       method: 'POST',
@@ -7,33 +7,39 @@ paypal.Buttons({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // Additional order details if needed.
+        // Zusätzliche Order-Details können hier mitgegeben werden.
       })
     })
     .then(response => response.json())
     .then(orderData => orderData.id);
   },
 
-  // When the buyer approves the payment, first create a pending order then capture the payment.
+  // Beim Genehmigen der Zahlung:
   onApprove: function(data, actions) {
     const form = document.getElementById('checkout-form');
+    // Billing-Daten aus den Formulareingaben auslesen und trimmen
     const billing = {
-      name: form.name.value,
-      mobile: form.mobile.value,
-      email: form.email.value,
-      city: form.city.value,
-      state: form.state.value,
-      zip: form.zip.value,
-      address: form.address.value
+      name: form.name.value.trim(),
+      mobile: form.mobile.value.trim(),
+      email: form.email.value.trim(),
+      city: form.city.value.trim(),
+      zip: form.zip.value.trim(),
+      address: form.address.value.trim()
     };
+
+    // Prüfe, ob alle Felder ausgefüllt sind
+    if (!billing.name || !billing.mobile || !billing.email || !billing.city || !billing.state || !billing.zip || !billing.address) {
+      alert("Bitte füllen Sie alle erforderlichen Felder aus.");
+      return; // Abbruch, wenn eines oder mehrere Felder leer sind
+    }
 
     const config = document.getElementById('config-json').value;
     const orderID = data.orderID;
     const idempotencyKey = generateIdempotencyKey();
 
-    console.log("Creating pending order with:", { orderID, billing, config, idempotencyKey });
+    console.log("Erstelle Pending Order mit:", { orderID, billing, config, idempotencyKey });
 
-    // Step 1: Create a pending order record.
+    // Schritt 1: Erstelle einen Pending Order-Eintrag.
     return fetch('/create-pending-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -46,8 +52,8 @@ paypal.Buttons({
       return response.json();
     })
     .then(pendingResponse => {
-      console.log("Pending order created:", pendingResponse);
-      // Step 2: Capture the PayPal order.
+      console.log("Pending Order erstellt:", pendingResponse);
+      // Schritt 2: Führe die Order-Capture durch.
       return fetch('/capture-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -62,26 +68,26 @@ paypal.Buttons({
     })
     .then(captureData => {
       console.log('Capture result', captureData);
-      // Redirect to the success page with order details in the query string.
+      // Weiterleitung zur Success-Seite mit Order-Details in der URL.
       window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
     })
     .catch(err => {
       console.error("Error in onApprove:", err);
-      alert("An error occurred while processing your payment.");
+      alert("Ein Fehler ist beim Verarbeiten Ihrer Zahlung aufgetreten.");
     });
   },
 
   onError: function(err) {
     console.error('PayPal Buttons error:', err);
-    alert('An error occurred with PayPal. Please try again.');
+    alert('Ein Fehler ist bei PayPal aufgetreten. Bitte versuchen Sie es erneut.');
   }
 }).render('#paypal-button-container');
 
-// Simple UUID generator for idempotency key.
+// Funktion zur Generierung eines einfachen UUID-basierten Idempotency-Keys.
 function generateIdempotencyKey() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0,
-      v = c === 'x' ? r : (r & 0x3 | 0x8);
+        v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
