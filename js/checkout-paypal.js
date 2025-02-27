@@ -1,5 +1,5 @@
 paypal.Buttons({
-  // Set up the transaction by calling your server's create-order endpoint.
+  // Create the PayPal order by calling your server's /create-order endpoint.
   createOrder: function(data, actions) {
     return fetch('/create-order', {
       method: 'POST',
@@ -7,7 +7,7 @@ paypal.Buttons({
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // Additional order details can be included here if needed.
+        // Additional order details if needed.
       })
     })
     .then(response => response.json())
@@ -29,12 +29,15 @@ paypal.Buttons({
 
     const config = document.getElementById('config-json').value;
     const orderID = data.orderID;
+    const idempotencyKey = generateIdempotencyKey();
 
-    // First, create a pending order record.
+    console.log("Creating pending order with:", { orderID, billing, config, idempotencyKey });
+
+    // Step 1: Create a pending order record.
     return fetch('/create-pending-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ orderID, billing, config })
+      body: JSON.stringify({ orderID, billing, config, idempotencyKey })
     })
     .then(response => {
       if (!response.ok) {
@@ -44,7 +47,7 @@ paypal.Buttons({
     })
     .then(pendingResponse => {
       console.log("Pending order created:", pendingResponse);
-      // Now capture the order.
+      // Step 2: Capture the PayPal order.
       return fetch('/capture-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,7 +62,7 @@ paypal.Buttons({
     })
     .then(captureData => {
       console.log('Capture result', captureData);
-      // Redirect to the success page with order details.
+      // Redirect to the success page with order details in the query string.
       window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
     })
     .catch(err => {
@@ -73,3 +76,12 @@ paypal.Buttons({
     alert('An error occurred with PayPal. Please try again.');
   }
 }).render('#paypal-button-container');
+
+// Simple UUID generator for idempotency key.
+function generateIdempotencyKey() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0,
+      v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}

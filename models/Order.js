@@ -9,14 +9,15 @@ const OrderSchema = new Schema({
     city: { type: String, required: true },
     state: { type: String, required: true },
     zip: { type: String, required: true },
-    address: { type: String, required: true },
+    address: { type: String, required: true }
   },
-  config: { type: Schema.Types.Mixed, required: true }, // Flutter configuration JSON
+  config: { type: Schema.Types.Mixed, required: true },
   paypal: {
     orderID: { type: String, required: true },
     status: { type: String, required: true },
-    captureDetails: { type: Schema.Types.Mixed },
+    captureDetails: { type: Schema.Types.Mixed }
   },
+  idempotencyKey: { type: String, unique: true, sparse: true },
   createdAt: { type: Date, default: Date.now }
 });
 
