@@ -135,13 +135,17 @@
       if (!allFilled) {
         alert('Please fill in all required fields.');
       } else {
+        // Lock all input fields to prevent further changes
+        document.querySelectorAll('#checkout-form input').forEach(function(input) {
+          input.disabled = true;
+        });
+
         // Hide the "Proceed to Order" button and show the PayPal button container
         document.getElementById('proceed-button').style.display = 'none';
         document.getElementById('paypal-button-container').style.display = 'block';
 
         // Optionally, if your PayPal button hasn't been rendered yet,
-        // you can initialize it here. For example:
-        // paypal.Buttons().render('#paypal-button-container');
+        // you can initialize it here.
       }
     });
 </script>
