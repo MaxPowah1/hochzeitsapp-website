@@ -1,5 +1,16 @@
 paypal.Buttons({
   // Create the PayPal order by calling your server's /create-order endpoint.
+  style: {
+
+              shape: "pill",
+
+              layout: "vertical",
+
+              color: "white",
+
+              label: "pay",
+
+  },
   createOrder: function(data, actions) {
     return fetch('/create-order', {
       method: 'POST',
