@@ -1,15 +1,10 @@
 paypal.Buttons({
   // Create the PayPal order by calling your server's /create-order endpoint.
   style: {
-
-              shape: "pill",
-
-              layout: "vertical",
-
-              color: "white",
-
-              label: "pay",
-
+    shape: "pill",
+    layout: "vertical",
+    color: "white",
+    label: "pay",
   },
   createOrder: function(data, actions) {
     return fetch('/create-order', {
@@ -74,8 +69,8 @@ paypal.Buttons({
     })
     .then(captureData => {
       console.log('Capture result', captureData);
-      // Redirect to the success page with order details in the query string.
-      window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}`;
+      // Redirect to the success page with order details and config JSON in the query string.
+      window.location.href = `/html/success.html?orderID=${encodeURIComponent(captureData.id)}&status=${encodeURIComponent(captureData.status)}&config=${encodeURIComponent(config)}`;
     })
     .catch(err => {
       console.error("Error in onApprove:", err);
