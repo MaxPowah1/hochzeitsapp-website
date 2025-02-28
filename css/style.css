@@ -250,6 +250,7 @@ main {
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgba(240, 240, 240, 0.5);
 }
 .feature:hover {
   transform: translateY(-5px);
@@ -347,6 +348,7 @@ main {
   /* Flex-Grow, -Shrink und Basis (minimale Breite) */
   flex: 1 1 250px;
   transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgba(240, 240, 240, 0.5);
 }
 
 /* Damit der Preis immer unten steht */
