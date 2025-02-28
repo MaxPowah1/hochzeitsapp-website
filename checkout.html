@@ -8,20 +8,20 @@
     <style>
         /* Error highlighting */
         input.error {
-          border-bottom: 2px solid red !important;
+          border-bottom: 2px solid #ffb5b0 !important;
         }
         /* Flex container for order summary */
         .checkout-right {
           display: flex;
           flex-direction: column;
-          min-height: 400px;
+          min-height: 700px;
         }
         /* Proceed button at the bottom */
         #proceed-button {
-          margin-top: auto;
+          margin-top: 3rem;
         }
         #paypal-button-container {
-          margin-top: 10rem;
+          margin-top: 2rem;
         }
         /* Fade and slide animation classes */
         .fade-out {
@@ -37,6 +37,17 @@
         /* Utility class to hide elements */
         .hidden {
           display: none;
+        }
+        /* Add a gap between order items and subtotal */
+        .order-summary-totals {
+          margin-top: auto;
+          border-top: 2px solid #aaa; /* Increase the thickness here (e.g., 2px, 3px, etc.) */
+          padding-top: 1rem; /* Optional: adds spacing between the border and the content */
+        }
+        .spacer {
+          flex-shrink: 0; /* Prevent shrinking */
+          min-height: 10rem;  /* Minimum gap */
+          height: auto; /* Let it expand if needed */
         }
     </style>
 </head>
@@ -101,6 +112,7 @@
                             <p class="item-price">€3.00</p>
                         </div>
                     </div>
+                    <div class="spacer"></div>
                     <div class="order-summary-totals">
                         <div class="summary-line">
                             <span>Subtotal</span>
