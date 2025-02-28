@@ -6,9 +6,37 @@
     <title>Checkout Example</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Added style for error highlighting */
+        /* Error highlighting */
         input.error {
-          border-bottom: 2px solid red;
+          border-bottom: 2px solid red !important;
+        }
+        /* Flex container for order summary */
+        .checkout-right {
+          display: flex;
+          flex-direction: column;
+          min-height: 400px;
+        }
+        /* Proceed button at the bottom */
+        #proceed-button {
+          margin-top: auto;
+        }
+        #paypal-button-container {
+          margin-top: 10rem;
+        }
+        /* Fade and slide animation classes */
+        .fade-out {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .fade-in {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+        }
+        /* Utility class to hide elements */
+        .hidden {
+          display: none;
         }
     </style>
 </head>
@@ -53,7 +81,7 @@
                             <label for="address">Address</label>
                             <input type="text" id="address" name="address" placeholder="-" required />
                         </div>
-                        <!-- Hidden field for Flutter configuration JSON -->
+                        <!-- Hidden field for configuration JSON -->
                         <input type="hidden" id="config-json" name="config-json" value="" />
                     </form>
                 </div>
@@ -87,10 +115,12 @@
                             <span id="total-price">€21.42</span>
                         </div>
                     </div>
-                    <!-- Proceed to Order button (visible by default) -->
+                    <!-- Proceed to Order button -->
                     <button id="proceed-button" class="btn">Proceed to Order</button>
-                    <!-- PayPal Button Container (hidden by default) -->
-                    <div id="paypal-button-container" style="display: none;"></div>
+                    <!-- PayPal Button Container -->
+                    <div id="paypal-button-container" class="hidden"></div>
+                    <!-- Back Button -->
+                    <button id="back-button" class="btn hidden" style="margin-top: 1rem;">&#8592; Back</button>
                 </div>
             </div>
         </div>
@@ -98,55 +128,94 @@
 </main>
 
 <!-- Include the PayPal SDK -->
-<script
-        src="https://www.paypal.com/sdk/js?client-id=ATngG7_61oa2brw5OFeEktmTzAjhSTq_IqnsSWu-BUJF0Je8p9V9X30cW1BtFCRsKw8Apv-ALynq7Yig&buyer-country=DE&currency=EUR&components=buttons&enable-funding=card&disable-funding=venmo,paylater"
-        data-sdk-integration-source="developer-studio">
-</script>
+<script src="https://www.paypal.com/sdk/js?client-id=ATngG7_61oa2brw5OFeEktmTzAjhSTq_IqnsSWu-BUJF0Je8p9V9X30cW1BtFCRsKw8Apv-ALynq7Yig&buyer-country=DE&currency=EUR&components=buttons&enable-funding=card&disable-funding=venmo,paylater" data-sdk-integration-source="developer-studio"></script>
 <script src="js/checkout-paypal.js" defer></script>
 <script>
-    // Retrieve the configuration JSON from sessionStorage and populate the hidden input.
+    // Retrieve configuration JSON from sessionStorage (if available)
     const configJson = sessionStorage.getItem('checkoutConfig');
     if (configJson) {
-      console.log("Checkout configuration:", JSON.parse(configJson));
       document.getElementById('config-json').value = configJson;
-    } else {
-      console.error("No checkout configuration found in sessionStorage.");
     }
 
-    // Handle the "Proceed to Order" button click
     document.getElementById('proceed-button').addEventListener('click', function() {
-      // Define the required fields (excluding 'state')
+      // Validate required fields (excluding 'state')
       const requiredFields = ['name', 'mobile', 'email', 'city', 'zip', 'address'];
       let allFilled = true;
-
-      // Loop through each field and check if it is filled
       requiredFields.forEach(function(fieldId) {
         const field = document.getElementById(fieldId);
         if (!field.value.trim()) {
-          // Add error styling if empty
           field.classList.add('error');
           allFilled = false;
         } else {
-          // Remove error styling if the field is filled
           field.classList.remove('error');
         }
       });
 
       if (!allFilled) {
         alert('Please fill in all required fields.');
-      } else {
-        // Lock all input fields to prevent further changes
-        document.querySelectorAll('#checkout-form input').forEach(function(input) {
-          input.disabled = true;
-        });
-
-        // Hide the "Proceed to Order" button and show the PayPal button container
-        document.getElementById('proceed-button').style.display = 'none';
-        document.getElementById('paypal-button-container').style.display = 'block';
-
-        // Optionally, if your PayPal button hasn't been rendered yet,
-        // you can initialize it here.
+        return;
       }
+
+      // If validation passes, run transition animations
+      const billingInfo = document.querySelector('.checkout-left');
+      const orderSummary = document.querySelector('.checkout-right');
+
+      // Fade out both panels
+      billingInfo.classList.add('fade-out');
+      orderSummary.classList.add('fade-out');
+
+      setTimeout(() => {
+        // Hide billing info permanently and prepare order summary
+        billingInfo.classList.add('hidden');
+        billingInfo.classList.remove('fade-out');
+
+        orderSummary.classList.add('hidden');
+        orderSummary.classList.remove('fade-out');
+
+        setTimeout(() => {
+          orderSummary.classList.remove('hidden');
+          orderSummary.classList.add('fade-in');
+          setTimeout(() => {
+            orderSummary.classList.remove('fade-in');
+          }, 500);
+        }, 50);
+
+        // Toggle button visibility
+        document.getElementById('proceed-button').classList.add('hidden');
+        document.getElementById('paypal-button-container').classList.remove('hidden');
+        document.getElementById('back-button').classList.remove('hidden');
+      }, 500);
+    });
+
+    document.getElementById('back-button').addEventListener('click', function() {
+      const billingInfo = document.querySelector('.checkout-left');
+      const orderSummary = document.querySelector('.checkout-right');
+
+      // Fade out the order summary
+      orderSummary.classList.add('fade-out');
+
+      setTimeout(() => {
+        // Hide order summary after fade-out
+        orderSummary.classList.add('hidden');
+        orderSummary.classList.remove('fade-out');
+
+        // Unhide both billing info and order summary
+        billingInfo.classList.remove('hidden');
+        orderSummary.classList.remove('hidden');
+
+        // Fade in both panels to restore initial state
+        billingInfo.classList.add('fade-in');
+        orderSummary.classList.add('fade-in');
+        setTimeout(() => {
+          billingInfo.classList.remove('fade-in');
+          orderSummary.classList.remove('fade-in');
+        }, 500);
+
+        // Toggle button visibility back to initial state
+        document.getElementById('paypal-button-container').classList.add('hidden');
+        document.getElementById('back-button').classList.add('hidden');
+        document.getElementById('proceed-button').classList.remove('hidden');
+      }, 500);
     });
 </script>
 </body>
