@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Payment Success</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" type="image/png" href="images/Icon2.png">
     <style>
         /* Additional styles for the success page container */
         .success-container {
@@ -36,16 +35,6 @@
         .order-summary p {
           margin: 5px 0;
         }
-        .screen-titles {
-          text-align: left;
-          font-size: 1rem;
-          margin: 20px auto;
-          padding: 15px;
-          border-top: 1px solid #eee;
-        }
-        .screen-titles p {
-          margin: 5px 0;
-        }
         .back-home {
           display: inline-block;
           margin-top: 20px;
@@ -72,15 +61,6 @@
             <p><strong>Order ID:</strong> <span id="order-id">N/A</span></p>
             <p><strong>Status:</strong> <span id="order-status">N/A</span></p>
         </div>
-        <!-- New section: Screen Titles -->
-        <div class="screen-titles">
-            <h3>Screen Titles</h3>
-            <p><strong>Home:</strong> <span id="title-home">N/A</span></p>
-            <p><strong>Schedule:</strong> <span id="title-schedule">N/A</span></p>
-            <p><strong>Locations:</strong> <span id="title-locations">N/A</span></p>
-            <p><strong>Contacts:</strong> <span id="title-contacts">N/A</span></p>
-            <p><strong>Our Story:</strong> <span id="title-ourStory">N/A</span></p>
-        </div>
         <a href="/" class="back-home">Return to Home</a>
     </div>
 </main>
@@ -92,23 +72,6 @@
     const status = params.get('status') || 'N/A';
     document.getElementById('order-id').textContent = orderID;
     document.getElementById('order-status').textContent = status;
-
-    // Retrieve and parse the config JSON to extract screenTitles.
-    const configParam = params.get('config');
-    if (configParam) {
-      try {
-        const config = JSON.parse(decodeURIComponent(configParam));
-        if (config.screenTitles) {
-          document.getElementById('title-home').textContent = config.screenTitles.home || 'N/A';
-          document.getElementById('title-schedule').textContent = config.screenTitles.schedule || 'N/A';
-          document.getElementById('title-locations').textContent = config.screenTitles.locations || 'N/A';
-          document.getElementById('title-contacts').textContent = config.screenTitles.contacts || 'N/A';
-          document.getElementById('title-ourStory').textContent = config.screenTitles.ourStory || 'N/A';
-        }
-      } catch (e) {
-        console.error('Error parsing config JSON:', e);
-      }
-    }
 </script>
 </body>
 </html>
