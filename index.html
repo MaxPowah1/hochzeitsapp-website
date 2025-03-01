@@ -2,7 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>HochzeitsApp – Individuelle Hochzeits-Guide-App</title>
   <meta name="description" content="HochzeitsApp: Eure individuelle Hochzeits-Guide-App. Bündelt alle wichtigen Infos eures großen Tages: Countdown, Zeitplan, Maps-Integration u.v.m.">
   <meta name="robots" content="index, follow">
@@ -26,7 +28,6 @@
   <link rel="alternate" href="https://hochzeitsapp.com/index_en.html" hreflang="zh">
   <link rel="alternate" href="https://hochzeitsapp.com/index_en.html" hreflang="ja">
   <link rel="alternate" href="https://hochzeitsapp.com/index_en.html" hreflang="ko">
-
 
   <!-- Open Graph -->
   <meta property="og:title" content="HochzeitsApp – Eure individuelle Hochzeits-Guide-App">
@@ -59,6 +60,18 @@
 
   <!-- Eigene Styles -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Force HTTPS and redirect /index.html to the root -->
+  <script>
+    // Force HTTPS if not already secure
+    if (window.location.protocol !== 'https:') {
+      window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+    // Redirect from /index.html to the root domain
+    if (window.location.pathname.endsWith("index.html")) {
+      window.location.replace("https://hochzeitsapp.com/");
+    }
+  </script>
 </head>
 <body>
 <!-- Language Switcher -->
@@ -71,7 +84,6 @@
 <div class="editor-container">
   <a href="editor.html" class="editor-link" target="_blank">editor</a>
 </div>
-
 
 <!-- Burger Menu (visible only on smartphones) -->
 <div class="burger-menu">
@@ -105,6 +117,7 @@
     </div>
   </section>
 
+  <!-- Features Section -->
   <section class="section features" id="features">
     <div class="container section-inner">
       <h2 class="section-title">Warum HochzeitsApp?</h2>
@@ -288,7 +301,6 @@
         <p>Die Idee zur HochzeitsApp entstand aus unserer eigenen Erfahrung als Hochzeitsgäste. Wir haben oft bemerkt, dass es an einer praktischen Lösung fehlt, um alle wichtigen Informationen für den Tag einfach zugänglich zu machen.</p>
         <p>Wir sind ein kleines Team aus Freunden, die sich für Technik, Design und Hochzeiten begeistern. Mit viel Herzblut und Kreativität setzen wir eure Vorstellungen in eine App um, die euren Hochzeitstag für euch und eure Gäste noch unvergesslicher macht.</p>
         <p>Uns ist es wichtig, jede App individuell zu gestalten und den persönlichen Stil des Paares einzufangen. Wir freuen uns darauf, euch bei eurem großen Tag zu unterstützen!</p>
-        <!-- Neues Bild "wir_negativ.png" unterhalb des Textes -->
         <img src="images/wir_negativ.png" alt="Unser Team">
       </div>
     </div>
@@ -330,11 +342,5 @@
 
 <!-- Eigene Skripte -->
 <script src="js/script.js"></script>
-<script>
-  // Ensure index.html redirects to the root
-  if (window.location.pathname === "/index.html") {
-    window.location.replace("/");
-  }
-</script>
 </body>
 </html>
