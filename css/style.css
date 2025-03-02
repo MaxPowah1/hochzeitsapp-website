@@ -326,66 +326,35 @@ main {
   cursor: pointer;
 }
 
-/* Timeline Section */
+/* Updated Process Section – Mirroring Pricing Section without the arrow */
 .horizontal-timeline {
   display: flex;
-  justify-content: space-between;
-  position: relative;
+  flex-direction: row;       /* Horizontal layout */
+  flex-wrap: nowrap;         /* Prevent wrapping on wide screens */
+  gap: 30px;
+  justify-content: center;
   margin-top: 50px;
-  padding-bottom: 30px; /* Extra space below cards for the arrow */
+  padding-bottom: 30px;
 }
 
-/* Arrow shaft: a horizontal line running along the timeline */
-.horizontal-timeline::before {
-  content: '';
-  position: absolute;
-  bottom: 0; /* Place at the bottom of the container */
-  left: 0;
-  width: calc(100% - 10px); /* Leave space for the arrow head */
-  border-bottom: 4px solid #4a4a4a; /* Shaft color and thickness */
-  z-index: 1;
-}
-
-/* Arrow head: a triangle pointing to the right */
-.horizontal-timeline::after {
-  content: '';
-  position: absolute;
-  bottom: -6px; /* Adjust to align with the shaft */
-  right: 0;
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid #4a4a4a; /* Arrow head color */
-  z-index: 1;
-}
-
-/* Each timeline step card */
 .horizontal-timeline .timeline-step {
   position: relative;
-  flex: 1;
-  margin: 0 10px;
+  flex: 1 1 250px;           /* Allow flexible sizing with a minimum width */
   background: rgba(240, 240, 240, 0.5);
   padding: 60px 20px 20px;
   border-radius: 6px;
   text-align: center;
-  z-index: 2;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
-/* Add spacing between the headline and the text */
+/* Spacing between the headline and the text */
 .horizontal-timeline .timeline-step h3 {
   margin-bottom: 15px;
 }
 
-/* Use your global editor-link (pill style) for the link.
-   Push it to the bottom of the card. */
-.horizontal-timeline .timeline-step a.editor-link {
-  margin-top: auto;
-}
-
-/* Icon styling placed above each card */
+/* Icon styling (positioned above the card) */
 .horizontal-timeline .timeline-step .step-icon {
   position: absolute;
   top: -25px;
@@ -403,16 +372,12 @@ main {
   z-index: 3;
 }
 
-/* Responsive: Vertical timeline for narrow screens */
+/* Responsive adjustments – vertical layout on narrow screens */
 @media (max-width: 768px) {
   .horizontal-timeline {
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-  }
-  /* Remove horizontal line */
-  .horizontal-timeline::before {
-    content: none;
   }
   .horizontal-timeline .timeline-step {
     width: 90%;
