@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400;700&&display=swap');
 
-/* Language Switcher Styles */
+/* ---------------------------
+   Language Switcher Styles
+--------------------------- */
 .language-switcher {
     position: fixed;
-    top: 2.2vh; /* 2% der Höhe des Viewports */
-    right: 3vw; /* 5% der Breite des Viewports */
+    top: 2.2vh;
+    right: 3vw;
     font-size: 1.2rem;
     z-index: 105;
 }
 
 .language-switcher a {
-    color: #333; /* Immer die Hauptschriftfarbe */
+    color: #333;
     text-decoration: none;
     margin-right: 10px;
-    padding-bottom: 2px; /* Platz für den Unterstrich */
+    padding-bottom: 2px;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s;
 }
@@ -24,41 +26,46 @@
     border-bottom-color: #333;
 }
 
-/* Editor-Link Container (frei nach Bedarf) */
+/* ---------------------------
+   Editor-Link Container
+--------------------------- */
 .editor-container {
   position: fixed;
   top: 95vh;
-  right: clamp(20px, 3vw, 100px); /* mind. 10px, optimal 3vw, maximal 20px */
+  right: clamp(20px, 3vw, 100px);
   z-index: 105;
 }
 
-/* Editor-Link als Button */
 .editor-link {
   display: inline-block;
   padding: 5px 15px;
-  border: 2px solid #4a4a4a;       /* schwarzer Rahmen */
-  background: transparent;         /* transparenter Hintergrund */
-  color: #4a4a4a;                  /* schwarze Schrift */
-  border-radius: 50px;             /* runde Ecken, analog zu .btn */
+  border: 2px solid #4a4a4a;
+  background: transparent;
+  color: #4a4a4a;
+  border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .editor-link:hover {
-  background: #000;               /* Füllung bei Hover */
-  color: #f8f8ff;                 /* Schriftfarbe bei Hover */
+  background: #000;
+  color: #f8f8ff;
 }
 
-/* Grundreset und Scroll-Snap */
+/* ---------------------------
+   Global Reset and Box Sizing
+--------------------------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: 'Playfair Display', sans-serif;
   color: #333;
@@ -66,26 +73,34 @@ body {
   background: linear-gradient(to top, #bec0ba, #f8f8ff);
 }
 
-/* Scroll-Snap Container */
+/* ---------------------------
+   Scroll-Snap Container
+--------------------------- */
 main {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
 }
 
-/* Container */
+/* ---------------------------
+   Container
+--------------------------- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- Subtitle Spacing --- */
+/* ---------------------------
+   Section Subtitle
+--------------------------- */
 .section-subtitle {
   margin-bottom: 20px;
 }
 
-/* --- Burger Menu & Mobile Navigation --- */
+/* ---------------------------
+   Burger Menu & Mobile Navigation
+--------------------------- */
 .burger-menu {
   position: fixed;
   top: 20px;
@@ -94,6 +109,7 @@ main {
   z-index: 102;
   display: none;
 }
+
 .burger-menu span {
   display: block;
   width: 25px;
@@ -102,6 +118,7 @@ main {
   margin: 5px 0;
   border-radius: 2px;
 }
+
 @media (max-width: 768px) {
   .burger-menu {
     display: block;
@@ -118,23 +135,29 @@ main {
   transition: left 0.3s ease;
   z-index: 101;
 }
+
 .mobile-nav ul {
   list-style: none;
   padding: 20px;
 }
+
 .mobile-nav ul li {
   margin-bottom: 15px;
 }
+
 .mobile-nav ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 1.2rem;
 }
+
 .mobile-nav.active {
   left: 0;
 }
 
-/* --- Sections --- */
+/* ---------------------------
+   Section Base Styles
+--------------------------- */
 .section {
   min-height: 100vh;
   scroll-snap-align: start;
@@ -143,18 +166,21 @@ main {
   justify-content: center;
 }
 
-/* Slide-In Effekt für inneren Content */
+/* Slide-In Animation for Section Inner Content */
 .section-inner {
   opacity: 0;
   transform: translateY(50px);
   transition: transform 0.8s ease-out, opacity 0.8s ease-out;
 }
+
 .section-inner.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hero Section */
+/* ---------------------------
+   Hero Section
+--------------------------- */
 .hero {
   position: relative;
   background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(50vw) calc(35vh);
@@ -164,42 +190,35 @@ main {
   align-items: center;
   justify-content: center;
   background-size: 40%;
-
-  /* Default floating animation for large displays */
   animation: float-large 4s ease-in-out infinite;
 }
 
-/* Media Query for Small Screens */
 @media (max-width: 768px) {
   .hero {
     background: url('../images/Handy_Webseite_Startseite_mit_Schrift.png') no-repeat calc(30vw) calc(55vh);
     background-size: 80%;
-
-    /* Use a specific animation for small displays */
     animation: float-small 4s ease-in-out infinite;
   }
 }
 
-/* Floating animation for large displays */
 @keyframes float-large {
   0% {
     background-position: calc(50vw) calc(35vh);
   }
   50% {
-    background-position: calc(50vw) calc(36vh); /* Slight upward motion */
+    background-position: calc(50vw) calc(36vh);
   }
   100% {
     background-position: calc(50vw) calc(35vh);
   }
 }
 
-/* Floating animation for small displays */
 @keyframes float-small {
   0% {
     background-position: calc(30vw) calc(55vh);
   }
   50% {
-    background-position: calc(30vw) calc(56vh); /* Slight upward motion */
+    background-position: calc(30vw) calc(56vh);
   }
   100% {
     background-position: calc(30vw) calc(55vh);
@@ -212,17 +231,21 @@ main {
   max-width: 800px;
   padding: 20px;
 }
+
 .hero h1 {
   font-size: 3.5rem;
   margin-bottom: 20px;
   text-shadow: 2px 2px 20px #e6e2d3;
 }
+
 .hero p {
   font-size: 1.3rem;
   margin-bottom: 30px;
 }
 
-/* Button */
+/* ---------------------------
+   Button Styles
+--------------------------- */
 .btn {
   display: inline-block;
   padding: 12px 30px;
@@ -233,43 +256,53 @@ main {
   font-weight: 600;
   transition: background 0.3s;
 }
+
 .btn:hover {
   background: #333333;
 }
 
-/* Features Section */
+/* ---------------------------
+   Features Section
+--------------------------- */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
+
 .feature {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten hinzufügen */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px;
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: rgba(240, 240, 240, 0.5);
 }
+
 .feature:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
 .feature i {
   font-size: 2.5rem;
   color: #4a4a4a;
   margin-bottom: 15px;
 }
+
 .feature h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
+
 .feature p {
   font-size: 1rem;
   color: #555;
 }
 
-/* Screens Section */
+/* ---------------------------
+   Screens Section
+--------------------------- */
 .screens {
   display: flex;
   align-items: center;
@@ -277,6 +310,7 @@ main {
   min-height: 100vh;
   padding: 2rem 0;
 }
+
 .screens-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -284,6 +318,7 @@ main {
   justify-items: center;
   align-items: center;
 }
+
 .screen-item img {
   display: block;
   max-width: 100%;
@@ -292,15 +327,18 @@ main {
   max-height: 40vh;
   border-radius: 10px;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Schatten hinzufügen */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 }
+
 @media (max-width: 768px) {
   .screens-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Modal */
+/* ---------------------------
+   Modal
+--------------------------- */
 .modal {
   display: none;
   position: fixed;
@@ -313,10 +351,12 @@ main {
   align-items: center;
   justify-content: center;
 }
+
 .modal-content {
   max-width: 90%;
   max-height: 80%;
 }
+
 .modal-close {
   position: absolute;
   top: 20px;
@@ -326,11 +366,13 @@ main {
   cursor: pointer;
 }
 
-/* Updated Process Section – Mirroring Pricing Section without the arrow */
+/* ---------------------------
+   Horizontal Timeline (Process & Pricing)
+--------------------------- */
 .horizontal-timeline {
   display: flex;
-  flex-direction: row;       /* Horizontal layout */
-  flex-wrap: nowrap;         /* Prevent wrapping on wide screens */
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 30px;
   justify-content: center;
   margin-top: 50px;
@@ -339,7 +381,7 @@ main {
 
 .horizontal-timeline .timeline-step {
   position: relative;
-  flex: 1 1 250px;           /* Allow flexible sizing with a minimum width */
+  flex: 1 1 250px;
   background: rgba(240, 240, 240, 0.5);
   padding: 60px 20px 20px;
   border-radius: 6px;
@@ -349,12 +391,10 @@ main {
   z-index: 2;
 }
 
-/* Spacing between the headline and the text */
 .horizontal-timeline .timeline-step h3 {
   margin-bottom: 15px;
 }
 
-/* Icon styling (positioned above the card) */
 .horizontal-timeline .timeline-step .step-icon {
   position: absolute;
   top: -25px;
@@ -372,7 +412,6 @@ main {
   z-index: 3;
 }
 
-/* Responsive adjustments – vertical layout on narrow screens */
 @media (max-width: 768px) {
   .horizontal-timeline {
     flex-direction: column;
@@ -389,48 +428,64 @@ main {
   }
 }
 
-/* Für beide Sektionen (Process & Pricing) */
-.process-timeline,
-.pricing-timeline {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* Karten beginnen links */
-  gap: 30px;
-}
-
-/* Entferne feste Breite und nutze flexibles Wachstum */
+/* ---------------------------
+   Process & Pricing Cards – Consistent Sizing
+--------------------------- */
 .process-step,
 .pricing-step {
-  display: flex;            /* Hinzugefügt */
-  flex-direction: column;   /* Hinzugefügt */
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten hinzufügen */
-  /* Flex-Grow, -Shrink und Basis (minimale Breite) */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex: 1 1 250px;
+  max-width: 250px;
+  min-height: 300px;
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: rgba(240, 240, 240, 0.5);
 }
 
-/* Damit der Preis immer unten steht */
-.pricing-step .price {
-  margin-top: auto;         /* Hinzugefügt */
+/* Allow paragraphs (except .price) to fill available space */
+.pricing-step p:not(.price),
+.process-step p:not(.price) {
+  flex-grow: 1;
 }
 
+/* Price styling: no flex-grow so it doesn't expand and push to the bottom */
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4a4a4a;
+  flex-grow: 0;
+  margin-top: auto;
+}
+
+/* ---------------------------
+   Pricing Specific Borders
+--------------------------- */
+/* Solid border for Basic App (first pricing card) */
+.pricing-step:first-of-type {
+  border: 1px solid #4a4a4a;
+}
+
+/* Dashed borders for optional addon pricing cards */
+.pricing-step:not(:first-of-type) {
+  border: 1px dashed #4a4a4a;
+}
+
+/* ---------------------------
+   Additional Pricing List Styles
+--------------------------- */
 .pricing-step ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.process-step:hover,
-.pricing-step:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* Gleiche Icon-Gestaltung wie bisher */
+/* ---------------------------
+   Icon Styling for Cards
+--------------------------- */
 .step-icon {
   width: 80px;
   height: 80px;
@@ -441,27 +496,15 @@ main {
   border: 2px solid #4a4a4a;
   border-radius: 50%;
 }
+
 .step-icon i {
   font-size: 2rem;
   color: #4a4a4a;
 }
 
-/* Preise beibehalten */
-.price {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #4a4a4a;
-}
-
-/* Media Query: Bei schmaleren Bildschirmen sollen die Karten die ganze Breite nutzen */
-@media (max-width: 768px) {
-  .process-step,
-  .pricing-step {
-    flex: 1 1 100%;
-  }
-}
-
-/* About Section */
+/* ---------------------------
+   About Section
+--------------------------- */
 .about-content {
   max-width: 800px;
   margin: 0 auto;
@@ -469,9 +512,11 @@ main {
   line-height: 1.8;
   color: #555;
 }
+
 .about-content p {
   margin-bottom: 20px;
 }
+
 .about-content img {
   max-width: 30%;
   height: auto;
@@ -480,10 +525,13 @@ main {
   padding-top: 20px;
 }
 
-/* Demo-App Section */
+/* ---------------------------
+   Demo-App Section
+--------------------------- */
 .demoapp {
   text-align: center;
 }
+
 .demoapp .demo-info {
   max-width: 600px;
   margin: 20px auto;
@@ -491,35 +539,45 @@ main {
   color: #777;
 }
 
-/* Contact Section */
+/* ---------------------------
+   Contact Section
+--------------------------- */
 .contact {
   text-align: center;
 }
+
 .contact .contact-info a {
   font-size: 1.2rem;
   text-decoration: none;
   color: #333;
 }
+
 .social-links {
   margin-top: 20px;
 }
+
 .social-link {
   font-size: 2rem;
   margin: 0 10px;
   transition: color 0.3s;
 }
+
 .social-link.whatsapp-link {
   color: #25D366;
 }
+
 .social-link.telegram-link {
   color: #0088cc;
 }
+
 .social-link.whatsapp-link:hover,
 .social-link.telegram-link:hover {
   color: inherit;
 }
 
-/* Footer */
+/* ---------------------------
+   Footer
+--------------------------- */
 .site-footer {
   background: #333;
   color: #aaa;
@@ -536,33 +594,34 @@ main {
     justify-content: center;
     padding: 30% 25px;
   }
+
   .hero h1 {
     font-size: 2.5rem;
   }
+
   .hero p {
     font-size: 1.1rem;
   }
+
   .features-grid,
   .screens-grid,
   .pricing-grid,
   .process-timeline {
     gap: 20px;
   }
+
   .editor-container {
-      display: none !important;
+    display: none !important;
   }
 }
 
 /**************************************
  * Checkout Form Styles
  **************************************/
-
-/* Main container that holds both sides */
 .checkout-container {
   display: flex;
-  /* Use nowrap to keep items on the same row */
   flex-wrap: nowrap;
-  gap: 2rem; /* Adjust or remove this gap if needed */
+  gap: 2rem;
   margin: 2rem auto;
   max-width: 1200px;
 }
@@ -572,15 +631,13 @@ main {
   background-color: #fff;
   border-radius: 10px;
   padding: 2rem;
-  /* Adjust the min-width as necessary */
   min-width: 450px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  position: relative; /* Ensures normal flow */
+  position: relative;
 }
 
-/* Set each side to take 50% of the width */
 .checkout-left {
   flex: 0 0 30%;
 }
@@ -592,7 +649,6 @@ main {
   min-height: 700px;
 }
 
-/* Heading styles */
 .checkout-left h2,
 .checkout-right h2 {
   margin-bottom: 1.5rem;
@@ -606,7 +662,7 @@ main {
 }
 
 .checkout-form .form-group input:focus {
-  border-bottom: 2px solid #ccc; /* Thicker border on focus */
+  border-bottom: 2px solid #ccc;
 }
 
 .checkout-form label {
@@ -620,7 +676,7 @@ main {
 .checkout-form input[type="date"] {
   padding: 0.5rem;
   border: none;
-  border-bottom: 1px solid #ccc; /* Adds a simple line */
+  border-bottom: 1px solid #ccc;
   font-family: inherit;
   font-size: 1rem;
   outline: none;
@@ -631,7 +687,6 @@ main {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Right side: Order Summary */
 .order-item {
   display: flex;
   align-items: center;
@@ -639,103 +694,109 @@ main {
   padding: 1rem 0;
   gap: 1rem;
 }
+
 .order-item img {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 5px;
 }
+
 .item-details {
   flex: 1;
 }
+
 .item-name {
   font-weight: 600;
   margin-bottom: 0.1rem;
 }
+
 .item-price {
   color: #666;
   text-align: right;
 }
 
-/* Totals section */
 .order-summary-totals {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
 }
+
 .summary-line {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
   font-size: 1rem;
 }
+
 .summary-line.total {
   font-weight: 700;
 }
 
-/* Confirm button */
 .confirm-btn {
-  margin-top: auto; /* Pushes it to the bottom */
+  margin-top: auto;
   width: 100%;
   text-align: center;
   font-size: 1.1rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .checkout-container {
     flex-direction: column;
   }
+
   .checkout-left, .checkout-right {
     flex: 1 1 100%;
   }
+
   .form-row {
     flex-direction: column;
   }
 }
 
-/* CHECKOUT HTML */
-
-/* Error highlighting */
 input.error {
   border-bottom: 2px solid #ffb5b0 !important;
 }
-/* Proceed button at the bottom */
+
 #proceed-button {
   margin-top: 3rem;
 }
+
 #paypal-button-container {
   margin-top: 2rem;
 }
-/* Fade and slide animation classes */
+
 .fade-out {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
+
 .fade-in {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
-/* Utility class to hide elements */
+
 .hidden {
   display: none;
 }
-/* Add a gap between order items and subtotal */
+
 .order-summary-totals {
   margin-top: auto;
   border-top: 2px solid #aaa;
   padding-top: 1rem;
 }
+
 .spacer {
   flex-shrink: 0;
   min-height: 10rem;
   height: auto;
 }
+
 /* Modal styles for custom error popup */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -745,6 +806,7 @@ input.error {
   background-color: rgba(0,0,0,0.5);
   animation: fadeIn 0.3s ease;
 }
+
 .modal-content {
   background-color: #fff;
   margin: 15% auto;
@@ -755,14 +817,17 @@ input.error {
   text-align: center;
   animation: slideUp 0.3s ease;
 }
+
 .modal-content h2 {
   margin-top: 0;
   color: #333;
 }
+
 .modal-content p {
   color: #555;
   font-size: 16px;
 }
+
 .modal-content .close {
   float: right;
   font-size: 24px;
@@ -770,17 +835,21 @@ input.error {
   color: #aaa;
   cursor: pointer;
 }
+
 .modal-content .close:hover {
   color: #000;
 }
+
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
 }
+
 @keyframes slideUp {
   from {transform: translateY(50px);}
   to {transform: translateY(0);}
 }
+
 .modal-content button {
   margin-top: 1rem;
   padding: 10px 20px;
@@ -791,18 +860,21 @@ input.error {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 .modal-content button:hover {
   background-color: #45a049;
 }
+
 #retry-btn {
-  background-color: #ccc;  /* Set background to #ccc */
-  color: #333;             /* Adjust text color as needed */
+  background-color: #ccc;
+  color: #333;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 #retry-btn:hover {
-  background-color: #bbb;  /* Slightly darker on hover */
+  background-color: #bbb;
 }
