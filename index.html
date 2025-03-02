@@ -64,7 +64,6 @@
   <!-- Force HTTPS and redirect /index.html to the root -->
 
   <script>
-    <comment>
     // Force HTTPS if not already secure
     if (window.location.protocol !== 'https:') {
       window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
@@ -72,7 +71,7 @@
     // Redirect from /index.html to the root domain
     if (window.location.pathname.endsWith("index.html")) {
       window.location.replace("https://hochzeitsapp.com/");
-    } </comment>
+    }
   </script>
 
 </head>

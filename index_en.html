@@ -190,39 +190,54 @@
     <img class="modal-content" id="modal-img" src="">
   </div>
 
-  <!-- Process Section -->
+  <!-- Process Section with Responsive Horizontal/Vertical Timeline -->
   <section class="section process" id="process">
     <div class="container section-inner">
       <h2 class="section-title">Process</h2>
-      <p class="section-subtitle">Your wedding app – From planning to execution.</p>
-      <div class="process-timeline">
-        <div class="process-step">
+      <p class="section-subtitle">Step-by-step to your individual wedding app</p>
+      <div class="horizontal-timeline">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-handshake"></i>
+            <i class="fas fa-sliders-h"></i>
           </div>
-          <h3>Initial Consultation</h3>
-          <p>In a personal consultation we discuss your wishes, needs, and gather initial ideas.</p>
+          <h3>Configurator</h3>
+          <p>Customize your app: Fill in all the necessary information and adjust the design.</p>
+          <a href="editor.html" class="editor-link" target="_blank">to the Editor</a>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-pencil-ruler"></i>
+            <i class="fas fa-eye"></i>
           </div>
-          <h3>Concept &amp; Design</h3>
-          <p>Based on the consultation, we develop a detailed concept and a custom design.</p>
+          <h3>Preview</h3>
+          <p>Take a detailed preview to ensure that everything is perfect.</p>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-cogs"></i>
+            <i class="fas fa-credit-card"></i>
           </div>
-          <h3>Implementation &amp; Testing</h3>
-          <p>Our developers bring the concept to life, code all features, and rigorously test the app.</p>
+          <h3>Payment</h3>
+          <p>Go to checkout, complete the payment, and secure the service.</p>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
             <i class="fas fa-check-circle"></i>
           </div>
-          <h3>Final App</h3>
-          <p>After final approval, we deliver the finished app – including support and updates.</p>
+          <h3>Production</h3>
+          <p>After payment confirmation, you will receive a confirmation – our team will begin production.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-icon">
+            <i class="fas fa-download"></i>
+          </div>
+          <h3>Finished App</h3>
+          <p>Once completed, you will receive a download link by email.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-icon">
+            <i class="fas fa-share-alt"></i>
+          </div>
+          <h3>Distribution</h3>
+          <p>Share the app with your guests.</p>
         </div>
       </div>
     </div>
@@ -231,67 +246,67 @@
   <!-- Pricing Section -->
   <section class="section pricing" id="pricing">
     <div class="container section-inner">
-      <h2 class="section-title">Pricing</h2>
-      <p class="section-subtitle">Choose the perfect package for your personalized wedding app.</p>
-      <div class="pricing-timeline">
-        <div class="pricing-step">
+      <h2 class="section-title">Prices & Options</h2>
+      <div class="horizontal-timeline">
+        <!-- Basic App -->
+        <div class="timeline-step pricing-step">
           <div class="step-icon">
-            <i class="fas fa-box-open"></i>
+            <i class="fas fa-mobile-alt"></i>
           </div>
-          <h3>Basic</h3>
-          <p>Basic features and simple customizations.</p>
-          <ul>
-            <li>Basic functionalities</li>
-            <li>Simple customizations</li>
-            <li>Email support</li>
-          </ul>
-          <div class="price"></div>
+          <h3>Basic App</h3>
+          <p>
+            Contains all the essential features to perfectly support your wedding – including locations, schedule, contact details, and additional information.
+          </p>
+          <p class="price">from €XXX</p>
         </div>
-        <div class="pricing-step">
+        <!-- Optional Addon: Push Notifications -->
+        <div class="timeline-step pricing-step">
           <div class="step-icon">
-            <i class="fas fa-layer-group"></i>
+            <i class="fas fa-bell"></i>
           </div>
-          <h3>Standard</h3>
-          <p>Enhanced features for more flexibility.</p>
-          <ul>
-            <li>Advanced functionalities</li>
-            <li>2 revisions</li>
-            <li>Phone &amp; email support</li>
-          </ul>
-          <div class="price"></div>
+          <h3>Push Notifications</h3>
+          <p>
+            Send real-time updates to all guests and archive the messages in a dedicated update section within the app.
+          </p>
+          <p class="price">+ €XX</p>
         </div>
-        <div class="pricing-step">
+        <!-- Optional Addon: Wedding Photo Gallery -->
+        <div class="timeline-step pricing-step">
           <div class="step-icon">
-            <i class="fas fa-gem"></i>
+            <i class="fas fa-camera-retro"></i>
           </div>
-          <h3>Premium</h3>
-          <p>Comprehensive package with exclusive features.</p>
-          <ul>
-            <li>All standard features</li>
-            <li>Exclusive functionalities</li>
-            <li>Unlimited revisions</li>
-            <li>Priority support</li>
-            <li>Personal consultation</li>
-          </ul>
-          <div class="price"></div>
+          <h3>Wedding Photo Gallery</h3>
+          <p>
+            Allow your guests to upload their wedding photos directly in the app – all images will be centrally compiled in a gallery.
+          </p>
+          <p class="price">+ €XX</p>
         </div>
-        <div class="pricing-step">
+        <!-- Optional Addon: Thank You Card -->
+        <div class="timeline-step pricing-step">
           <div class="step-icon">
-            <i class="fas fa-sliders-h"></i>
+            <i class="fas fa-envelope-open-text"></i>
           </div>
-          <h3>Custom</h3>
-          <p>Perfectly tailored to your needs.</p>
-          <ul>
-            <li>Customized solutions</li>
-            <li>Personal consultation</li>
-            <li>Flexible pricing</li>
-            <li>Special additional services</li>
-          </ul>
-          <div class="price"></div>
+          <h3>Thank You Card</h3>
+          <p>
+            Automatically send a personalized thank you card to all guests after the wedding.
+          </p>
+          <p class="price">+ €XX</p>
+        </div>
+        <!-- Optional Addon: Wedding Wishlist -->
+        <div class="timeline-step pricing-step">
+          <div class="step-icon">
+            <i class="fas fa-gift"></i>
+          </div>
+          <h3>Wedding Wishlist</h3>
+          <p>
+            Create a gift wishlist that your guests can view and use.
+          </p>
+          <p class="price">+ €XX</p>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- About Section -->
   <section class="section about" id="about">
