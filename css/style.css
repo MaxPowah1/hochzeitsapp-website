@@ -276,7 +276,7 @@ main {
   border-radius: 10px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.8);
 }
 
 .feature:hover {
@@ -382,7 +382,7 @@ main {
 .horizontal-timeline .timeline-step {
   position: relative;
   flex: 1 1 250px;
-  background: rgba(240, 240, 240, 0.5);
+  background: rgba(240, 240, 240, 0.8);
   padding: 60px 20px 20px;
   border-radius: 6px;
   text-align: center;
@@ -443,7 +443,7 @@ main {
   max-width: 250px;
   min-height: 300px;
   transition: transform 0.3s, box-shadow 0.3s;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 240, 0.8);
 }
 
 /* Allow paragraphs (except .price) to fill available space */
