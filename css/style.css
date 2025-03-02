@@ -37,17 +37,17 @@
   display: inline-block;
   padding: 5px 15px;
   border: 2px solid #4a4a4a;       /* schwarzer Rahmen */
-  background: transparent;      /* transparenter Hintergrund */
+  background: transparent;         /* transparenter Hintergrund */
   color: #4a4a4a;                  /* schwarze Schrift */
-  border-radius: 50px;          /* runde Ecken, analog zu .btn */
+  border-radius: 50px;             /* runde Ecken, analog zu .btn */
   text-decoration: none;
   font-weight: 600;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .editor-link:hover {
-  background: #000;             /* Füllung bei Hover */
-  color: #f8f8ff;                  /* Schriftfarbe bei Hover */
+  background: #000;               /* Füllung bei Hover */
+  color: #f8f8ff;                 /* Schriftfarbe bei Hover */
 }
 
 /* Grundreset und Scroll-Snap */
@@ -206,7 +206,6 @@ main {
   }
 }
 
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -327,6 +326,104 @@ main {
   cursor: pointer;
 }
 
+/* Timeline Section */
+.horizontal-timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 50px;
+  padding-bottom: 30px; /* Extra space below cards for the arrow */
+}
+
+/* Arrow shaft: a horizontal line running along the timeline */
+.horizontal-timeline::before {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Place at the bottom of the container */
+  left: 0;
+  width: calc(100% - 10px); /* Leave space for the arrow head */
+  border-bottom: 4px solid #4a4a4a; /* Shaft color and thickness */
+  z-index: 1;
+}
+
+/* Arrow head: a triangle pointing to the right */
+.horizontal-timeline::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; /* Adjust to align with the shaft */
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #4a4a4a; /* Arrow head color */
+  z-index: 1;
+}
+
+/* Each timeline step card */
+.horizontal-timeline .timeline-step {
+  position: relative;
+  flex: 1;
+  margin: 0 10px;
+  background: rgba(240, 240, 240, 0.5);
+  padding: 60px 20px 20px;
+  border-radius: 6px;
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add spacing between the headline and the text */
+.horizontal-timeline .timeline-step h3 {
+  margin-bottom: 15px;
+}
+
+/* Use your global editor-link (pill style) for the link.
+   Push it to the bottom of the card. */
+.horizontal-timeline .timeline-step a.editor-link {
+  margin-top: auto;
+}
+
+/* Icon styling placed above each card */
+.horizontal-timeline .timeline-step .step-icon {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 2px solid #4a4a4a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 3;
+}
+
+/* Responsive: Vertical timeline for narrow screens */
+@media (max-width: 768px) {
+  .horizontal-timeline {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  /* Remove horizontal line */
+  .horizontal-timeline::before {
+    content: none;
+  }
+  .horizontal-timeline .timeline-step {
+    width: 90%;
+    margin: 20px 0;
+    padding-top: 40px;
+  }
+  .horizontal-timeline .timeline-step .step-icon {
+    top: -20px;
+  }
+}
+
 /* Für beide Sektionen (Process & Pricing) */
 .process-timeline,
 .pricing-timeline {
@@ -355,7 +452,6 @@ main {
 .pricing-step .price {
   margin-top: auto;         /* Hinzugefügt */
 }
-
 
 .pricing-step ul {
   list-style: none;
@@ -514,9 +610,9 @@ main {
   /* Adjust the min-width as necessary */
   min-width: 450px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    position: relative; /* Ensures normal flow */
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Ensures normal flow */
 }
 
 /* Set each side to take 50% of the width */
@@ -635,114 +731,113 @@ main {
 
 /* CHECKOUT HTML */
 
- /* Error highlighting */
-        input.error {
-          border-bottom: 2px solid #ffb5b0 !important;
-        }
-        /* Proceed button at the bottom */
-        #proceed-button {
-          margin-top: 3rem;
-        }
-        #paypal-button-container {
-          margin-top: 2rem;
-        }
-        /* Fade and slide animation classes */
-        .fade-out {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-        }
-        /* Utility class to hide elements */
-        .hidden {
-          display: none;
-        }
-        /* Add a gap between order items and subtotal */
-        .order-summary-totals {
-          margin-top: auto;
-          border-top: 2px solid #aaa;
-          padding-top: 1rem;
-        }
-        .spacer {
-          flex-shrink: 0;
-          min-height: 10rem;
-          height: auto;
-        }
-        /* Modal styles for custom error popup */
-        .modal {
-          display: none; /* Hidden by default */
-          position: fixed;
-          z-index: 1000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0,0,0,0.5);
-          animation: fadeIn 0.3s ease;
-        }
-        .modal-content {
-          background-color: #fff;
-          margin: 15% auto;
-          padding: 20px;
-          border-radius: 8px;
-          width: 90%;
-          max-width: 400px;
-          text-align: center;
-          animation: slideUp 0.3s ease;
-        }
-        .modal-content h2 {
-          margin-top: 0;
-          color: #333;
-        }
-        .modal-content p {
-          color: #555;
-          font-size: 16px;
-        }
-        .modal-content .close {
-          float: right;
-          font-size: 24px;
-          font-weight: bold;
-          color: #aaa;
-          cursor: pointer;
-        }
-        .modal-content .close:hover {
-          color: #000;
-        }
-        @keyframes fadeIn {
-          from {opacity: 0;}
-          to {opacity: 1;}
-        }
-        @keyframes slideUp {
-          from {transform: translateY(50px);}
-          to {transform: translateY(0);}
-        }
-        .modal-content button {
-          margin-top: 1rem;
-          padding: 10px 20px;
-          background-color: #4CAF50;
-          border: none;
-          color: #fff;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background 0.3s ease;
-        }
-        .modal-content button:hover {
-          background-color: #45a049;
-        }
-        #retry-btn {
-          background-color: #ccc;  /* Set background to #ccc */
-          color: #333;             /* Adjust text color as needed */
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background 0.3s ease;
-        }
-
-        #retry-btn:hover {
-          background-color: #bbb;  /* Slightly darker on hover */
-        }
+/* Error highlighting */
+input.error {
+  border-bottom: 2px solid #ffb5b0 !important;
+}
+/* Proceed button at the bottom */
+#proceed-button {
+  margin-top: 3rem;
+}
+#paypal-button-container {
+  margin-top: 2rem;
+}
+/* Fade and slide animation classes */
+.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+/* Utility class to hide elements */
+.hidden {
+  display: none;
+}
+/* Add a gap between order items and subtotal */
+.order-summary-totals {
+  margin-top: auto;
+  border-top: 2px solid #aaa;
+  padding-top: 1rem;
+}
+.spacer {
+  flex-shrink: 0;
+  min-height: 10rem;
+  height: auto;
+}
+/* Modal styles for custom error popup */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  animation: fadeIn 0.3s ease;
+}
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: #333;
+}
+.modal-content p {
+  color: #555;
+  font-size: 16px;
+}
+.modal-content .close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+.modal-content .close:hover {
+  color: #000;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes slideUp {
+  from {transform: translateY(50px);}
+  to {transform: translateY(0);}
+}
+.modal-content button {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.modal-content button:hover {
+  background-color: #45a049;
+}
+#retry-btn {
+  background-color: #ccc;  /* Set background to #ccc */
+  color: #333;             /* Adjust text color as needed */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#retry-btn:hover {
+  background-color: #bbb;  /* Slightly darker on hover */
+}

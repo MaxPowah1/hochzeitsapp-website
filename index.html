@@ -62,7 +62,9 @@
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Force HTTPS and redirect /index.html to the root -->
+
   <script>
+    <comment>
     // Force HTTPS if not already secure
     if (window.location.protocol !== 'https:') {
       window.location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
@@ -70,8 +72,17 @@
     // Redirect from /index.html to the root domain
     if (window.location.pathname.endsWith("index.html")) {
       window.location.replace("https://hochzeitsapp.com/");
-    }
+    } </comment>
   </script>
+
+
+  <style>
+
+
+  </style>
+
+
+
 </head>
 <body>
 <!-- Language Switcher -->
@@ -190,39 +201,54 @@
     <img class="modal-content" id="modal-img" src="">
   </div>
 
-  <!-- Process Section -->
+  <!-- Process Section with Responsive Horizontal/Vertical Timeline -->
   <section class="section process" id="process">
     <div class="container section-inner">
       <h2 class="section-title">Ablauf</h2>
-      <p class="section-subtitle">Euere App – von der Planung bis zur Umsetzung.</p>
-      <div class="process-timeline">
-        <div class="process-step">
+      <p class="section-subtitle">Schritt-für-Schritt zu Eurer individuellen Hochzeits-App</p>
+      <div class="horizontal-timeline">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-handshake"></i>
+            <i class="fas fa-sliders-h"></i>
           </div>
-          <h3>Erstgespräch</h3>
-          <p>Im persönlichen Erstgespräch klären wir eure Wünsche, Bedürfnisse und sammeln erste Ideen.</p>
+          <h3>Konfigurator</h3>
+          <p>Gestaltet Eure App individuell: Füllt alle nötigen Informationen aus und passt das Design an.</p>
+          <a href="editor.html" class="editor-link" target="_blank">zum Editor</a>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-pencil-ruler"></i>
+            <i class="fas fa-eye"></i>
           </div>
-          <h3>Konzept &amp; Design</h3>
-          <p>Auf Basis des Erstgesprächs entwickeln wir ein detailliertes Konzept und ein individuelles Design.</p>
+          <h3>Vorschau</h3>
+          <p>Schaut Euch eine detaillierte Vorschau an, um sicherzugehen, dass alles perfekt ist.</p>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
-            <i class="fas fa-cogs"></i>
+            <i class="fas fa-credit-card"></i>
           </div>
-          <h3>Umsetzung &amp; Testing</h3>
-          <p>Unsere Entwickler setzen das Konzept um, programmieren alle Funktionen und testen die App ausgiebig.</p>
+          <h3>Zahlung</h3>
+          <p>Geht zum Checkout, schließt die Bezahlung ab und sichert Euch den Service.</p>
         </div>
-        <div class="process-step">
+        <div class="timeline-step">
           <div class="step-icon">
             <i class="fas fa-check-circle"></i>
           </div>
+          <h3>Produktion</h3>
+          <p>Nach Zahlungseingang erhaltet Ihr eine Bestätigung – unser Team beginnt mit der Fertigung.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-icon">
+            <i class="fas fa-download"></i>
+          </div>
           <h3>Fertige App</h3>
-          <p>Nach finaler Abstimmung übergeben wir euch die fertige App – inklusive Support und Updates.</p>
+          <p>Sobald fertig, erhaltet Ihr per E-Mail einen Download-Link.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-icon">
+            <i class="fas fa-share-alt"></i>
+          </div>
+          <h3>Verteilung</h3>
+          <p>Teilt die App mit Euren Gästen.</p>
         </div>
       </div>
     </div>
@@ -231,19 +257,19 @@
   <!-- Pricing Section -->
   <section class="section pricing" id="pricing">
     <div class="container section-inner">
-      <h2 class="section-title">Preise</h2>
-      <p class="section-subtitle">Wähle das passende Paket für deine individuelle Hochzeits-App.</p>
+      <h2 class="section-title">Pricing</h2>
+      <p class="section-subtitle">Choose the perfect package for your personalized wedding app.</p>
       <div class="pricing-timeline">
         <div class="pricing-step">
           <div class="step-icon">
             <i class="fas fa-box-open"></i>
           </div>
           <h3>Basic</h3>
-          <p>Grundfunktionen und einfache Anpassungen.</p>
+          <p>Basic features and simple customizations.</p>
           <ul>
-            <li>Grundfunktionen</li>
-            <li>Einfache Anpassungen</li>
-            <li>Email-Support</li>
+            <li>Basic functionalities</li>
+            <li>Simple customizations</li>
+            <li>Email support</li>
           </ul>
           <div class="price"></div>
         </div>
@@ -252,11 +278,11 @@
             <i class="fas fa-layer-group"></i>
           </div>
           <h3>Standard</h3>
-          <p>Erweiterte Funktionen für mehr Flexibilität.</p>
+          <p>Enhanced features for more flexibility.</p>
           <ul>
-            <li>Erweiterte Funktionen</li>
-            <li>2 Revisionen</li>
-            <li>Telefon- &amp; Email-Support</li>
+            <li>Advanced functionalities</li>
+            <li>2 revisions</li>
+            <li>Phone &amp; email support</li>
           </ul>
           <div class="price"></div>
         </div>
@@ -265,13 +291,13 @@
             <i class="fas fa-gem"></i>
           </div>
           <h3>Premium</h3>
-          <p>Umfassendes Paket mit exklusiven Features.</p>
+          <p>Comprehensive package with exclusive features.</p>
           <ul>
-            <li>Alle Standard Features</li>
-            <li>Exklusive Features</li>
-            <li>Unbegrenzte Revisionen</li>
-            <li>Prioritärer Support</li>
-            <li>Individuelle Beratung</li>
+            <li>All standard features</li>
+            <li>Exclusive functionalities</li>
+            <li>Unlimited revisions</li>
+            <li>Priority support</li>
+            <li>Personal consultation</li>
           </ul>
           <div class="price"></div>
         </div>
@@ -279,13 +305,13 @@
           <div class="step-icon">
             <i class="fas fa-sliders-h"></i>
           </div>
-          <h3>Individuell</h3>
-          <p>Perfekt auf eure Wünsche abgestimmt.</p>
+          <h3>Custom</h3>
+          <p>Perfectly tailored to your needs.</p>
           <ul>
-            <li>Maßgeschneiderte Lösungen</li>
-            <li>Persönliche Beratung</li>
-            <li>Flexible Preisgestaltung</li>
-            <li>Spezielle Zusatzleistungen</li>
+            <li>Customized solutions</li>
+            <li>Personal consultation</li>
+            <li>Flexible pricing</li>
+            <li>Special additional services</li>
           </ul>
           <div class="price"></div>
         </div>
