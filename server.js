@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const { createOrder } = require('./js/createOrder');
 const { createPendingOrder } = require('./js/createPendingOrder');
 const { captureOrder } = require('./js/captureOrder');
-const Order = require('./models/Order'); // Import the Order model
+const Order = require('./models/Order'); // Existing Order model
+const Configuration = require('./models/Configuration'); // NEW: Configuration model
 
 const app = express();
 
@@ -35,7 +36,7 @@ app.post('/capture-order', captureOrder);
 app.get('/orders/:orderID', async (req, res) => {
   const orderID = req.params.orderID;
   try {
-    // Query using the paypal.orderID field in the Order model
+    // Query using the paypal.orderID field in the Order model.
     const order = await Order.findOne({ 'paypal.orderID': orderID });
     if (!order) {
       return res.status(404).json({ error: 'Order not found' });
@@ -64,12 +65,24 @@ app.put('/orders/:orderID', async (req, res) => {
   }
 });
 
-// Serve index.html on the root URL
+// NEW: POST endpoint to save configuration to the "configurations" collection.
+app.post('/save-config', async (req, res) => {
+  try {
+    const configData = req.body; // Expect full configuration with configurationID
+    const newConfig = new Configuration(configData);
+    await newConfig.save();
+    res.status(200).json({ message: 'Configuration saved successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Serve index.html on the root URL.
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Serve static files
+// Serve static files.
 app.use(express.static(__dirname));
 
 const PORT = process.env.PORT || 3001;
