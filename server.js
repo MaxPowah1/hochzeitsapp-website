@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const { createOrder } = require('./js/createOrder');
@@ -8,8 +9,14 @@ const Order = require('./models/Order'); // Import the Order model
 
 const app = express();
 
+// Enable CORS for all routes
+app.use(cors());
+
 // Connect to MongoDB – update the connection string as needed.
-mongoose.connect('mongodb://localhost:27017/orders');
+mongoose.connect('mongodb://localhost:27017/orders', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 mongoose.connection.on('error', err => {
   console.error('MongoDB connection error:', err);
 });
@@ -24,8 +31,8 @@ app.post('/create-order', createOrder);
 app.post('/create-pending-order', createPendingOrder);
 app.post('/capture-order', captureOrder);
 
-// New GET endpoint to retrieve an order by its paypal.orderID
-app.get('/order/:orderID', async (req, res) => {
+// GET endpoint to retrieve an order by its paypal.orderID using the "orders" route.
+app.get('/orders/:orderID', async (req, res) => {
   const orderID = req.params.orderID;
   try {
     // Query using the paypal.orderID field in the Order model
@@ -34,6 +41,24 @@ app.get('/order/:orderID', async (req, res) => {
       return res.status(404).json({ error: 'Order not found' });
     }
     res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// PUT endpoint to update an order by its paypal.orderID.
+app.put('/orders/:orderID', async (req, res) => {
+  const orderID = req.params.orderID;
+  try {
+    const updatedOrder = await Order.findOneAndUpdate(
+      { 'paypal.orderID': orderID },
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updatedOrder) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+    res.json(updatedOrder);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
