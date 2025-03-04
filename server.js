@@ -68,10 +68,23 @@ app.put('/orders/:orderID', async (req, res) => {
 // NEW: POST endpoint to save configuration to the "configurations" collection.
 app.post('/save-config', async (req, res) => {
   try {
-    const configData = req.body; // Expect full configuration including configurationID
-    const newConfig = new Configuration(configData);
-    await newConfig.save();
-    res.status(200).json({ message: 'Configuration saved successfully' });
+    const configData = req.body; // Expect full configuration with configurationID
+
+    // Check if a configuration with this configurationID already exists.
+    const existingConfig = await Configuration.findOne({ configurationID: configData.configurationID });
+    if (existingConfig) {
+      // Overwrite (update) the existing document.
+      await Configuration.updateOne({ configurationID: configData.configurationID }, configData, { runValidators: true });
+      res.status(200).json({ message: 'Configuration updated successfully' });
+    } else {
+      // Create a new configuration document.
+      const newConfig = new Configuration(configData);
+      await newConfig.save();
+      res.status(200).json({
+        message: 'New configuration saved successfully',
+        configurationID: configData.configurationID
+      });
+    }
   } catch (error) {
     console.error("Error saving configuration:", error);
     res.status(500).json({ error: error.message });
