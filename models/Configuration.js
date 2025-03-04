@@ -13,12 +13,31 @@ const ConfigurationSchema = new mongoose.Schema({
     contacts: { type: String },
     ourStory: { type: String },
   },
-  schedule: [{ type: mongoose.Schema.Types.Mixed }],
+  schedule: [{
+    time: { type: String },
+    title: { type: String },
+    description: { type: String },
+  }],
   locations: {
-    categories: [{ type: mongoose.Schema.Types.Mixed }],
+    categories: [{
+      category: { type: String },
+      locations: [{
+        name: { type: String },
+        lat: { type: Number },
+        lng: { type: Number },
+        description: { type: String },
+      }],
+    }],
   },
   contacts: {
-    categories: [{ type: mongoose.Schema.Types.Mixed }],
+    categories: [{
+      category: { type: String },
+      contacts: [{
+        name: { type: String },
+        role: { type: String },
+        phone: { type: String },
+      }],
+    }],
   },
   story: { type: String },
   backgroundImage: { type: String },

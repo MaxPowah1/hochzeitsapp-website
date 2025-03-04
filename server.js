@@ -68,11 +68,12 @@ app.put('/orders/:orderID', async (req, res) => {
 // NEW: POST endpoint to save configuration to the "configurations" collection.
 app.post('/save-config', async (req, res) => {
   try {
-    const configData = req.body; // Expect full configuration with configurationID
+    const configData = req.body; // Expect full configuration including configurationID
     const newConfig = new Configuration(configData);
     await newConfig.save();
     res.status(200).json({ message: 'Configuration saved successfully' });
   } catch (error) {
+    console.error("Error saving configuration:", error);
     res.status(500).json({ error: error.message });
   }
 });
