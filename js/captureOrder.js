@@ -46,7 +46,7 @@ async function captureOrder(req, res) {
         { 'paypal.orderID': orderID },
         {
           billing: billing,
-          config: JSON.parse(config),
+          config: { configurationID: JSON.parse(config).configurationID },
           paypal: {
             orderID: orderID,
             status: captureData.status,

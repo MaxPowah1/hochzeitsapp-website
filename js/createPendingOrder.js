@@ -15,7 +15,7 @@ async function createPendingOrder(req, res) {
     // Create a new pending order
     const pendingOrder = new Order({
       billing: billing,
-      config: JSON.parse(config),
+      config: { configurationID: JSON.parse(config).configurationID },
       paypal: {
         orderID: orderID,
         status: "pending",
