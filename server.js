@@ -34,6 +34,7 @@ app.post('/create-pending-order', createPendingOrder);
 app.post('/capture-order', captureOrder);
 
 // ----- Configuration Endpoints -----
+
 // GET configuration by configurationID.
 app.get('/configurations/:configurationID', async (req, res) => {
   const configurationID = req.params.configurationID;
@@ -54,11 +55,15 @@ app.post('/save-config', async (req, res) => {
     const configData = req.body; // Expect full configuration, including configurationID
     const existingConfig = await Configuration.findOne({ configurationID: configData.configurationID });
     if (existingConfig) {
-      // Overwrite (update) the existing document.
-      await Configuration.updateOne({ configurationID: configData.configurationID }, configData, { runValidators: true });
-      res.status(200).json({ message: 'Configuration updated successfully' });
+      // Update the existing document with new data and atomically increment __v
+      const updatedConfig = await Configuration.findOneAndUpdate(
+        { configurationID: configData.configurationID },
+        { $set: configData, $inc: { __v: 1 } },
+        { new: true, runValidators: true }
+      );
+      res.status(200).json({ message: 'Configuration updated successfully', configuration: updatedConfig });
     } else {
-      // Create a new configuration document.
+      // Create a new configuration document (new documents start with __v = 0 by default)
       const newConfig = new Configuration(configData);
       await newConfig.save();
       res.status(200).json({
