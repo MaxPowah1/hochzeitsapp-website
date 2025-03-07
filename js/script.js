@@ -102,4 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("The editor is not available on smartphones.");
         window.location.href = "index.html"; // Weiterleitung zur Startseite
     }
+
+    /* Datenschutzerklärung Popup Funktionalität */
+    const datenschutzLink = document.getElementById("datenschutz-link");
+    const datenschutzPopup = document.getElementById("datenschutz-popup");
+    const datenschutzPopupClose = document.getElementById("datenschutz-popup-close");
+
+    if (datenschutzLink && datenschutzPopup) {
+        datenschutzLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            datenschutzPopup.style.display = "block";
+        });
+    }
+
+    if (datenschutzPopupClose) {
+        datenschutzPopupClose.addEventListener("click", () => {
+            datenschutzPopup.style.display = "none";
+        });
+    }
 });
