@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const ConfigurationSchema = new mongoose.Schema({
   configurationID: { type: String, required: true, unique: true },
   home: {
@@ -12,6 +10,8 @@ const ConfigurationSchema = new mongoose.Schema({
     locations: { type: String },
     contacts: { type: String },
     ourStory: { type: String },
+    // Optionally, you could also store a title for gifts here if needed.
+    gifts: { type: String },
   },
   schedule: [{
     time: { type: String },
@@ -59,6 +59,12 @@ const ConfigurationSchema = new mongoose.Schema({
       isBold: { type: Boolean },
     }
   },
+  // NEW gifts field:
+  gifts: {
+    layout: { type: Number },
+    gifts: [{
+      name: { type: String },
+      link: { type: String },
+    }],
+  },
 }, { timestamps: true });
-
-module.exports = mongoose.model('Configuration', ConfigurationSchema);
