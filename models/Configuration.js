@@ -1,3 +1,7 @@
+
+const mongoose = require('mongoose');
+
+
 const ConfigurationSchema = new mongoose.Schema({
   configurationID: { type: String, required: true, unique: true },
   home: {
