@@ -62,6 +62,7 @@ const ConfigurationSchema = new mongoose.Schema({
     }
   },
   gifts: {
+    addonChosen: { type: Boolean },  // NEW: indicates if the gifts addon is enabled
     layout: { type: Number },
     gifts: [{
       name: { type: String },
