@@ -61,7 +61,7 @@ const ConfigurationSchema = new mongoose.Schema({
       isBold: { type: Boolean },
     }
   },
-  gallery: {
+  fotogallery: {
     mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
   gifts: {
