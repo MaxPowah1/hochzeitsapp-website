@@ -62,12 +62,16 @@ const ConfigurationSchema = new mongoose.Schema({
     }
   },
   gifts: {
-    addonChosen: { type: Boolean },  // NEW: indicates if the gifts addon is enabled
+    addonChosen: { type: Boolean },  // indicates if the gifts addon is enabled
     layout: { type: Number },
     gifts: [{
       name: { type: String },
       link: { type: String },
     }],
+  },
+  // NEW: Gallery addon field
+  gallery: {
+    mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
 }, { timestamps: true });
 
