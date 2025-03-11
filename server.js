@@ -8,6 +8,14 @@ const { captureOrder } = require('./js/captureOrder');
 const Order = require('./models/Order'); // Existing Order model
 const Configuration = require('./models/Configuration'); // Configuration model
 
+// NEW: Import Firebase Admin SDK
+const admin = require('firebase-admin');
+
+// Initialize the Firebase Admin SDK.
+// Make sure the service account credentials are properly configured.
+// For example, set the environment variable GOOGLE_APPLICATION_CREDENTIALS to the path of your service account key JSON.
+admin.initializeApp();
+
 const app = express();
 
 // Enable CORS for all routes
@@ -74,6 +82,32 @@ app.post('/save-config', async (req, res) => {
   } catch (error) {
     console.error("Error saving configuration:", error);
     res.status(500).json({ error: error.message });
+  }
+});
+
+// ----- New: Push Notification Endpoint -----
+// This endpoint sends a push notification to a topic named with the configurationID.
+app.post('/sendPushMessage', async (req, res) => {
+  const { configurationID, title, body } = req.body;
+  if (!configurationID || !title || !body) {
+    return res.status(400).json({ error: 'Missing configurationID, title, or body' });
+  }
+
+  const message = {
+    topic: configurationID, // Use configurationID as the topic
+    notification: {
+      title: title,
+      body: body,
+    },
+  };
+
+  try {
+    const response = await admin.messaging().send(message);
+    // The response is a message ID string
+    res.status(200).json({ name: response });
+  } catch (error) {
+    console.error("Error sending push message:", error);
+    res.status(500).json({ error: error.toString() });
   }
 });
 
