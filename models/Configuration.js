@@ -61,6 +61,9 @@ const ConfigurationSchema = new mongoose.Schema({
       isBold: { type: Boolean },
     }
   },
+  gallery: {
+    mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
+  },
   gifts: {
     addonChosen: { type: Boolean },  // indicates if the gifts addon is enabled
     layout: { type: Number },
@@ -68,10 +71,6 @@ const ConfigurationSchema = new mongoose.Schema({
       name: { type: String },
       link: { type: String },
     }],
-  },
-  // NEW: Gallery addon field
-  gallery: {
-    mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
 }, { timestamps: true });
 
