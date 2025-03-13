@@ -14,6 +14,7 @@ const ConfigurationSchema = new mongoose.Schema({
     contacts: { type: String },
     ourStory: { type: String },
     gifts: { type: String },
+    menu: { type: String } // Wedding Menu tab title
   },
   schedule: [{
     time: { type: String },
@@ -65,12 +66,18 @@ const ConfigurationSchema = new mongoose.Schema({
     mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
   gifts: {
-    addonChosen: { type: Boolean },  // indicates if the gifts addon is enabled
+    addonChosen: { type: Boolean },
     layout: { type: Number },
     gifts: [{
       name: { type: String },
       link: { type: String },
     }],
+  },
+  // NEW: Wedding Menu configuration stored as a sub-document
+  weddingMenu: {
+    data: { type: mongoose.Schema.Types.Mixed, default: {} },
+    screenActivated: { type: Boolean },
+    background: { type: String }
   },
 }, { timestamps: true });
 
