@@ -11,10 +11,16 @@ const Configuration = require('./models/Configuration'); // Configuration model
 // NEW: Import Firebase Admin SDK
 const admin = require('firebase-admin');
 
-// Initialize the Firebase Admin SDK.
-// Make sure the service account credentials are properly configured.
-// For example, set the environment variable GOOGLE_APPLICATION_CREDENTIALS to the path of your service account key JSON.
-admin.initializeApp();
+// Load service account from 1 folder below the current directory.
+const serviceAccountPath = path.join(__dirname, '..', 'firemsg.json');
+const serviceAccount = require(serviceAccountPath);
+
+// Initialize the Firebase Admin SDK using the service account credentials.
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  // Optionally, you can explicitly specify the projectId:
+  // projectId: serviceAccount.project_id,
+});
 
 const app = express();
 
