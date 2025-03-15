@@ -14,7 +14,8 @@ const ConfigurationSchema = new mongoose.Schema({
     contacts: { type: String },
     ourStory: { type: String },
     gifts: { type: String },
-    menu: { type: String } // Wedding Menu tab title
+    menu: { type: String }, // Wedding Menu tab title
+    photogallery: { type: String }
   },
   schedule: [{
     time: { type: String },
@@ -62,7 +63,7 @@ const ConfigurationSchema = new mongoose.Schema({
       isBold: { type: Boolean },
     }
   },
-  fotogallery: {
+  photogallery: {
     mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
   gifts: {
