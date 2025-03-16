@@ -66,6 +66,9 @@ const ConfigurationSchema = new mongoose.Schema({
   photogallery: {
     mode: { type: Number }, // 0: No Photo Gallery, 1: Upload Only, 2: Up- and Download for Guests
   },
+  pushNotificationAddon: {
+    enabled: { type: Boolean }
+  },
   gifts: {
     addonChosen: { type: Boolean },
     layout: { type: Number },
@@ -74,7 +77,6 @@ const ConfigurationSchema = new mongoose.Schema({
       link: { type: String },
     }],
   },
-  // NEW: Wedding Menu configuration stored as a sub-document
   weddingMenu: {
     data: { type: mongoose.Schema.Types.Mixed, default: {} },
     screenActivated: { type: Boolean },
