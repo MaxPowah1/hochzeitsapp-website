@@ -7,6 +7,8 @@ const { createPendingOrder } = require('./js/createPendingOrder');
 const { captureOrder } = require('./js/captureOrder');
 const Order = require('./models/Order'); // Existing Order model
 const Configuration = require('./models/Configuration'); // Configuration model
+require('dotenv').config({ path: '.paypalenv' });
+
 
 // NEW: Import Firebase Admin SDK
 const admin = require('firebase-admin');
