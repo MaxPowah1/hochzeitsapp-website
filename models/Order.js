@@ -12,6 +12,7 @@ const OrderSchema = new Schema({
     address: { type: String, required: true }
   },
   config: { type: Schema.Types.Mixed, required: true },
+  price: { type: Number, required: true }, // <-- New price field
   paypal: {
     orderID: { type: String, required: true },
     status: { type: String, required: true },
