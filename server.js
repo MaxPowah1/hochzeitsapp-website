@@ -118,7 +118,10 @@ app.use('/html', express.static(path.join(__dirname, 'html')));
 // JS files that are public
 app.use('/js/checkout-paypal.js', express.static(path.join(__dirname, 'js/checkout-paypal.js')));
 app.use('/js/script.js', express.static(path.join(__dirname, 'js/script.js')));
-app.use('/flutter_bootstrap.js', express.static(path.join(__dirname, 'flutter_bootstrap')));
+app.get('/flutter_bootstrap.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'flutter_bootstrap.js'));
+});
+
 
 // HTML entry points
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
