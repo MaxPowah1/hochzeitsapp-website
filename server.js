@@ -9,7 +9,6 @@ const Order = require('./models/Order'); // Existing Order model
 const Configuration = require('./models/Configuration'); // Configuration model
 require('dotenv').config({ path: '.paypalenv' });
 
-
 // NEW: Import Firebase Admin SDK
 const admin = require('firebase-admin');
 
@@ -44,14 +43,11 @@ mongoose.connection.once('open', () => {
 app.use(express.json({ limit: '50mb' })); // Allow large payloads
 
 // ----- Order Endpoints -----
-// These endpoints remain unchanged.
 app.post('/create-order', createOrder);
 app.post('/create-pending-order', createPendingOrder);
 app.post('/capture-order', captureOrder);
 
 // ----- Configuration Endpoints -----
-
-// GET configuration by configurationID.
 app.get('/configurations/:configurationID', async (req, res) => {
   const configurationID = req.params.configurationID;
   try {
@@ -65,13 +61,11 @@ app.get('/configurations/:configurationID', async (req, res) => {
   }
 });
 
-// POST endpoint to save (or update) configuration.
 app.post('/save-config', async (req, res) => {
   try {
     const configData = req.body; // Expect full configuration, including configurationID
     const existingConfig = await Configuration.findOne({ configurationID: configData.configurationID });
     if (existingConfig) {
-      // Update the existing document with new data and atomically increment __v
       const updatedConfig = await Configuration.findOneAndUpdate(
         { configurationID: configData.configurationID },
         { $set: configData, $inc: { __v: 1 } },
@@ -79,7 +73,6 @@ app.post('/save-config', async (req, res) => {
       );
       res.status(200).json({ message: 'Configuration updated successfully', configuration: updatedConfig });
     } else {
-      // Create a new configuration document (new documents start with __v = 0 by default)
       const newConfig = new Configuration(configData);
       await newConfig.save();
       res.status(200).json({
@@ -93,8 +86,7 @@ app.post('/save-config', async (req, res) => {
   }
 });
 
-// ----- New: Push Notification Endpoint -----
-// This endpoint sends a push notification to a topic named with the configurationID.
+// ----- Push Notification Endpoint -----
 app.post('/sendPushMessage', async (req, res) => {
   const { configurationID, title, body } = req.body;
   if (!configurationID || !title || !body) {
@@ -102,16 +94,12 @@ app.post('/sendPushMessage', async (req, res) => {
   }
 
   const message = {
-    topic: configurationID, // Use configurationID as the topic
-    notification: {
-      title: title,
-      body: body,
-    },
+    topic: configurationID,
+    notification: { title, body },
   };
 
   try {
     const response = await admin.messaging().send(message);
-    // The response is a message ID string
     res.status(200).json({ name: response });
   } catch (error) {
     console.error("Error sending push message:", error);
@@ -119,13 +107,30 @@ app.post('/sendPushMessage', async (req, res) => {
   }
 });
 
-// ----- Static Files and Root -----
-// Serve index.html on the root URL.
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-app.use(express.static(__dirname));
+// ----- Static Files (Explicitly allowed) -----
 
+// CSS, images, assets
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/html', express.static(path.join(__dirname, 'html')));
+
+// JS files that are public
+app.use('/js/checkout-paypal.js', express.static(path.join(__dirname, 'js/checkout-paypal.js')));
+app.use('/js/script.js', express.static(path.join(__dirname, 'js/script.js')));
+
+// HTML entry points
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/index_en.html', (req, res) => res.sendFile(path.join(__dirname, 'index_en.html')));
+app.get('/editor.html', (req, res) => res.sendFile(path.join(__dirname, 'editor.html')));
+app.get('/checkout.html', (req, res) => res.sendFile(path.join(__dirname, 'checkout.html')));
+
+// ----- 404 fallback for other undefined routes -----
+app.use((req, res) => {
+  res.status(404).send('404 Not Found');
+});
+
+// ----- Start the server -----
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
