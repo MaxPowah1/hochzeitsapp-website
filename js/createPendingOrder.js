@@ -1,7 +1,7 @@
 const Order = require('../models/Order');
 
 async function createPendingOrder(req, res) {
-  const { orderID, billing, config, idempotencyKey } = req.body;
+  const { orderID, billing, config, idempotencyKey,price } = req.body;
   console.log("Received pending order data:", req.body);
 
   try {
@@ -21,7 +21,8 @@ async function createPendingOrder(req, res) {
         status: "pending",
         captureDetails: {}
       },
-      idempotencyKey: idempotencyKey
+      idempotencyKey: idempotencyKey,
+      price: price
     });
 
     const savedOrder = await pendingOrder.save();

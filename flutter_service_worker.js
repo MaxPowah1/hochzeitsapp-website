@@ -54,17 +54,18 @@ const RESOURCES = {"assets/AssetManifest.bin": "c7a407662fe7b439bf8e52f107735e96
 "canvaskit/skwasm.js.symbols": "96263e00e3c9bd9cd878ead867c04f3c",
 "canvaskit/skwasm.wasm": "828c26a0b1cc8eb1adacbdd0c5e8bcfa",
 "canvaskit/skwasm.worker.js": "89990e8c92bcb123999aa81f7e203b1c",
+"editor.html": "1281a793043294e6c0087854dd92c1be",
 "flutter.js": "4b2350e14c6650ba82871f60906437ea",
-"flutter_bootstrap.js": "d98b5de6fda4c882ec75046443a69165",
+"flutter_bootstrap.js": "5dc9773159675269322166922d74f431",
 "Icon2_512x512.png": "716e9d5eb646052dff2a73633c4edcbc",
 "index.html": "1281a793043294e6c0087854dd92c1be",
 "/": "1281a793043294e6c0087854dd92c1be",
 "js/captureOrder.js": "c9220996d2b19a2dbd6b0216cda08094",
-"js/checkout-paypal.js": "2f1178c1b843b497c1919a88161ce8a8",
+"js/checkout-paypal.js": "34c2ec5143599d630700baef8ff81bfd",
 "js/createOrder.js": "5d72647778900d550e048e263c9e2367",
-"js/createPendingOrder.js": "ca1b4ee5805fb3aa26b4f189741bec1b",
+"js/createPendingOrder.js": "372e79aa038a85c054278a9dc422baf1",
 "js/paypalClient.js": "fbc0d40ad8edabf9bdaf35822637d228",
-"main.dart.js": "08a79d2f0c23ae82672e1c329ce3fb07",
+"main.dart.js": "de38b85cea75717f88b165753b3692ae",
 "version.json": "b3cba2a71364b234158409f8c335c0f4"};
 // The application shell files that are downloaded before a service worker can
 // start.

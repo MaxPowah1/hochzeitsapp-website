@@ -1,9 +1,16 @@
+// web/js/checkout-paypal.js
+
 // Use an absolute backend URL for production.
 const backendUrl = "https://hochzeitsapp.com";
 
 // Global function to receive billing info from Flutter.
 window.setBillingInfo = function(info) {
   window.flutterBillingInfo = info;
+};
+
+// Global function to set the total cost from Flutter.
+window.setTotalCost = function(total) {
+  window.flutterTotalCost = Number(total);
 };
 
 function renderPayPalButtons() {
@@ -26,7 +33,7 @@ function renderPayPalButtons() {
       .then(orderData => orderData.id);
     },
     onApprove: function(data, actions) {
-      // Retrieve billing info passed from Flutter (or fallback to defaults).
+      // Get billing info passed from Flutter; if not provided, use defaults.
       const billing = window.flutterBillingInfo
           ? JSON.parse(window.flutterBillingInfo)
           : {
@@ -39,16 +46,20 @@ function renderPayPalButtons() {
               address: "Default Address"
             };
 
-      // Use the configurationID exposed from Flutter/Dart.
+      // Use the configurationID exposed from Dart.
       const config = JSON.stringify({ configurationID: window.configurationID || "default" });
       const orderID = data.orderID;
       const idempotencyKey = generateIdempotencyKey();
+
+      // Get the total price from Flutter (set via setTotalCost)
+      // Default to 0 if not set.
+      const price = window.flutterTotalCost || 0;
 
       // Create a pending order record.
       return fetch(`${backendUrl}/create-pending-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orderID, billing, config, idempotencyKey })
+        body: JSON.stringify({ orderID, billing, config, idempotencyKey, price })
       })
       .then(response => {
         if (!response.ok) {
@@ -57,7 +68,7 @@ function renderPayPalButtons() {
         return response.json();
       })
       .then(pendingResponse => {
-        // Now capture the PayPal order.
+        // Capture the PayPal order.
         return fetch(`${backendUrl}/capture-order`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
