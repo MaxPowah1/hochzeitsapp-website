@@ -136,8 +136,9 @@ app.get('/Icon2_512x512.png', (req, res) => {
 });
 
 // HTML entry points
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/index_en.html', (req, res) => res.sendFile(path.join(__dirname, 'index_en.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index_en.html')));
+app.get('/index_de.html', (req, res) => res.sendFile(path.join(__dirname, 'index_de.html')));
+app.get('/index.html', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.get('/editor.html', (req, res) => res.sendFile(path.join(__dirname, 'editor.html')));
 app.get('/checkout.html', (req, res) => res.sendFile(path.join(__dirname, 'checkout.html')));
 
