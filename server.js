@@ -127,6 +127,9 @@ app.get('/main.dart.js', (req, res) => {
   res.sendFile(path.join(__dirname, 'main.dart.js'));
 });
 
+app.get('/Icon2_512x512.png', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Icon2_512x512.png'));
+});
 
 // HTML entry points
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
