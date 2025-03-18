@@ -26,7 +26,7 @@ function renderPayPalButtons() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Additional order details if needed.
+          price: window.flutterTotalCost
         })
       })
       .then(response => response.json())

@@ -3,13 +3,20 @@ const { getAccessToken, PAYPAL_API_BASE } = require('./paypalClient');
 
 async function createOrder(req, res) {
   console.log("createOrder endpoint hit");
+  // Retrieve price from the request (ensure the client sends this)
+  const { price } = req.body;
+
+  // Validate the price if necessary
+  if (!price) {
+    return res.status(400).send("Price is required");
+  }
 
   const orderPayload = {
     intent: "CAPTURE",
     purchase_units: [{
       amount: {
         currency_code: "EUR",
-        value: "100.00"
+        value: String(price)  // Ensure it’s a string, e.g., "49.99"
       }
     }]
   };
@@ -35,5 +42,6 @@ async function createOrder(req, res) {
     res.status(500).send("Error creating order");
   }
 }
+
 
 module.exports = { createOrder };
