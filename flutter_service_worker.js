@@ -56,7 +56,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "c7a407662fe7b439bf8e52f107735e96
 "canvaskit/skwasm.worker.js": "89990e8c92bcb123999aa81f7e203b1c",
 "editor.html": "1281a793043294e6c0087854dd92c1be",
 "flutter.js": "4b2350e14c6650ba82871f60906437ea",
-"flutter_bootstrap.js": "5dc9773159675269322166922d74f431",
+"flutter_bootstrap.js": "d59a674e11d8968c0f50f2d84e46bb84",
 "Icon2_512x512.png": "716e9d5eb646052dff2a73633c4edcbc",
 "index.html": "1281a793043294e6c0087854dd92c1be",
 "/": "1281a793043294e6c0087854dd92c1be",
@@ -65,7 +65,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "c7a407662fe7b439bf8e52f107735e96
 "js/createOrder.js": "5d72647778900d550e048e263c9e2367",
 "js/createPendingOrder.js": "372e79aa038a85c054278a9dc422baf1",
 "js/paypalClient.js": "fbc0d40ad8edabf9bdaf35822637d228",
-"main.dart.js": "de38b85cea75717f88b165753b3692ae",
+"main.dart.js": "e18dee92fe7efd920a7f77789d10f11c",
 "version.json": "b3cba2a71364b234158409f8c335c0f4"};
 // The application shell files that are downloaded before a service worker can
 // start.
