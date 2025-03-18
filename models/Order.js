@@ -7,7 +7,7 @@ const OrderSchema = new Schema({
     mobile: { type: String, required: true },
     email: { type: String, required: true },
     city: { type: String, required: true },
-    state: { type: String, required: true },
+    state: { type: String, required: false },
     zip: { type: String, required: true },
     address: { type: String, required: true }
   },
