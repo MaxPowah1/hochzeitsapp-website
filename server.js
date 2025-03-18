@@ -119,6 +119,10 @@ app.use('/html', express.static(path.join(__dirname, 'html')));
 app.use('/js/checkout-paypal.js', express.static(path.join(__dirname, 'js/checkout-paypal.js')));
 app.use('/js/script.js', express.static(path.join(__dirname, 'js/script.js')));
 
+app.get('/flutter_service_worker.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'flutter_service_worker.js'));
+});
+
 app.get('/flutter_bootstrap.js', (req, res) => {
   res.sendFile(path.join(__dirname, 'flutter_bootstrap.js'));
 });
