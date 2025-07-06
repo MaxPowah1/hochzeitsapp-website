@@ -121,3 +121,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+  /* Impressum-Popup Funktionalität */
+  const impressumLink = document.getElementById("impressum-link");
+  const impressumPopup = document.getElementById("impressum-popup");
+  const impressumPopupClose = document.getElementById("impressum-popup-close");
+
+  if (impressumLink && impressumPopup) {
+      impressumLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          impressumPopup.style.display = "block";
+      });
+  }
+
+  if (impressumPopupClose) {
+      impressumPopupClose.addEventListener("click", () => {
+          impressumPopup.style.display = "none";
+      });
+  }
+
+  // Optional: Click outside to close
+  document.addEventListener("click", (e) => {
+    if (impressumPopup.style.display === "block"
+        && !impressumPopup.contains(e.target)
+        && !impressumLink.contains(e.target)) {
+      impressumPopup.style.display = "none";
+    }
+  });
