@@ -913,7 +913,7 @@ input.error {
     position: fixed;
     bottom: 100px;
     left: 20px;
-    width: 300px;
+    width: 400px;
     max-width: 80%;
     max-height: 70vh;
     background: #fff;
@@ -979,9 +979,9 @@ input.error {
 @media (max-width: 768px) {
   #datenschutz-popup,
   #impressum-popup {
-    width: 90%;
-    bottom: 20vh;          /* keep above your bottom links */
-    left: 5%;
+    width: 80%;
+    bottom: 7vh;          /* keep above your bottom links */
+    left: 2%;
     max-height: 80vh;
     padding: 2rem 0.75rem 0.75rem;
   }
@@ -1021,3 +1021,42 @@ input.error {
     border-bottom-color: #333;
 }
 
+/* Hide all scrollbars on <main> but keep scrolling */
+main {
+  /* keep the scrollable area */
+  overflow-y: scroll;
+
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari, Opera */
+main::-webkit-scrollbar {
+  display: none;
+}
+main::-webkit-scrollbar-track {
+  display: none;
+}
+main::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+
+/* --------------------------------------------------
+   Hide scrollbars for the legal‐popups’ scrollable areas
+   -------------------------------------------------- */
+#datenschutz-popup .datenschutz-scroll,
+#impressum-popup .impressum-content {
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+#datenschutz-popup .datenschutz-scroll::-webkit-scrollbar,
+#impressum-popup .impressum-content::-webkit-scrollbar {
+  /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}

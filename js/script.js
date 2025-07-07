@@ -112,43 +112,46 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "index.html";
   }
 
-  /* ---------------------------
-     Datenschutzerklärung Popup
-  --------------------------- */
-  const datenschutzLink  = document.getElementById("datenschutz-link");
-  const datenschutzPopup = document.getElementById("datenschutz-popup");
-  const datenschutzClose = document.getElementById("datenschutz-popup-close");
+     /* ---------------------------
+        Datenschutzerklärung Popup (toggle + close impressum)
+     --------------------------- */
+     const datenschutzLink  = document.getElementById("datenschutz-link");
+     const datenschutzPopup = document.getElementById("datenschutz-popup");
+     const impressumPopup   = document.getElementById("impressum-popup");
 
-  if (datenschutzLink && datenschutzPopup) {
-    datenschutzLink.addEventListener("click", e => {
-      e.preventDefault();
-      datenschutzPopup.style.display = "block";
-    });
-  }
-  if (datenschutzClose) {
-    datenschutzClose.addEventListener("click", () => {
-      datenschutzPopup.style.display = "none";
-    });
-  }
+     if (datenschutzLink && datenschutzPopup) {
+       datenschutzLink.addEventListener("click", e => {
+         e.preventDefault();
+         const isOpen = datenschutzPopup.style.display === "block";
+         // toggle this one
+         datenschutzPopup.style.display = isOpen ? "none" : "block";
+         // if opening, ensure the other is closed
+         if (!isOpen && impressumPopup) {
+           impressumPopup.style.display = "none";
+         }
+       });
+     }
 
-  /* ---------------------------
-     Impressum Popup
-  --------------------------- */
-  const impressumLink  = document.getElementById("impressum-link");
-  const impressumPopup = document.getElementById("impressum-popup");
-  const impressumClose = document.getElementById("impressum-popup-close");
+     /* ---------------------------
+        Impressum Popup (toggle + close datenschutz)
+     --------------------------- */
+     const impressumLink  = document.getElementById("impressum-link");
+     // reuse datenschutzPopup from above
 
-  if (impressumLink && impressumPopup) {
-    impressumLink.addEventListener("click", e => {
-      e.preventDefault();
-      impressumPopup.style.display = "block";
-    });
-  }
-  if (impressumClose) {
-    impressumClose.addEventListener("click", () => {
-      impressumPopup.style.display = "none";
-    });
-  }
+     if (impressumLink && impressumPopup) {
+       impressumLink.addEventListener("click", e => {
+         e.preventDefault();
+         const isOpen = impressumPopup.style.display === "block";
+         // toggle this one
+         impressumPopup.style.display = isOpen ? "none" : "block";
+         // if opening, ensure the other is closed
+         if (!isOpen && datenschutzPopup) {
+           datenschutzPopup.style.display = "none";
+         }
+       });
+     }
+
+
 
   /* ---------------------------
      Klick außerhalb schließen (beide Popups)
