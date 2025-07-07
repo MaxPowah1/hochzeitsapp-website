@@ -1,150 +1,170 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* Burger-Menü zur Steuerung der mobilen Navigation */
-    const burgerMenu = document.querySelector(".burger-menu");
-    const mobileNav = document.querySelector(".mobile-nav");
+  /* ---------------------------
+     Burger-Menü zur Steuerung der mobilen Navigation
+  --------------------------- */
+  const burgerMenu = document.querySelector(".burger-menu");
+  const mobileNav  = document.querySelector(".mobile-nav");
 
-    function closeMobileNav() {
-        mobileNav.classList.remove("active");
-    }
+  function closeMobileNav() {
+    mobileNav.classList.remove("active");
+  }
 
-    if (burgerMenu) {
-        burgerMenu.addEventListener("click", () => {
-            mobileNav.classList.toggle("active");
-        });
-
-        // Schließe das mobile Menü, wenn ein Link geklickt wird
-        mobileNav.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", closeMobileNav);
-        });
-
-        // Schließe das mobile Menü, wenn außerhalb des Menüs getippt wird
-        document.addEventListener("click", (event) => {
-            if (mobileNav.classList.contains("active") && !mobileNav.contains(event.target) && !burgerMenu.contains(event.target)) {
-                closeMobileNav();
-            }
-        });
-
-        // Schließe das mobile Menü bei einem Swipe nach links
-        let touchStartX = 0;
-        document.addEventListener("touchstart", (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        document.addEventListener("touchend", (e) => {
-            if (mobileNav.classList.contains("active") && (touchStartX - e.changedTouches[0].screenX > 50)) {
-                closeMobileNav();
-            }
-        });
-    }
-
-    /* Modal-Funktionalität für Screenshots */
-    const modal = document.getElementById("image-modal");
-    if (modal) {
-        const modalImg = document.getElementById("modal-img");
-        const modalClose = document.querySelector(".modal-close");
-        document.querySelectorAll(".screen-item img").forEach(img => {
-            img.addEventListener("click", () => {
-                modal.style.display = "flex";
-                modalImg.src = img.getAttribute("data-img");
-            });
-        });
-
-        modalClose.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-    }
-
-    /* Dynamische Verlinkung für WhatsApp und Telegram */
-    const encodedNumber = "NDkxNTIyMTM1OTUzMg==";
-    const phoneNumber = atob(encodedNumber);
-
-    const whatsappLink = document.querySelector(".whatsapp-link");
-    if (whatsappLink) {
-        whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=Hallo%20HochzeitsApp-Team";
-    }
-
-    const telegramLink = document.querySelector(".telegram-link");
-    if (telegramLink) {
-        telegramLink.href = "https://t.me/+" + phoneNumber;
-    }
-
-    /* Slide-in Effekt für den inneren Content der Sections */
-    const inners = document.querySelectorAll('.section-inner');
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-
-    inners.forEach(inner => {
-        sectionObserver.observe(inner);
+  if (burgerMenu && mobileNav) {
+    burgerMenu.addEventListener("click", () => {
+      mobileNav.classList.toggle("active");
     });
 
-    /* Verhindere Editor-Zugriff auf Smartphones */
-    function isMobileDevice() {
-        return window.innerWidth < 768;
-    }
+    // Schließe das mobile Menü, wenn ein Link geklickt wird
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMobileNav);
+    });
 
-    const editorLink = document.querySelector(".editor-container");
-    if (editorLink && isMobileDevice()) {
-        editorLink.style.display = "none";
-    }
+    // Schließe das mobile Menü, wenn außerhalb des Menüs getippt wird
+    document.addEventListener("click", (e) => {
+      if (mobileNav.classList.contains("active")
+          && !mobileNav.contains(e.target)
+          && !burgerMenu.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
 
-    if (window.location.pathname.includes("editor.html") && isMobileDevice()) {
-        alert("The editor is not available on smartphones.");
-        window.location.href = "index.html"; // Weiterleitung zur Startseite
-    }
+    // Schließe das mobile Menü bei einem Swipe nach links
+    let touchStartX = 0;
+    document.addEventListener("touchstart", e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    document.addEventListener("touchend", e => {
+      if (mobileNav.classList.contains("active")
+          && (touchStartX - e.changedTouches[0].screenX > 50)) {
+        closeMobileNav();
+      }
+    });
+  }
 
-    /* Datenschutzerklärung Popup Funktionalität */
-    const datenschutzLink = document.getElementById("datenschutz-link");
-    const datenschutzPopup = document.getElementById("datenschutz-popup");
-    const datenschutzPopupClose = document.getElementById("datenschutz-popup-close");
+  /* ---------------------------
+     Modal-Funktionalität für Screenshots
+  --------------------------- */
+  const modal      = document.getElementById("image-modal");
+  if (modal) {
+    const modalImg   = document.getElementById("modal-img");
+    const modalClose = document.querySelector(".modal-close");
+    document.querySelectorAll(".screen-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src        = img.getAttribute("data-img");
+      });
+    });
 
-    if (datenschutzLink && datenschutzPopup) {
-        datenschutzLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            datenschutzPopup.style.display = "block";
-        });
-    }
+    modalClose.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
 
-    if (datenschutzPopupClose) {
-        datenschutzPopupClose.addEventListener("click", () => {
-            datenschutzPopup.style.display = "none";
-        });
-    }
-});
+    modal.addEventListener("click", e => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  }
 
-  /* Impressum-Popup Funktionalität */
-  const impressumLink = document.getElementById("impressum-link");
+  /* ---------------------------
+     Dynamische Verlinkung für WhatsApp und Telegram
+  --------------------------- */
+  const encodedNumber = "NDkxNTIyMTM1OTUzMg==";
+  const phoneNumber   = atob(encodedNumber);
+
+  const whatsappLink = document.querySelector(".whatsapp-link");
+  if (whatsappLink) {
+    whatsappLink.href = "https://wa.me/" + phoneNumber + "?text=Hallo%20HochzeitsApp-Team";
+  }
+
+  const telegramLink = document.querySelector(".telegram-link");
+  if (telegramLink) {
+    telegramLink.href = "https://t.me/+" + phoneNumber;
+  }
+
+  /* ---------------------------
+     Slide-in Effekt für Section-Content
+  --------------------------- */
+  const inners = document.querySelectorAll('.section-inner');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  inners.forEach(inner => observer.observe(inner));
+
+  /* ---------------------------
+     Verhindere Editor-Zugriff auf Smartphones
+  --------------------------- */
+  function isMobile() {
+    return window.innerWidth < 768;
+  }
+  const editorLink = document.querySelector(".editor-container");
+  if (editorLink && isMobile()) {
+    editorLink.style.display = "none";
+  }
+  if (window.location.pathname.includes("editor.html") && isMobile()) {
+    alert("The editor is not available on smartphones.");
+    window.location.href = "index.html";
+  }
+
+  /* ---------------------------
+     Datenschutzerklärung Popup
+  --------------------------- */
+  const datenschutzLink  = document.getElementById("datenschutz-link");
+  const datenschutzPopup = document.getElementById("datenschutz-popup");
+  const datenschutzClose = document.getElementById("datenschutz-popup-close");
+
+  if (datenschutzLink && datenschutzPopup) {
+    datenschutzLink.addEventListener("click", e => {
+      e.preventDefault();
+      datenschutzPopup.style.display = "block";
+    });
+  }
+  if (datenschutzClose) {
+    datenschutzClose.addEventListener("click", () => {
+      datenschutzPopup.style.display = "none";
+    });
+  }
+
+  /* ---------------------------
+     Impressum Popup
+  --------------------------- */
+  const impressumLink  = document.getElementById("impressum-link");
   const impressumPopup = document.getElementById("impressum-popup");
-  const impressumPopupClose = document.getElementById("impressum-popup-close");
+  const impressumClose = document.getElementById("impressum-popup-close");
 
   if (impressumLink && impressumPopup) {
-      impressumLink.addEventListener("click", (e) => {
-          e.preventDefault();
-          impressumPopup.style.display = "block";
-      });
+    impressumLink.addEventListener("click", e => {
+      e.preventDefault();
+      impressumPopup.style.display = "block";
+    });
   }
-
-  if (impressumPopupClose) {
-      impressumPopupClose.addEventListener("click", () => {
-          impressumPopup.style.display = "none";
-      });
-  }
-
-  // Optional: Click outside to close
-  document.addEventListener("click", (e) => {
-    if (impressumPopup.style.display === "block"
-        && !impressumPopup.contains(e.target)
-        && !impressumLink.contains(e.target)) {
+  if (impressumClose) {
+    impressumClose.addEventListener("click", () => {
       impressumPopup.style.display = "none";
+    });
+  }
+
+  /* ---------------------------
+     Klick außerhalb schließen (beide Popups)
+  --------------------------- */
+  document.addEventListener("click", e => {
+    const openDat = datenschutzPopup && datenschutzPopup.style.display === "block";
+    const openImp = impressumPopup   && impressumPopup.style.display   === "block";
+    const clickedInside =
+         (datenschutzPopup && datenschutzPopup.contains(e.target)) ||
+         (impressumPopup   && impressumPopup.contains(e.target))   ||
+         (datenschutzLink  && datenschutzLink.contains(e.target))  ||
+         (impressumLink    && impressumLink.contains(e.target));
+    if ((openDat || openImp) && !clickedInside) {
+      if (openDat) datenschutzPopup.style.display = "none";
+      if (openImp) impressumPopup.style.display   = "none";
     }
   });
+
+});
