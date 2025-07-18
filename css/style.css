@@ -464,6 +464,12 @@ main {
   }
 }
 
+/* add extra space above the price line */
+.timeline-step .price {
+  margin-top: 2rem;
+}
+
+
 /* ---------------------------
    Process & Pricing Cards – Consistent Sizing
 --------------------------- */
