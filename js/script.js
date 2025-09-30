@@ -98,60 +98,108 @@ document.addEventListener("DOMContentLoaded", () => {
   inners.forEach(inner => observer.observe(inner));
 
   /* ---------------------------
-     Verhindere Editor-Zugriff auf Smartphones
+     Editor-Link Gate: nur auf großen Displays + Querformat
   --------------------------- */
-  function isMobile() {
-    return window.innerWidth < 768;
+  (function(){
+    // Konservative Schwellen für ~10" Tablet quer
+    const MIN_W = 1024; // min. Viewport-Breite
+    const MIN_H = 650;  // min. Viewport-Höhe
+
+    const container   = document.querySelector(".editor-container");
+    const editorLinks = document.querySelectorAll("a.editor-link");
+    const blocker     = document.getElementById("editor-blocker"); // optionales Popup-HTML (falls eingebaut)
+    const closeBtn    = document.getElementById("eb-close");
+
+    function allowed() {
+      const w = window.innerWidth, h = window.innerHeight;
+      const landscape = w >= h;
+      return (landscape && w >= MIN_W && h >= MIN_H);
+    }
+
+    function updateVisibility() {
+      if (!container) return;
+      container.style.display = allowed() ? "block" : "none";
+    }
+
+    function showPopup() {
+      // Wenn ein spezielles Popup (#editor-blocker) existiert → anzeigen,
+      // ansonsten kurzer, unaufdringlicher Fallback-Alert.
+      if (blocker) {
+        blocker.hidden = false;
+        document.documentElement.style.overflow = "hidden"; // Scroll sperren
+      } else {
+        alert("Der Editor ist für Smartphones nicht optimiert. Bitte nutze ein größeres Display im Querformat (Tablet oder Desktop).");
+      }
+    }
+
+    function hidePopup() {
+      if (!blocker) return;
+      blocker.hidden = true;
+      document.documentElement.style.overflow = "";
+    }
+
+    // Klicks auf ALLE Editor-Links abfangen (auch in der Timeline)
+    editorLinks.forEach(a => {
+      a.addEventListener("click", (ev) => {
+        if (!allowed()) {
+          ev.preventDefault();
+          showPopup();
+        }
+      });
+    });
+
+    // Popup schließen (falls vorhanden)
+    closeBtn?.addEventListener("click", hidePopup);
+    blocker?.addEventListener("click", (e) => {
+      if (e.target === blocker) hidePopup(); // Klick auf den Backdrop schließt
+    });
+
+    // Reagieren auf Resize/Rotation
+    window.addEventListener("resize", updateVisibility);
+    window.addEventListener("orientationchange", updateVisibility);
+
+    // Initial
+    updateVisibility();
+  })();
+
+  /* ---------------------------
+     Datenschutzerklärung Popup (toggle + close impressum)
+  --------------------------- */
+  const datenschutzLink  = document.getElementById("datenschutz-link");
+  const datenschutzPopup = document.getElementById("datenschutz-popup");
+  const impressumPopup   = document.getElementById("impressum-popup");
+
+  if (datenschutzLink && datenschutzPopup) {
+    datenschutzLink.addEventListener("click", e => {
+      e.preventDefault();
+      const isOpen = datenschutzPopup.style.display === "block";
+      // toggle this one
+      datenschutzPopup.style.display = isOpen ? "none" : "block";
+      // if opening, ensure the other is closed
+      if (!isOpen && impressumPopup) {
+        impressumPopup.style.display = "none";
+      }
+    });
   }
-  const editorLink = document.querySelector(".editor-container");
-  if (editorLink && isMobile()) {
-    editorLink.style.display = "none";
+
+  /* ---------------------------
+     Impressum Popup (toggle + close datenschutz)
+  --------------------------- */
+  const impressumLink  = document.getElementById("impressum-link");
+  // reuse datenschutzPopup from above
+
+  if (impressumLink && impressumPopup) {
+    impressumLink.addEventListener("click", e => {
+      e.preventDefault();
+      const isOpen = impressumPopup.style.display === "block";
+      // toggle this one
+      impressumPopup.style.display = isOpen ? "none" : "block";
+      // if opening, ensure the other is closed
+      if (!isOpen && datenschutzPopup) {
+        datenschutzPopup.style.display = "none";
+      }
+    });
   }
-  if (window.location.pathname.includes("editor.html") && isMobile()) {
-    alert("The editor is not available on smartphones.");
-    window.location.href = "index.html";
-  }
-
-     /* ---------------------------
-        Datenschutzerklärung Popup (toggle + close impressum)
-     --------------------------- */
-     const datenschutzLink  = document.getElementById("datenschutz-link");
-     const datenschutzPopup = document.getElementById("datenschutz-popup");
-     const impressumPopup   = document.getElementById("impressum-popup");
-
-     if (datenschutzLink && datenschutzPopup) {
-       datenschutzLink.addEventListener("click", e => {
-         e.preventDefault();
-         const isOpen = datenschutzPopup.style.display === "block";
-         // toggle this one
-         datenschutzPopup.style.display = isOpen ? "none" : "block";
-         // if opening, ensure the other is closed
-         if (!isOpen && impressumPopup) {
-           impressumPopup.style.display = "none";
-         }
-       });
-     }
-
-     /* ---------------------------
-        Impressum Popup (toggle + close datenschutz)
-     --------------------------- */
-     const impressumLink  = document.getElementById("impressum-link");
-     // reuse datenschutzPopup from above
-
-     if (impressumLink && impressumPopup) {
-       impressumLink.addEventListener("click", e => {
-         e.preventDefault();
-         const isOpen = impressumPopup.style.display === "block";
-         // toggle this one
-         impressumPopup.style.display = isOpen ? "none" : "block";
-         // if opening, ensure the other is closed
-         if (!isOpen && datenschutzPopup) {
-           datenschutzPopup.style.display = "none";
-         }
-       });
-     }
-
-
 
   /* ---------------------------
      Klick außerhalb schließen (beide Popups)
